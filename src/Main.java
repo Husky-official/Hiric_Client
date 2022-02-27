@@ -11,6 +11,7 @@ public class Main {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
 
+
     public void hiricWelcomePage() {
         System.out.println(            "\n\n\n                                                                                   ");
         System.out.println(            "\t\t\t\t                                                                                 ");
