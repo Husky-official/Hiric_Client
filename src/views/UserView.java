@@ -1,7 +1,7 @@
 package views;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import clientmain.ClientServerConnector;
+import clientconnector.ClientServerConnector;
 
 import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;

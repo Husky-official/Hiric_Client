@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * @author : DABAGIRE Valens
+ * @description : User model
+ */
+
 import java.io.Serializable;
 
 public class User implements Serializable {
