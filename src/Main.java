@@ -1,8 +1,11 @@
-package hiricclient;
-
-import hiricclient.views.UserView;
-
 import java.util.Scanner;
+
+import views.UserView;
+
+/**
+ *@author: DABAGIRE Valens
+ * @description : The entry point for our system
+ * */
 
 public class Main {
     public static final String ANSI_BLUE = "\u001B[34m";

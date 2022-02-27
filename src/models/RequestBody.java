@@ -1,4 +1,9 @@
-package hiricclient.models;
+package models;
+
+/**
+ *@author: DABAGIRE Valens
+ * @description : Format for request body (url, action, requestObject)
+ * */
 
 public class RequestBody {
     private String url;

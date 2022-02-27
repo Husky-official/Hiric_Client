@@ -1,9 +1,14 @@
-package hiricclient;
+package clientmain;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+
+/**
+ *@author: DABAGIRE Valens
+ * @description : Create new socket instance to talk to the server
+ * */
 
 public class ClientServerConnector {
 
