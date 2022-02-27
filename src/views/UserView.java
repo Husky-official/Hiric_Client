@@ -19,11 +19,11 @@ public class UserView {
     public void loginUser() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, "\tUSER LOGIN");;
-        printConsoleMessage(MessageTypes.NORMAL,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL,"\tEnter your name");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");;
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your name");
         String name = scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL,"\tEnter your Id");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your Id");
         int id = scanner.nextInt();
         User user = new User();
         user.setName(name);
@@ -48,11 +48,11 @@ public class UserView {
         String message = jsonResponse.get("message").asText();
         String actionDone = jsonResponse.get("actionToDo").asText();
 
-        printConsoleMessage(MessageTypes.NORMAL,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-        printConsoleMessage(MessageTypes.NORMAL,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL,status+"    ||" + message +"   ||" + actionDone);
-        printConsoleMessage(MessageTypes.NORMAL,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
     }
 }
