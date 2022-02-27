@@ -1,7 +1,7 @@
 package views;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import clientconnector.ClientServerConnector;
+import clientmain.clientconnector.ClientServerConnector;
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package clientconnector;
+package clientmain.clientconnector;
 
 /**
  * @author: DABAGIRE Valens
