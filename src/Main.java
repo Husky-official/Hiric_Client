@@ -44,7 +44,7 @@ public class Main {
 
     public void loadingPageWrapper() throws InterruptedException, IOException {
         printConsoleMessage(MessageTypes.NORMAL,"\t\t\t\t__________________________________________________________________________");
-        printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t\t\tHiric \t");
+        System.out.print("\t\t\t\t\t\tHiric \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
             Thread.sleep(100);

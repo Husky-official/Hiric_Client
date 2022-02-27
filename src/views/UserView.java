@@ -5,6 +5,7 @@ import clientconnector.ClientServerConnector;
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.util.Scanner;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
