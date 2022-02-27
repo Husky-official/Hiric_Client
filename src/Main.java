@@ -1,4 +1,3 @@
-import utils.MessagePrinter;
 import interfaces.MessageTypes;
 import views.UserView;
 import static utils.MessagePrinter.printConsoleMessage;
