@@ -1,9 +1,10 @@
 package views;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import clientmain.ClientServerConnector;
 
 import java.util.Scanner;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.RequestBody;
 import models.User;
