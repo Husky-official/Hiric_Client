@@ -1,4 +1,4 @@
-package hiricclient.models;
+package models;
 
 import java.io.Serializable;
 

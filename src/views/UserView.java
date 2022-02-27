@@ -1,12 +1,13 @@
-package hiricclient.views;
+package views;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import hiricclient.ClientServerConnector;
-import hiricclient.models.RequestBody;
-import hiricclient.models.User;
+import clientmain.ClientServerConnector;
 
 import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import models.RequestBody;
+import models.User;
+
 
 public class UserView {
     public void mainMethod() throws Exception {
