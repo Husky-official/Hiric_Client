@@ -1,88 +1,98 @@
+import interfaces.MessageTypes;
+import views.UserView;
+import static utils.MessagePrinter.printConsoleMessage;
+
+import java.io.IOException;
 import java.util.Scanner;
 
-import views.UserView;
-
 /**
- *@author: DABAGIRE Valens
+ * @author: DABAGIRE Valens
+ * @author: ABIJURU Seth
  * @description : The entry point for our system
- * */
+ */
 
 public class Main {
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_RESET = "\u001B[0m";
 
-    public void hiricWelcomePage() {
-        System.out.println(            "\n\n\n                                                                                   ");
-        System.out.println(            "\t\t\t\t                                                                                 ");
-        System.out.println(ANSI_BLUE + "\t\t\t\t  __           __                                                                " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |         |  |                                                               " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |         |  |                                                               " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |         |  |                                                               " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |         |  |                                                               " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |          __                                                                " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |  __________                                                                " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  / /          |      __         _______            __           _____         " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t | / /           |     |  |      /   ____  \\         |  |       /   ___  \\     " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |/ /________    |     |  |     |  /      \\__\\       |  |      |  /     \\__\\ " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t  __         |   |     |  |     |  |                 |  |      |  |              " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |      __      " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |   \\___/   /    " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t |  |        |   |     |  |     |  |                 |  |       \\         /     " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t  --          ---       --       --                   --           -----         " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t                                                                                 " + ANSI_RESET);
-        System.out.println(ANSI_BLUE + "\t\t\t\t ==========================================================================    " + ANSI_RESET);
+    public void hiricWelcomePage() throws IOException {
+        try {
+            printConsoleMessage(MessageTypes.NORMAL,"\n\n\n                                                                                   ");
+            printConsoleMessage(MessageTypes.NORMAL,"\t\t\t\t                                                                                 ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t  __           __                                                                ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |          __                                                                ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |  __________                                                                ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  / /          |      __         _______            __           _____         ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t | / /           |     |  |      /   ____  \\         |  |       /   ___  \\     ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |/ /________    |     |  |     |  /      \\__\\       |  |      |  /     \\__\\ ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t  __         |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |      __      ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |   \\___/   /    ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |       \\         /     ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t  --          ---       --       --                   --           -----         ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t                                                                                 ");
+            printConsoleMessage(MessageTypes.ACTION,"\t\t\t\t ==========================================================================      ");
+        } catch (IOException error) {
+            printConsoleMessage(MessageTypes.ERROR, error.getMessage());
+        }
     }
 
-    public void loadingPageWrapper() throws InterruptedException {
-        System.out.println("\t\t\t\t__________________________________________________________________________");
-        System.out.print(ANSI_BLUE +"\t\t\t\t\t\tHiric \t"+ANSI_RESET);
+    public void loadingPageWrapper() throws InterruptedException, IOException {
+        printConsoleMessage(MessageTypes.NORMAL,"\t\t\t\t__________________________________________________________________________");
+        System.out.print("\t\t\t\t\t\tHiric \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
             Thread.sleep(100);
         }
-        System.out.print("\n");
-        System.out.println("\t\t\t\t__________________________________________________________________________\n\n");
-        System.out.println("\n");
+        printConsoleMessage(MessageTypes.NORMAL,"\n");
+        printConsoleMessage(MessageTypes.NORMAL,"\t\t\t\t__________________________________________________________________________\n\n");
+        printConsoleMessage(MessageTypes.NORMAL,"\n");
     }
 
-    public static void welcomeToHiric() throws Exception {
+    public static void WelcomeToHiric() throws IOException {
+        try {
 
-        UserView userView = new UserView();
-        String toContinue;
+            UserView userView = new UserView();
+            String toContinue;
 
-        do {
-            new Main().hiricWelcomePage();
-            new Main().loadingPageWrapper();
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------      WELCOME TO HIRIC        -------------------||");
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
-            System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+            do {
+                new Main().hiricWelcomePage();
+                new Main().loadingPageWrapper();
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||-------------------------------------------------------------------||");
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||------------------      WELCOME TO HIRIC        -------------------||");
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||-------------------------------------------------------------------||");
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||------------------    1.LOGIN                    ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||------------------    2.REGISTER                 ------------------||");
 
-            Scanner scanner = new Scanner(System.in);
-            int choice;
+                Scanner scanner = new Scanner(System.in);
+                int choice;
 
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t\t  Enter your choice");
-            choice = scanner.nextInt();
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t||-------------------------------------------------------------------||");
+                printConsoleMessage(MessageTypes.NORMAL,"\t\t\t\t  Enter your choice");
+                choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1:
-                    userView.loginUser();
-                    break;
-                default:
-                    System.out.println("Invalid input");
-            }
+                switch (choice) {
+                    case 1:
+                        userView.loginUser();
+                        break;
+                    default:
+                        printConsoleMessage(MessageTypes.ERROR,"Invalid input");
+                }
 
-            System.out.print("\t\tDo you want to continue searching? (y/n): ");
-            toContinue = scanner.next();
-        } while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+                printConsoleMessage(MessageTypes.NORMAL,"\t\tDo you want to continue searching? (y/n): ");
+                toContinue = scanner.next();
+            } while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+        } catch (Exception error) {
+            printConsoleMessage(MessageTypes.ERROR, error.getMessage());
+        }
     }
 
-    public static void main(String[] args) throws Exception {
-        welcomeToHiric();
+    public static void main(String [] args) throws IOException {
+        WelcomeToHiric();
     }
 }
