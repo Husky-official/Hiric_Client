@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import clientconnector.ClientServerConnector;
 import static utils.MessagePrinter.printConsoleMessage;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
@@ -55,4 +57,38 @@ public class UserView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
     }
+    public void pay() throws Exception {
+        Scanner scan = new Scanner(System.in);
+        int money_to_pay = 1000;
+        printConsoleMessage(MessageTypes.NORMAL, false, "||  You must pay "+money_to_pay+" rwf ||");
+        printConsoleMessage(MessageTypes.NORMAL,false,"choose your payment method");
+        printConsoleMessage(MessageTypes.NORMAL,false,"1.Pay using MoMo ");
+        printConsoleMessage(MessageTypes.NORMAL,false,"2.Pay Using paypal");
+        int choice = scan.nextInt();
+        if (choice == 1){
+
+            printConsoleMessage(MessageTypes.NORMAL,true,"Enter your number: ");
+            String phone_number = scan.nextLine();
+            printConsoleMessage(MessageTypes.NORMAL,true,"Enter your PIN: ");
+            String PIN = scan.nextLine();
+            //due to it being a console version we can't pull API since they require a web interface
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/payment");
+
+        }else if(choice == 2){
+            printConsoleMessage(MessageTypes.NORMAL,true,"Enter your email: ");
+            String paypal_email = scan.nextLine();
+            printConsoleMessage(MessageTypes.NORMAL,true,"Enter your password: ");
+            String paypal_password = scan.nextLine();
+            //due to it being a console version we can't pull API since they require a web interface
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/payment");
+        }else {
+            printConsoleMessage(MessageTypes.NORMAL, false, "Invalid input !");
+            TimeUnit.SECONDS.sleep(3);
+            pay();
+        }
+
+    }
 }
+1
