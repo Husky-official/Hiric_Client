@@ -1,2 +1,4 @@
-package views.hiring;public class jobPostingView {
+package views.hiring;
+
+public class jobPostingView {
 }
