@@ -1,5 +1,7 @@
 import interfaces.MessageTypes;
 import views.UserView;
+import views.hiring.jobApplicationView;
+
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.io.IOException;
@@ -68,6 +70,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.APPLY                 ------------------||");
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -80,6 +83,8 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
+                    case 3:
+                        jobApplicationView.applyForJob();
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
