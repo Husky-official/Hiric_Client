@@ -77,8 +77,6 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
-                    case 2:
-                        userView.pay();
                     case 1:
                         userView.loginUser();
                         break;
