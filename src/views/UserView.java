@@ -19,7 +19,7 @@ public class UserView {
     public void loginUser() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");;
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your name");
         String name = scanner.nextLine();

@@ -4,6 +4,9 @@
       <root url="jar://$PROJECT_DIR$/src/lib/jackson-annotations-2.11.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/lib/jackson-databind-2.11.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/lib/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jackson-databind-2.11.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

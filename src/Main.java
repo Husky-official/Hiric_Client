@@ -1,4 +1,5 @@
 import interfaces.MessageTypes;
+import views.InvoiceView;
 import views.UserView;
 import static utils.MessagePrinter.printConsoleMessage;
 
@@ -58,6 +59,7 @@ public class Main {
         try {
 
             UserView userView = new UserView();
+            InvoiceView invoiceView = new InvoiceView();
             String toContinue;
 
             do {
@@ -80,6 +82,8 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
+                    case 10:
+                        invoiceView.mainMethod();
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
