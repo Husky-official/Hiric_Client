@@ -114,4 +114,8 @@ public class BillingView {
 
     }
 
+    public static String paymentMethod() {
+        return "payment";
+    }
+
 }
