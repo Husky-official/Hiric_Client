@@ -4,7 +4,6 @@ import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
-import models.PayObject;
 import models.Payment;
 import models.RequestBody;
 import models.User;
