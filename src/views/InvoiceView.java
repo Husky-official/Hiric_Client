@@ -22,7 +22,6 @@ public class InvoiceView {
         invoice.setInvoiceNumber(generateInvoiceNumber());
         invoice.setUserId(fetchUserId());
         invoice.setJobId(fetchJobId());
-        invoice.setDate(Date.valueOf("10-02-2022"));
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/invoice");
