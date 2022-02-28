@@ -1,9 +1,6 @@
 import interfaces.MessageTypes;
-<<<<<<< HEAD
 import views.InvoiceView;
-=======
 import views.MessageView;
->>>>>>> 15a35158a5f01c749e21aab21a252bce90b41d50
 import views.UserView;
 import static utils.MessagePrinter.printConsoleMessage;
 
@@ -86,14 +83,14 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
-<<<<<<< HEAD
+
                     case 10:
                         invoiceView.mainMethod();
-=======
+
                     case 2:
                         userView.loginUser();
                         break;
->>>>>>> 15a35158a5f01c749e21aab21a252bce90b41d50
+
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
