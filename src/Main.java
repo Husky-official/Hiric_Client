@@ -89,8 +89,7 @@ public class Main {
 
                 switch (choice) {
                     case 1:
-                        userView.login();
-                        break;
+                        userView.loginUser();
                     case 4:
                         JobPostingView.createJobPost();
                         break;
