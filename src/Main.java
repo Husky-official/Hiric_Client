@@ -79,6 +79,8 @@ public class Main {
                 switch (choice) {
                     case 1:
                         userView.loginUser();
+                    case 2:
+                        userView.registerUser();
                         break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");

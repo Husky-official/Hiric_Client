@@ -1,36 +1,74 @@
+/*@author Anglebert*/
 package models;
 
-/**
- * @author : DABAGIRE Valens
- * @description : User model
- */
-
-import java.io.Serializable;
-
-public class User implements Serializable {
-
-    private Integer id;
-    private String name;
-
-    public User(){};
-    public User(int id, String name){
-        this.id = id;
-        this.name = name;
+import java.io.*;
+public class User implements  Serializable{
+    private Integer userId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private Integer telephone;
+    private UserRole role;
+    private int accountType;
+    public User(){
     }
-
-    public Integer getId() {
-        return id;
+    public User(Integer userId , String firstName , String lastName , String email , String password ,int accountType, Integer telephone, UserRole role){
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.accountType = accountType;
+        this.telephone = telephone;
+        this.role = role;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public Integer getUserId() {
+        return userId;
     }
-
-    public String getName() {
-        return name;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public Integer getTelephone() {
+        return telephone;
+    }
+    public void setTelephone(Integer telephone) {
+        this.telephone = telephone;
+    }
+    public UserRole getRole() {
+        return role;
+    }
+    public int getAccountType() {
+        return accountType;
+    }
+    public void setAccountType(int accountType) {
+        this.accountType = accountType;
+    }
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
