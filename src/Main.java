@@ -72,7 +72,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.CREATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.PAY YOUR EMPLOYEE                 ------------------||");
@@ -87,12 +87,6 @@ public class Main {
 
                 switch (choice) {
                     case 1:
-                        userView.loginUser();
-                        break;
-
-                    case 3:
-                        JobPostingView.createJobPost();
-                        break;
 //                    case 4:
 //                        JobPostingView.updateJobPost();
 //                        break;
@@ -101,6 +95,9 @@ public class Main {
 
                     case 2:
                         userView.loginUser();
+                        break;
+                    case 4:
+                        JobPostingView.createJobPost();
                         break;
                     case 3:
                         billingView.makePayment();
