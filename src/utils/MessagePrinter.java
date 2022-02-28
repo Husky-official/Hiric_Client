@@ -3,6 +3,7 @@ package utils;
 /**
  * @author : Abijuru Seth
  * @description : Printing messages according to their types;
+ * - skip number of lines as you want by passing the num in the function skipLines(int num)
  */
 
 import customs.ConsoleColorConfigurations;
@@ -43,6 +44,16 @@ public class MessagePrinter {
                 } else {
                     System.out.println(message);
                 }
+            }
+        } catch (Exception error) {
+            System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
+        }
+    }
+
+    public static void skipLines(int numberOfLines) throws IOException {
+        try {
+            for (int i = 0; i < numberOfLines; i++) {
+                System.out.println("");
             }
         } catch (Exception error) {
             System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
