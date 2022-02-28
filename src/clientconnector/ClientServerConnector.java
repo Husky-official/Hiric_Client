@@ -1,14 +1,20 @@
-package clientmain;
+package clientconnector;
+
+/**
+ * @author: DABAGIRE Valens
+ * @author: ABIJURU Seth
+ * @description : Create new socket instance to talk to the server
+ */
+
+import interfaces.MessageTypes;
+import utils.MessagePrinter;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
-
-/**
- *@author: DABAGIRE Valens
- * @description : Create new socket instance to talk to the server
- * */
+import java.util.List;
 
 public class ClientServerConnector {
 
@@ -23,9 +29,10 @@ public class ClientServerConnector {
 
             return responseIn.readUTF();
 
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch(Exception error) {
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
         }
+        MessagePrinter.printConsoleMessage(MessageTypes.ERROR,  false,"Connection to the server interrupted!");
         return "";
     }
 }
