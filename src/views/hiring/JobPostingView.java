@@ -9,11 +9,16 @@ import models.hiring.JobPosting;
 import java.util.Scanner;
 
 import static utils.MessagePrinter.printConsoleMessage;
-
+/*
+* author: Gashugi Aderline
+* desc: This is a controller that handles requests regarding creating, reading, updating and deleting a job post.
+*
+ */
 public class JobPostingView {
     public void mainMethod() throws Exception {}
 
     public static void createJobPost() throws Exception {
+        System.out.println("Hello World!");
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tCREATE A JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
@@ -62,4 +67,12 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
+//    public static void updateJobPost() throws  Exception {
+//        Scanner scanner = new Scanner(System.in);
+//        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
+//        String jobId = scanner.nextLine();
+//        int id = Integer.parseInt(jobId);
+//    }
 }

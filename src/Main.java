@@ -87,8 +87,12 @@ public class Main {
                         break;
                     case 3:
                         JobPostingView.createJobPost();
-                    case 4:
-                        JobPostingView.updateJobPost();
+                        break;
+//                    case 4:
+//                        JobPostingView.updateJobPost();
+//                        break;
+//                    case 5:
+//                        JobPostingView.deleteJobPost();
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }

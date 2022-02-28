@@ -1,5 +1,9 @@
 package models.hiring;
-
+/*
+ * author: Gashugi Aderline
+ * desc: This is a model for a  job post.
+ *
+ */
 public class JobPosting {
     private String jobTitle;
     private String jobDescription;
