@@ -5,13 +5,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import clientconnector.ClientServerConnector;
 import static utils.MessagePrinter.printConsoleMessage;
 
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
-import models.PayObject;
 import models.RequestBody;
 import models.User;
 

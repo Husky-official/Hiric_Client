@@ -1,6 +1,3 @@
-/**
- * @author: Burigo Aldo Jabes
- */
 package views;
 
 import clientconnector.ClientServerConnector;
@@ -17,18 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 import static utils.MessagePrinter.printConsoleMessage;
 
-
 public class BillingView {
-    /*
-    @author: Burigo Aldo Jabes
-     */
-    public String paymentMethod(double amount) throws Exception {
-
+    public String paymentMethod(Double amount) throws Exception {
         String returnString = "";
         Scanner scan = new Scanner(System.in);
-//        User payer = new User("hfdjshfsadjf"3,"aldo@aldo.com");
+//        User payer = new User("hfdjshfsadjf","aldo@aldo.com");
 //        User payee = new User("jfdksjfksf","jabes@jabes.com");
-        double money_to_pay = amount;
+        Double money_to_pay = amount;
 //        PayObject payObject = new PayObject(payee,payer,money_to_pay);
         printConsoleMessage(MessageTypes.NORMAL, false, "||  You must pay "+money_to_pay+"||");
         printConsoleMessage(MessageTypes.NORMAL,false,"choose your payment method");
@@ -39,6 +31,7 @@ public class BillingView {
         if (choice == 1){
 
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your number: ");
+            scan.nextLine();
             String phone_number = scan.nextLine();
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your PIN: ");
             String PIN = scan.nextLine();
@@ -62,8 +55,7 @@ public class BillingView {
     public void makePayment() throws Exception {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tPAY FOR THE JOB YOU'VE GIVEN");
-        printConsoleMessage(MessageTypes.NORMAL,
-                false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the id for the job: ");
         String inJobId = scanner.nextLine();
         Long jobId = Long.parseLong(inJobId);
@@ -72,7 +64,6 @@ public class BillingView {
         String inOgAmount = scanner.nextLine();
         Double originalAmount = Double.parseDouble(inOgAmount);
 
-        paymentMethod(originalAmount);
         String chosenPaymentMethod = paymentMethod(originalAmount);
 
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the amount deducted from employee if any. If no, enter 0: ");
@@ -119,6 +110,10 @@ public class BillingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
+    }
+
+    public static String paymentMethod() {
+        return "payment";
     }
 
 }
