@@ -1,5 +1,6 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.MessageView;
 import views.UserView;
 import views.hiring.JobPostingView;
 
@@ -62,6 +63,7 @@ public class Main {
 
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
+            MessageView messageView = new MessageView();
             String toContinue;
 
             do {
@@ -101,6 +103,9 @@ public class Main {
                         break;
                     case 3:
                         billingView.makePayment();
+                        break;
+                    case 9:
+                        messageView.mainMethod();
                         break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
