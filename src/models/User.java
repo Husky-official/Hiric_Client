@@ -10,12 +10,12 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String password;
-    private String email;
+    private String userName;
 
     public User(){};
-    public User(String password, String email){
+    public User(String password, String name){
         this.password = password;
-        this.email = email;
+        this.userName = name;
     }
     public void setPassword(String password) {
         this.password = password;
@@ -25,11 +25,11 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 }
