@@ -56,6 +56,10 @@ public class UserView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
     }
+    /*
+    @author: UWENAYO Alain Pacifique,
+    @description : This method is used to register a new user to the system
+     */
     public void registerUser() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
