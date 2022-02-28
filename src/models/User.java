@@ -9,28 +9,27 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private int id;
-    private String name;
+    private String password;
+    private String email;
 
     public User(){};
-    public User(int id, String name){
-        this.id = id;
-        this.name = name;
+    public User(String password, String email){
+        this.password = password;
+        this.email = email;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getEmail() {
+        return email;
     }
 }
