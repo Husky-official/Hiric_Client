@@ -81,6 +81,9 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
+                    case 2:
+                        userView.loginUser();
+                        break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
