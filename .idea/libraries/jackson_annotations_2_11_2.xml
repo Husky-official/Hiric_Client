@@ -1,9 +1,23 @@
 <component name="libraryTable">
   <library name="jackson-annotations-2.11.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/lib/jackson-annotations-2.11.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jackson-databind-2.11.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/lib/jackson-core-2.11.2.jar!/" />
+
+      <root url="jar://$PROJECT_DIR$/../Hiric_Server/src/hiric/lib/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hiric_Server/src/hiric/lib/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hiric_Server/src/hiric/lib/jackson-databind-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/hiricclient/lib/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/hiricclient/lib/jackson-databind-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/hiricclient/lib/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jackson-databind-2.11.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jsoup-1.14.3.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/mysql-connector.jar!/" />
+
+      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar!/" />
+
     </CLASSES>
     <JAVADOC />
     <SOURCES />
