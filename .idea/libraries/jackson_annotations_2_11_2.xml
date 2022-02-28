@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="jackson-annotations-2.11.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.11.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.11.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/libraries/jackson-annotations-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/libraries/jackson-core-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/libraries/jackson-databind-2.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hiric_Server/src/hiric/lib/mysql-connector.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
