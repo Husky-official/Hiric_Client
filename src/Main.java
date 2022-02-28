@@ -1,4 +1,5 @@
 import interfaces.MessageTypes;
+import views.BillingView;
 import views.MessageView;
 import views.UserView;
 import static utils.MessagePrinter.printConsoleMessage;
@@ -59,6 +60,7 @@ public class Main {
         try {
 
             UserView userView = new UserView();
+            BillingView billingView = new BillingView();
             String toContinue;
 
             do {
@@ -69,6 +71,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.Make Payment                 ------------------||");
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -81,8 +84,8 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
-                    case 2:
-                        userView.loginUser();
+                    case 3:
+                        billingView.makePayment();
                         break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
