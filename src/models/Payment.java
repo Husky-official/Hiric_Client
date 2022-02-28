@@ -1,7 +1,7 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *@author : DUSHIME Bill Benon - Billing Model
@@ -15,7 +15,7 @@ public class Payment implements Serializable {
     private Double originalAmount;
     private String paymentMethod;
     private Double reducedAmount;
-    private Date dateOfPayment;
+    private LocalDate dateOfPayment;
     private Long employeeId;
     private Long employerId;
 
@@ -61,11 +61,11 @@ public class Payment implements Serializable {
         this.reducedAmount = reducedAmount;
     }
 
-    public Date getDateOfPayment() {
+    public LocalDate getDateOfPayment() {
         return dateOfPayment;
     }
 
-    public void setDateOfPayment(Date dateOfPayment) {
+    public void setDateOfPayment(LocalDate dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
     }
 
@@ -85,7 +85,17 @@ public class Payment implements Serializable {
         this.employerId = employerId;
     }
 
-    public Payment(Long id, Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, Date dateOfPayment, Long employeeId, Long employerId) {
+    public Payment(Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
+        this.jobId = jobId;
+        this.originalAmount = originalAmount;
+        this.paymentMethod = paymentMethod;
+        this.reducedAmount = reducedAmount;
+        this.dateOfPayment = dateOfPayment;
+        this.employeeId = employeeId;
+        this.employerId = employerId;
+    }
+
+    public Payment(Long id, Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
         this.id = id;
         this.jobId = jobId;
         this.originalAmount = originalAmount;
