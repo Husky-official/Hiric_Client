@@ -1,4 +1,5 @@
 import interfaces.MessageTypes;
+import views.BillingView;
 import views.UserView;
 import views.hiring.JobPostingView;
 
@@ -60,6 +61,7 @@ public class Main {
         try {
 
             UserView userView = new UserView();
+            BillingView billingView = new BillingView();
             String toContinue;
 
             do {
@@ -73,6 +75,8 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.CREATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.PAY YOUR EMPLOYEE                 ------------------||");
+
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -85,6 +89,7 @@ public class Main {
                     case 1:
                         userView.loginUser();
                         break;
+
                     case 3:
                         JobPostingView.createJobPost();
                         break;
@@ -93,6 +98,13 @@ public class Main {
 //                        break;
 //                    case 5:
 //                        JobPostingView.deleteJobPost();
+
+                    case 2:
+                        userView.loginUser();
+                        break;
+                    case 3:
+                        billingView.makePayment();
+                        break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }

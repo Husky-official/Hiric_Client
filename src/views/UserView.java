@@ -1,3 +1,7 @@
+/**
+* @author: Aldo Jabes
+**/
+
 package views;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,7 +17,6 @@ import models.User;
 
 public class UserView {
     public void mainMethod() throws Exception {
-
     }
 
     public void loginUser() throws Exception {
@@ -21,13 +24,13 @@ public class UserView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");;
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your name");
-        String name = scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your Id");
-        int id = scanner.nextInt();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your email");
+        String email = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your password");
+        String password = scanner.nextLine();
         User user = new User();
-        user.setName(name);
-        user.setId(id);
+        user.setEmail(email);
+        user.setPassword(password);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");
@@ -35,7 +38,7 @@ public class UserView {
         requestBody.setObject(user);
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
-
+        //sending object to server
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
 
@@ -53,6 +56,5 @@ public class UserView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-
     }
 }
