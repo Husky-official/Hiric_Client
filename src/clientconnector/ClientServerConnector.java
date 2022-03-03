@@ -30,9 +30,9 @@ public class ClientServerConnector {
             return responseIn.readUTF();
 
         } catch(Exception error) {
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, error.getMessage());
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
         }
-        MessagePrinter.printConsoleMessage(MessageTypes.ERROR, "Connection to the server interrupted!");
+        MessagePrinter.printConsoleMessage(MessageTypes.ERROR,  false,"Connection to the server interrupted!");
         return "";
     }
 }

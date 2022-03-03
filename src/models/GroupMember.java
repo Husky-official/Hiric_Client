@@ -1,5 +1,11 @@
 package models;
 
+/**
+ * @author: DABAGIRE Valens
+ * @description: Chatting group class to model the fields needed to handle group member
+ * @field : member_id -> the id to represent the group members
+ **/
+
 public class GroupMember {
     private int member_id;
     private int group_id;

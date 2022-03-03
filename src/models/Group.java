@@ -2,6 +2,12 @@ package models;
 
 import java.sql.Date;
 
+/**
+ * @author: DABAGIRE Valens
+ * @description: Chatting group class to model the fields needed to create and read content
+ *               from group messaging table
+ **/
+
 public class Group {
 
     private int id;
