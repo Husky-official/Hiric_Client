@@ -39,6 +39,7 @@ public class BillingView {
             returnString = "MobileMoney";
         }else if(choice == 2){
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your email: ");
+            scan.nextLine();
             String paypal_email = scan.nextLine();
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your password: ");
             String paypal_password = scan.nextLine();
@@ -70,7 +71,8 @@ public class BillingView {
         String inReducedAmount = scanner.nextLine();
         Double reducedAmount = Double.parseDouble(inReducedAmount);
 
-        LocalDate dateOfPayment = LocalDate.now();
+        LocalDate initDateOfPay = LocalDate.now();
+        String dateOfPayment = initDateOfPay.toString();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the employee's id to pay: ");
         String inEmployeeId = scanner.nextLine();
         Long employeeId = Long.parseLong(inEmployeeId);
