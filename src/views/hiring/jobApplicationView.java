@@ -56,6 +56,8 @@ public class jobApplicationView {
     }
 
     private static void viewApplications() {
+
+
 //            RequestBody requestBody = new RequestBody();
 //            requestBody.setUrl("/users");
 //            requestBody.setAction("getUsers");
@@ -111,19 +113,7 @@ public class jobApplicationView {
         String salary=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"Payment method: ");
         String paymentMethod=scanner.nextLine();
-        printConsoleMessage(MessageTypes.ACTION, false,"\n\t\tENTER DETAILS OF PREVIOUS EMPLOYMENT\n");
-        printConsoleMessage(MessageTypes.NORMAL, false,"Previous employer: ");
-        String prevEmp=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Previous employer phone Number : ");
-        String prevEmpPhone=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Previous employer email: ");
-        String prevEmpEmail=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Previous position: ");
-        String prevPos=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Reason for leaving: ");
-        String reason=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Previous salary: ");
-        String prevSalary=scanner.nextLine();
+
         printConsoleMessage(MessageTypes.ACTION, false,"\n\t\tENTER DETAILS OF REFERENCES\n");
         printConsoleMessage(MessageTypes.NORMAL, false,"Full names: ");
         String refNames=scanner.nextLine();
@@ -143,11 +133,6 @@ public class jobApplicationView {
          apply.setAvailableDate(availableDate);
          apply.setSalaryDesired(salary);
          apply.setPaymentMethod(paymentMethod);
-         apply.setPrevEmployer(prevEmp);
-         apply.setPrevEmpPhone(prevEmpPhone);
-         apply.setPrevEmpEmail(prevEmpEmail);
-         apply.setPrevPosition(prevPos);
-         apply.setReason(reason);
          apply.setReferenceName(refNames);
          apply.setReferencePhone(contact);
          apply.setCertificate(certificate);
