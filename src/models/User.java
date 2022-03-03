@@ -1,9 +1,13 @@
 /*@author Anglebert*/
 package models;
 
-import java.io.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 public class User implements  Serializable{
+    @NotNull
     private Integer userId;
+    @NotEmpty(message = "Please enter your name")
     private String firstName;
     private String lastName;
     private String email;

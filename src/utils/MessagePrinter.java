@@ -10,7 +10,18 @@ import interfaces.MessageTypes;
 
 import java.io.IOException;
 
+/**
+ * The type Message printer.
+ */
 public class MessagePrinter {
+    /**
+     * Print console message.
+     *
+     * @param messageType the message type
+     * @param sameLine    the same line
+     * @param message     the message
+     * @throws IOException the io exception
+     */
     public static void printConsoleMessage(MessageTypes messageType, Boolean sameLine, String message) throws IOException {
         try {
             if (messageType == MessageTypes.ERROR) {
@@ -47,5 +58,31 @@ public class MessagePrinter {
         } catch (Exception error) {
             System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
         }
+    }
+
+    /**
+     * Response printer.
+     *
+     * @author UWENAYO ALain Pacifique
+     * @description Printing response messages
+     * @param status     the status
+     * @param message    the message
+     * @param actionDone the action done
+     * @throws IOException the io exception
+     */
+    public static void ResponsePrinter(int status, String message, String actionDone) throws IOException {
+        MessageTypes responseType = MessageTypes.NORMAL;
+        if(status == 200){
+            responseType = MessageTypes.SUCCESS;
+        }else if(status == 400){
+            responseType = MessageTypes.ERROR;
+        }
+
+        printConsoleMessage(responseType, false,"========================================================================");
+        printConsoleMessage(responseType, false,"STATUS ||         MESSAGE        ||             ACTION DONE            ");
+        printConsoleMessage(responseType, false,"========================================================================");
+        printConsoleMessage(responseType, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(responseType, false,"========================================================================");
+
     }
 }
