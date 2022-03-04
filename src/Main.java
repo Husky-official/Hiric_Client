@@ -1,11 +1,16 @@
 import interfaces.MessageTypes;
+import views.BillingView;
+import views.MessageView;
 import views.UserView;
 import views.hiring.jobApplicationView;
 
 import static utils.MessagePrinter.printConsoleMessage;
+import views.hiring.JobPostingView;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import static utils.MessagePrinter.printConsoleMessage;
 
 /**
  * @author: DABAGIRE Valens
@@ -60,6 +65,8 @@ public class Main {
         try {
 
             UserView userView = new UserView();
+            BillingView billingView = new BillingView();
+            MessageView messageView = new MessageView();
             String toContinue;
 
             do {
@@ -71,6 +78,11 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.APPLY                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -82,6 +94,14 @@ public class Main {
                 switch (choice) {
                     case 1:
                         userView.loginUser();
+                    case 4:
+                        JobPostingView.createJobPost();
+                        break;
+                    case 6:
+                        billingView.makePayment();
+                        break;
+                    case 9:
+                        messageView.mainMethod();
                         break;
                     case 3:
                         jobApplicationView.applyForJob();

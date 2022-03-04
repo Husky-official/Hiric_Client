@@ -4,9 +4,8 @@ import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
-import models.JobApplication;
+import models.hiring.JobApplication;
 import models.RequestBody;
-import models.User;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -94,23 +93,15 @@ public class jobApplicationView {
     public static void applyForJob() throws IOException{
         Scanner scanner=new Scanner(System.in);
         printConsoleMessage(MessageTypes.ACTION, false,"\t\tENTER DETAILS OF EMPLOYMENT DESIRED\n");
-        printConsoleMessage(MessageTypes.NORMAL, false," Id: ");
-        String id=scanner.nextLine();
-        int idd=Integer.parseInt(id);
+        printConsoleMessage(MessageTypes.NORMAL, false,"Job Post Id: ");
+        String jobIdd=scanner.nextLine();
+        int jobId=Integer.parseInt(jobIdd);
         printConsoleMessage(MessageTypes.NORMAL, false,"User Id: ");
         String userId=scanner.nextLine();
         int userrId=Integer.parseInt(userId);
-       printConsoleMessage(MessageTypes.NORMAL, false,"Job Id: ");
-       String jobIdd=scanner.nextLine();
-       int jobId=Integer.parseInt(jobIdd);
-        printConsoleMessage(MessageTypes.NORMAL, false,"Current address: ");
-        String address=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Position: ");
-        String position=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Available date: ");
-        String availableDate=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"Salary desired: ");
-        String salary=scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false,"Location name: ");
+        String locid=scanner.nextLine();
+        int locId=Integer.parseInt(locid);
         printConsoleMessage(MessageTypes.NORMAL, false,"Payment method: ");
         String paymentMethod=scanner.nextLine();
 
@@ -119,19 +110,15 @@ public class jobApplicationView {
         String refNames=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"Contact ");
         String contact=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the certificate ");
-        String certificate=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the resume ");
         String resume=scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the certificate ");
+        String certificate=scanner.nextLine();
 
         JobApplication apply = new JobApplication();
-        apply.setUserId(userrId);
-        apply.setId(idd);
-         apply.setJobId(jobId);
-         apply.setCurrentAddress(address);
-         apply.setPositionAppliedFor(position);
-         apply.setAvailableDate(availableDate);
-         apply.setSalaryDesired(salary);
+         apply.setJobPostId(jobId);
+         apply.setUserId(userrId);
+        apply.setLocationId(locId);
          apply.setPaymentMethod(paymentMethod);
          apply.setReferenceName(refNames);
          apply.setReferencePhone(contact);
