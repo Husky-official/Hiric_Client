@@ -1,78 +1,90 @@
 /*@author Anglebert*/
 package models;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
+
 public class User implements  Serializable{
-    @NotNull
-    private Integer userId;
-    @NotEmpty(message = "Please enter your name")
+    private int userId;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private Integer telephone;
-    private UserRole role;
-    private int accountType;
-    public User(){
-    }
-    public User(Integer userId , String firstName , String lastName , String email , String password ,int accountType, Integer telephone, UserRole role){
+    private UserUtils.UserGender gender;
+    private UserUtils.UserRoles role;
+    private Date DOB;
+    public User(){}
+    public User(int userId, String firstName, String lastName, String email, String password, UserUtils.UserGender gender, UserUtils.UserRoles role, Date DOB) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.accountType = accountType;
-        this.telephone = telephone;
+        this.gender = gender;
         this.role = role;
     }
-    public Integer getUserId() {
+
+    public int getUserId() {
         return userId;
     }
-    public void setUserId(Integer userId) {
+
+    public void setUserId(int userId) {
         this.userId = userId;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-    public Integer getTelephone() {
-        return telephone;
+
+    public UserUtils.UserGender getGender() {
+        return gender;
     }
-    public void setTelephone(Integer telephone) {
-        this.telephone = telephone;
+
+    public void setGender(UserUtils.UserGender gender) {
+        this.gender = gender;
     }
-    public UserRole getRole() {
+
+    public UserUtils.UserRoles getRole() {
         return role;
     }
-    public int getAccountType() {
-        return accountType;
-    }
-    public void setAccountType(int accountType) {
-        this.accountType = accountType;
-    }
-    public void setRole(UserRole role) {
+
+    public void setRole(UserUtils.UserRoles role) {
         this.role = role;
+    }
+
+    public Date getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(Date DOB) {
+        this.DOB = DOB;
     }
 }

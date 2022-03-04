@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
 import models.User;
-import models.UserRole;
+import models.UserUtils.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import static utils.MessagePrinter.ResponsePrinter;
@@ -72,21 +74,30 @@ public class UserView {
     public void registerUser() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
+        UserRoles userRole = UserRoles.EMPLOYER;
+        UserGender userGender = UserGender.MALE;
         printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER REGISTER");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your first name[ex:UWENAYO]");
         String firstName = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your last name[ex:Alain Pacifique]");
         String lastName = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your gender[1:Male,2:Female]");
+        if(scanner.nextInt() == 2){
+            userGender = UserGender.FEMALE;
+        }
+        scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your email[ex:example@domain.com]");
         String email = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your password[strong password sugggested]");
         String password = scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your phone number[ex:+254712345678]");
-        int telephone = scanner.nextInt();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your Date of Birth[ex:01/12/1990]");
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
         printConsoleMessage(MessageTypes.NORMAL, false,"\tChoose account type[1:employer,2:employee]");
-        int accountType = scanner.nextInt();
-        User user = new User(1,firstName,lastName,email,password,accountType,telephone,UserRole.STANDARD);
+        if (scanner.nextInt() == 2){
+            userRole = UserRoles.EMPLOYEE;
+        }
+        User user = new User(1,firstName,lastName,email,password,userGender,userRole, dateOfBirth);
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");
         requestBody.setAction("register");
