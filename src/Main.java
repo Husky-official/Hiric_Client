@@ -80,6 +80,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
 
 
                 Scanner scanner = new Scanner(System.in);
@@ -92,6 +93,9 @@ public class Main {
                 switch (choice) {
                     case 1:
                         userView.loginUser();
+//                    case 2:
+//                        userView.registerUser();
+//                        break;
                     case 4:
                         JobPostingView.createJobPost();
                         break;
@@ -103,10 +107,6 @@ public class Main {
 
                     case 10:
                         invoiceView.mainMethod();
-
-                    case 2:
-                        userView.loginUser();
-                        break;
 
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
