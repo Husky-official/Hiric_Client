@@ -15,7 +15,7 @@ public class Payment implements Serializable {
     private Double originalAmount;
     private String paymentMethod;
     private Double reducedAmount;
-    private LocalDate dateOfPayment;
+    private String dateOfPayment;
     private Long employeeId;
     private Long employerId;
 
@@ -61,11 +61,11 @@ public class Payment implements Serializable {
         this.reducedAmount = reducedAmount;
     }
 
-    public LocalDate getDateOfPayment() {
+    public String getDateOfPayment() {
         return dateOfPayment;
     }
 
-    public void setDateOfPayment(LocalDate dateOfPayment) {
+    public void setDateOfPayment(String dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
     }
 
@@ -85,7 +85,7 @@ public class Payment implements Serializable {
         this.employerId = employerId;
     }
 
-    public Payment(Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
+    public Payment(Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, String dateOfPayment, Long employeeId, Long employerId) {
         this.jobId = jobId;
         this.originalAmount = originalAmount;
         this.paymentMethod = paymentMethod;
@@ -95,7 +95,7 @@ public class Payment implements Serializable {
         this.employerId = employerId;
     }
 
-    public Payment(Long id, Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
+    public Payment(Long id, Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, String dateOfPayment, Long employeeId, Long employerId) {
         this.id = id;
         this.jobId = jobId;
         this.originalAmount = originalAmount;

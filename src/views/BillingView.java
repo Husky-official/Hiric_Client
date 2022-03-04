@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit;
 import static utils.MessagePrinter.printConsoleMessage;
 
 public class BillingView {
-    public String paymentMethod() throws Exception {
+    public String paymentMethod(Double amount) throws Exception {
         String returnString = "";
         Scanner scan = new Scanner(System.in);
 //        User payer = new User("hfdjshfsadjf","aldo@aldo.com");
 //        User payee = new User("jfdksjfksf","jabes@jabes.com");
-        int money_to_pay = 1000;
+        Double money_to_pay = amount;
 //        PayObject payObject = new PayObject(payee,payer,money_to_pay);
         printConsoleMessage(MessageTypes.NORMAL, false, "||  You must pay "+money_to_pay+"||");
         printConsoleMessage(MessageTypes.NORMAL,false,"choose your payment method");
@@ -31,6 +31,7 @@ public class BillingView {
         if (choice == 1){
 
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your number: ");
+            scan.nextLine();
             String phone_number = scan.nextLine();
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your PIN: ");
             String PIN = scan.nextLine();
@@ -38,6 +39,7 @@ public class BillingView {
             returnString = "MobileMoney";
         }else if(choice == 2){
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your email: ");
+            scan.nextLine();
             String paypal_email = scan.nextLine();
             printConsoleMessage(MessageTypes.NORMAL,false,"Enter your password: ");
             String paypal_password = scan.nextLine();
@@ -46,7 +48,7 @@ public class BillingView {
         }else {
             printConsoleMessage(MessageTypes.NORMAL, false, "Invalid input !");
             TimeUnit.SECONDS.sleep(3);
-            paymentMethod();
+            paymentMethod(amount);
         }
         return returnString;
     }
@@ -63,14 +65,14 @@ public class BillingView {
         String inOgAmount = scanner.nextLine();
         Double originalAmount = Double.parseDouble(inOgAmount);
 
-        paymentMethod();
-        String chosenPaymentMethod = paymentMethod();
+        String chosenPaymentMethod = paymentMethod(originalAmount);
 
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the amount deducted from employee if any. If no, enter 0: ");
         String inReducedAmount = scanner.nextLine();
         Double reducedAmount = Double.parseDouble(inReducedAmount);
 
-        LocalDate dateOfPayment = LocalDate.now();
+        LocalDate initDateOfPay = LocalDate.now();
+        String dateOfPayment = initDateOfPay.toString();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the employee's id to pay: ");
         String inEmployeeId = scanner.nextLine();
         Long employeeId = Long.parseLong(inEmployeeId);
@@ -110,6 +112,10 @@ public class BillingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
+    }
+
+    public static String paymentMethod() {
+        return "payment";
     }
 
 }
