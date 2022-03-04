@@ -1,6 +1,7 @@
 package views;
 
 import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
@@ -8,7 +9,9 @@ import models.Payment;
 import models.RequestBody;
 import models.User;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +60,9 @@ public class BillingView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tPAY FOR THE JOB YOU'VE GIVEN");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the id for the job: ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tList of jobs given: ");
+        getListOfJobs();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the chosen id for the job: ");
         String inJobId = scanner.nextLine();
         Long jobId = Long.parseLong(inJobId);
 
@@ -114,8 +119,25 @@ public class BillingView {
 
     }
 
-    public static String paymentMethod() {
-        return "payment";
+    public String getListOfJobs() throws IOException {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/payroll");
+        requestBody.setAction("listJobs");
+        User user = new User();
+        user.setEmail("benon@gmail.com");
+        user.setPassword("benon");
+        requestBody.setObject(user);
+        System.out.println(user.toString());
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        System.out.println(response);
+        return jsonResponse.asText();
     }
 
 }
