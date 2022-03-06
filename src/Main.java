@@ -1,13 +1,9 @@
 import interfaces.MessageTypes;
-import views.BillingView;
-import views.MessageView;
 import views.UserView;
-import views.hiring.JobPostingView;
+import static utils.MessagePrinter.printConsoleMessage;
 
 import java.io.IOException;
 import java.util.Scanner;
-
-import static utils.MessagePrinter.printConsoleMessage;
 
 /**
  * @author: DABAGIRE Valens
@@ -72,12 +68,6 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
-
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -87,11 +77,11 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
-                    case 1 -> userView.loginUser();
-                    case 4 -> JobPostingView.createJobPost();
-                    case 6 -> billingView.makePayment();
-                    case 9 -> MessageView.mainMethod();
-                    default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+                    case 1:
+                        userView.loginUser();
+                        break;
+                    default:
+                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
 
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");
