@@ -1,10 +1,12 @@
 package views.hiring;
 
 import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.hiring.JobApplication;
+import models.hiring.JobPosting;
 import models.RequestBody;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ This is job application view
 @author Ariane Itetero
  */
 public class jobApplicationView {
-    public static void main(String[] args) throws IOException {
+    public static void main() throws IOException {
         printConsoleMessage(MessageTypes.ACTION, false,"====================================");
         printConsoleMessage(MessageTypes.ACTION, false,"\t\t\tJOB APPLICATION MENU         \n");
         printConsoleMessage(MessageTypes.ACTION, false,"------------------------------------");
@@ -54,39 +56,40 @@ public class jobApplicationView {
     private static void updateApplication() {
     }
 
-    private static void viewApplications() {
+    private static void viewApplications() throws IOException {
+        printConsoleMessage(MessageTypes.ACTION,false,"\t\t\t\t LIST OF JOB POSTS\t");
+//           System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
+//           printConsoleMessage(MessageTypes.ACTION,false,String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |","#Id ","User id", "Job post id","location Id","","Gender","User category","Birth date","User Location"));
+//           System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
+//
+                       //String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |",
 
 
-//            RequestBody requestBody = new RequestBody();
-//            requestBody.setUrl("/users");
-//            requestBody.setAction("getUsers");
-//            requestBody.setObject(null);
-//
-//            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-//            System.out.println("\t\t\t\t LIST OF USERS\t");
-//            System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
-//            System.out.println(String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |","#Id ","First name", "Last name","Username","Email","Gender","User category","Birth date","User Location"));
-//            System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
-//            for (Object response: responseBody.getResponse()){
-//                User user = (User) response;
-//
-////            System.out.println("\t "+ user.getUserId() + "\t\t" + user.getFirstName()+" \t\t "+user.getLastName() + "\t\t"
-////            + user.getUserName() + "\t\t" + user.getGender() + "\t\t" + user.getEmail() + "\t\t" + user.getBirthDate() + "\t\t"
-////            + user.getLocation());
-//                System.out.println(
-//                        String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |",
-//                                user.getUserId(),
-//                                user.getFirstName(),
-//                                user.getLastName(),
-//                                user.getUserName(),
-//                                user.getEmail(),
-//                                user.getGender(),
-//                                user.getBirthDate(),
-//                                user.getUserCategory(),
-//                                user.getLocation())
-//                );
-//            }
-        }
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/viewApplications");
+        requestBody.setAction("viewApplications");
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+        //System.out.println("Response : " +response);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+
+    }
     private static void viewPosts() {
     }
 
@@ -118,7 +121,7 @@ public class jobApplicationView {
         JobApplication apply = new JobApplication();
          apply.setJobPostId(jobId);
          apply.setUserId(userrId);
-        apply.setLocationId(locId);
+         apply.setLocationId(locId);
          apply.setPaymentMethod(paymentMethod);
          apply.setReferenceName(refNames);
          apply.setReferencePhone(contact);

@@ -104,7 +104,7 @@ public class Main {
                         messageView.mainMethod();
                         break;
                     case 3:
-                        jobApplicationView.applyForJob();
+                        jobApplicationView.main();
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
