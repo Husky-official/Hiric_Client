@@ -12,40 +12,28 @@ public class Group {
 
     private int id;
     private String groupName;
-    private String description;
-    private int creator;
-    private java.sql.Date created_at;
-    private java.sql.Date updated_at;
+    private String groupDescription;
+    private int groupCreatorID;
+    private int numberOfParticipants;
+    private Date createdAt;
+    private Date updatedAt;
 
     public Group(){};
 
-    public Group(int id, String name){
-        this.id = id;
-        this.groupName = name;
+    public Group(String groupName, int groupCreatorID, Date createdAt, Date updatedAt){
+        this.groupName = groupName;
+        this.groupCreatorID = groupCreatorID;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Group(int id, String name, String description, int creator){
-        this.id = id;
-        this.groupName = name;
-        this.description = description;
-        this.creator = creator;
+    public Group(String groupName, String groupDescription, int groupCreatorID, Date createdAt, Date updatedAt){
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.groupCreatorID = groupCreatorID;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-
-    public Group(int id, String name, String description, int creator, java.sql.Date created_at, java.sql.Date updated_at) {
-        this.id = id;
-        this.groupName = name;
-        this.description = description;
-        this.creator = creator;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
-
-    public Group(String name, String description, int creator) {
-        this.groupName = name;
-        this.description = description;
-        this.creator = creator;
-    }
-
 
     public int getId() {
         return id;
@@ -63,35 +51,43 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getGroupDescription() {
+        return groupDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
     }
 
-    public int getCreator() {
-        return creator;
+    public int getGroupCreatorID() {
+        return groupCreatorID;
     }
 
-    public void setCreator(int creator) {
-        this.creator = creator;
+    public void setGroupCreatorID(int groupCreatorID) {
+        this.groupCreatorID = groupCreatorID;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public int getNumberOfParticipants() {
+        return numberOfParticipants;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setNumberOfParticipants(int numberOfParticipants) {
+        this.numberOfParticipants = numberOfParticipants;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
