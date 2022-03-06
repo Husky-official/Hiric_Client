@@ -1,5 +1,6 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.HiringView;
 import views.MessageView;
 import views.UserView;
 import views.hiring.JobPostingView;
@@ -89,8 +90,7 @@ public class Main {
 
                 switch (choice) {
                     case 1 -> userView.loginUser();
-                    case 4 -> JobPostingView.createJobPost();
-                    case 5 -> JobPostingView.getJobs();
+                    case 4 -> HiringView.mainMethod();
                     case 6 -> billingView.makePayment();
                     case 9 -> MessageView.mainMethod();
                     default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");

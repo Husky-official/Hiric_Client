@@ -20,7 +20,25 @@ import static utils.MessagePrinter.printConsoleMessage;
 *
  */
 public class JobPostingView {
-    public void mainMethod() throws Exception {}
+    public static void mainMethod() throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTING");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t1.CREATE JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.VIEW JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.UPDATE JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.DELETE JOB POST");
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t\t  Enter your choice");
+        choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> createJobPost();
+            case 2 -> createJobPost();
+            case 3 -> updateJobPost();
+            case 4 -> deleteJobPost();
+        }
+    }
 
     public static void getJobs() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOBS AVAILABLE");
@@ -106,12 +124,16 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-//    public static void updateJobPost() throws  Exception {
-//        Scanner scanner = new Scanner(System.in);
-//        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
-//        String jobId = scanner.nextLine();
-//        int id = Integer.parseInt(jobId);
-//    }
+    public static void updateJobPost() throws  Exception {
+        Scanner scanner = new Scanner(System.in);
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
+        String jobId = scanner.nextLine();
+        int id = Integer.parseInt(jobId);
+    }
+
+    public static void deleteJobPost() throws Exception {
+
+    }
 }
