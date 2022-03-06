@@ -1,12 +1,19 @@
 package views;
 
 /**
- * @author : Abijuru Seth
+ * @author : Abijuru Seth,
+ * @author : DABAGIRE Valens
  * @description : Main entrance to the messaging & chat module;
  * - get all main options to the group chat or direct messaging
+ * - group chatting(
+ * *allow user to create
  */
 
+import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
+import models.Group;
+import models.RequestBody;
 import models.UserLists;
 import utils.ExitApplication;
 import utils.Loader;
@@ -117,7 +124,70 @@ public class MessageView {
         }
     }
 
-    public static void GroupMessageView() {
+    public static void GroupMessageView() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "What You Want To do");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Create Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Join Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 3. Delete Group");
+
+            System.out.println("\t\t 1. Create new group ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    createGroup();
+                    break;
+                case 2:
+                    joiningGroupRequest();
+                    break;
+                case 3:
+                    deleteGroup();
+                    break;
+                default:
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t Invalid Input");
+            }
+
+        } while (choice != 0);
+    }
+
+    public static void createGroup() throws Exception {
+
+        Scanner scanner = new Scanner(System.in);
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO CREATE NEW GROUP");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group Name");
+        String name = scanner.nextLine();
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group Description");
+        String description = scanner.nextLine();
+
+        Group group = new Group();
+        group.setGroupName(name);
+        group.setDescription(description);
+        group.setCreator(128);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/group_messaging");
+        requestBody.setAction("createGroup");
+        requestBody.setObject(group);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestString = objectMapper.writeValueAsString(requestBody);
+        System.out.println(requestString);
+
+        String response = new ClientServerConnector().connectToServer(requestString);
+
+        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+
+    }
+
+    public static void joiningGroupRequest() throws Exception {
+
+    }
+
+    public static void deleteGroup() throws Exception {
 
     }
 

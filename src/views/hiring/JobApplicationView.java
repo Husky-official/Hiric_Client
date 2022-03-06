@@ -16,7 +16,7 @@ import static utils.MessagePrinter.printConsoleMessage;
 This is job application view
 @author Ariane Itetero
  */
-public class jobApplicationView {
+public class JobApplicationView {
     public static void main() throws IOException {
         printConsoleMessage(MessageTypes.ACTION, false,"====================================");
         printConsoleMessage(MessageTypes.ACTION, false,"\t\t\tJOB APPLICATION MENU         \n");
@@ -96,6 +96,9 @@ public class jobApplicationView {
     public static void applyForJob() throws IOException{
         Scanner scanner=new Scanner(System.in);
         printConsoleMessage(MessageTypes.ACTION, false,"\t\tENTER DETAILS OF EMPLOYMENT DESIRED\n");
+        printConsoleMessage(MessageTypes.NORMAL, false,"Job Application Id: ");
+        String jobAppId=scanner.nextLine();
+        int appId=Integer.parseInt(jobAppId);
         printConsoleMessage(MessageTypes.NORMAL, false,"Job Post Id: ");
         String jobIdd=scanner.nextLine();
         int jobId=Integer.parseInt(jobIdd);
@@ -113,12 +116,12 @@ public class jobApplicationView {
         String refNames=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"Contact ");
         String contact=scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the resume ");
-        String resume=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the certificate ");
         String certificate=scanner.nextLine();
-
+        printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the resume ");
+        String resume=scanner.nextLine();
         JobApplication apply = new JobApplication();
+        apply.setId(appId);
          apply.setJobPostId(jobId);
          apply.setUserId(userrId);
          apply.setLocationId(locId);
@@ -138,7 +141,7 @@ public class jobApplicationView {
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
 
-        //System.out.println("Response : " +response);
+        System.out.println("Response : " +response);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
