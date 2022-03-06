@@ -1,6 +1,7 @@
 import interfaces.MessageTypes;
 import views.BillingView;
 import views.MessageView;
+import views.RegisterView;
 import views.UserView;
 import views.hiring.JobPostingView;
 
@@ -89,6 +90,7 @@ public class Main {
 
                 switch (choice) {
                     case 1 -> userView.loginUser();
+                    case 2-> RegisterView.registerUser();
                     case 4 -> JobPostingView.createJobPost();
                     case 6 -> billingView.makePayment();
                     case 9 -> MessageView.mainMethod();
