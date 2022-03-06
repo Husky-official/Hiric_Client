@@ -8,14 +8,13 @@ import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobPosting;
 
-import java.sql.Connection;
 import java.util.Scanner;
 import java.sql.Time;
 import java.sql.Date;
 
 import static utils.MessagePrinter.printConsoleMessage;
 /*
- * author: Gashugi Aderline
+ * author: Gashugi Aderline, MPANO Christian
  * desc: This is a controller that handles requests regarding creating, reading, updating and deleting a job post.
  *
  */
@@ -34,7 +33,7 @@ public class JobPostingView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> createJobPost();
-            case 2 -> viewJobPosts();
+//            case 2 -> viewJobPosts();
             case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
@@ -69,8 +68,33 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-    public static void viewJobPosts() throws Exception {
+    public static JobPosting[] getJobPosts() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/get_job_posts?userId="+1);
+        requestBody.setAction("get jobs");
 
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode res = objectMapper.readTree(response);
+        int status = res.get("status").asInt();
+        String message = res.get("message").asText();
+        String actionDone = res.get("actionToDo").asText();
+        ObjectMapper objectMapper1 = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper1.readTree(response);
+        JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
+        for(int i = 0; i < jobPostings.length; i++) {
+            System.out.println(jobPostings[i].jobId);
+        }
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        return jobPostings;
     }
     public static void createJobPost() throws Exception {
 
