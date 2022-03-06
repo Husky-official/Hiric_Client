@@ -1,18 +1,35 @@
 package models.hiring;
 
-import java.util.Date;
+import java.sql.*;
 
 public class JobPosting {
     private Integer id;
     private Integer jobId;
     private Integer userId;
     private String jobTitle;
-    private String jobDescription;
+    private String jobDesc;
     private String jobRequirements;
     private String location;
     private Date startDate;
-    private String duration;
+    private Time duration;
+    private Integer salary;
 
+    public JobPosting(Integer id,Integer jobId, Integer userId, String jobTitle, String jobDesc, String jobRequirements, String location, Date startDate, Time duration, Integer salary) {
+        this.id = id;
+        this.jobId = jobId;
+        this.userId = userId;
+        this.jobTitle = jobTitle;
+        this.jobDesc = jobDesc;
+        this.jobRequirements = jobRequirements;
+        this.location = location;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.salary = salary;
+    }
+
+    public JobPosting() {
+
+    }
     public Integer getId() {
         return id;
     }
@@ -45,12 +62,12 @@ public class JobPosting {
         this.jobTitle = jobTitle;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getJobDesc() {
+        return jobDesc;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setJobDesc(String jobDesc) {
+        this.jobDesc = jobDesc;
     }
 
     public String getJobRequirements() {
@@ -77,43 +94,32 @@ public class JobPosting {
         this.startDate = startDate;
     }
 
-    public String getDuration() {
+    public Time getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Time duration) {
         this.duration = duration;
     }
 
-    public Long getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(Long salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
-    private Long salary;
 
-    public JobPosting(Integer id,Integer jobId, Integer userId, String jobTitle, String jobDescription, String jobRequirements, String location, Date startDate, String duration, Long salary) {
-        this.id = id;
-        this.jobId = jobId;
-        this.userId = userId;
-        this.jobTitle = jobTitle;
-        this.jobDescription = jobDescription;
-        this.jobRequirements = jobRequirements;
-        this.location = location;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.salary = salary;
-    }
+
+
     @Override
     public String toString() {
         return "JobPosting{" +
                 "jobId=" + jobId +
                 "userId=" + userId +
                 ", jobTitle=" + jobTitle +
-                ", jobDescription='" + jobDescription + '\'' +
+                ", jobDescription='" + jobDesc + '\'' +
                 ", jobRequirements=" + jobRequirements +
                 ", location=" + location +
                 ", startDate=" + startDate +

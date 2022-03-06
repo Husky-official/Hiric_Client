@@ -90,6 +90,7 @@ public class Main {
                 switch (choice) {
                     case 1 -> userView.loginUser();
                     case 4 -> JobPostingView.createJobPost();
+                    case 5 -> JobPostingView.getJobs();
                     case 6 -> billingView.makePayment();
                     case 9 -> MessageView.mainMethod();
                     default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
