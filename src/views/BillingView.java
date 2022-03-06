@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.Payment;
 import models.RequestBody;
-import models.User;
 
 import java.time.LocalDate;
 import java.util.Scanner;

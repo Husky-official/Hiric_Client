@@ -15,9 +15,9 @@ import java.sql.Date;
 
 import static utils.MessagePrinter.printConsoleMessage;
 /*
-* author: Gashugi Aderline
-* desc: This is a controller that handles requests regarding creating, reading, updating and deleting a job post.
-*
+ * author: Gashugi Aderline
+ * desc: This is a controller that handles requests regarding creating, reading, updating and deleting a job post.
+ *
  */
 public class JobPostingView {
     public static void mainMethod() throws Exception {
@@ -34,7 +34,7 @@ public class JobPostingView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> createJobPost();
-            case 2 -> createJobPost();
+            case 2 -> viewJobPosts();
             case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
@@ -68,6 +68,9 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+    }
+    public static void viewJobPosts() throws Exception {
+
     }
     public static void createJobPost() throws Exception {
 

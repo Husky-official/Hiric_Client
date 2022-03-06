@@ -3,7 +3,6 @@ package utils;
 /**
  * @author : Abijuru Seth
  * @description : Printing messages according to their types;
- * - skip number of lines as you want by passing the num in the function skipLines(int num)
  */
 
 import customs.ConsoleColorConfigurations;
@@ -58,5 +57,31 @@ public class MessagePrinter {
         } catch (Exception error) {
             System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
         }
+    }
+
+    /**
+     * Response printer.
+     *
+     * @author UWENAYO ALain Pacifique
+     * @description Printing response messages
+     * @param status     the status
+     * @param message    the message
+     * @param actionDone the action done
+     * @throws IOException the io exception
+     */
+    public static void ResponsePrinter(int status, String message, String actionDone) throws IOException {
+        MessageTypes responseType = MessageTypes.NORMAL;
+        if(status == 200){
+            responseType = MessageTypes.SUCCESS;
+        }else if(status == 400){
+            responseType = MessageTypes.ERROR;
+        }
+
+        printConsoleMessage(responseType, false,"========================================================================");
+        printConsoleMessage(responseType, false,"STATUS ||         MESSAGE        ||             ACTION DONE            ");
+        printConsoleMessage(responseType, false,"========================================================================");
+        printConsoleMessage(responseType, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(responseType, false,"========================================================================");
+
     }
 }
