@@ -1,8 +1,8 @@
 package models;
 
 /**
- * @author : DABAGIRE Valens
- * @description : User model
+ * @author : Shumbusho David
+ * @description : User model for login
  */
 
 import java.io.Serializable;
@@ -10,12 +10,12 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String password;
-    private String userName;
+    private String email;
 
     public User(){};
-    public User(String password, String name){
+    public User(String password, String email){
         this.password = password;
-        this.userName = name;
+        this.email = email;
     }
     public void setPassword(String password) {
         this.password = password;
@@ -25,11 +25,11 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 }
