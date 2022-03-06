@@ -10,18 +10,7 @@ import interfaces.MessageTypes;
 
 import java.io.IOException;
 
-/**
- * The type Message printer.
- */
 public class MessagePrinter {
-    /**
-     * Print console message.
-     *
-     * @param messageType the message type
-     * @param sameLine    the same line
-     * @param message     the message
-     * @throws IOException the io exception
-     */
     public static void printConsoleMessage(MessageTypes messageType, Boolean sameLine, String message) throws IOException {
         try {
             if (messageType == MessageTypes.ERROR) {
@@ -54,6 +43,16 @@ public class MessagePrinter {
                 } else {
                     System.out.println(message);
                 }
+            }
+        } catch (Exception error) {
+            System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
+        }
+    }
+
+    public static void skipLines(int numberOfLines) throws IOException {
+        try {
+            for (int i = 0; i < numberOfLines; i++) {
+                System.out.println("");
             }
         } catch (Exception error) {
             System.out.println(ConsoleColorConfigurations.getRED()+error.getMessage()+ConsoleColorConfigurations.getRESET());
