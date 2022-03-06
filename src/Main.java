@@ -1,5 +1,6 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.Dashboard;
 import views.MessageView;
 import views.UserView;
 import views.hiring.JobPostingView;
@@ -64,6 +65,7 @@ public class Main {
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
             MessageView messageView = new MessageView();
+            Dashboard dashboardView = new Dashboard();
             String toContinue;
 
             do {
@@ -74,10 +76,11 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                ------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 -------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 -----------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ---------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    7.DASHBOARD                   ---------------||");
 
 
                 Scanner scanner = new Scanner(System.in);
@@ -95,6 +98,9 @@ public class Main {
                         break;
                     case 6:
                         billingView.makePayment();
+                        break;
+                    case 7:
+                        dashboardView.mainMethod();
                         break;
                     case 9:
                         messageView.mainMethod();
