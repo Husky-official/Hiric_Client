@@ -1,28 +1,42 @@
 package models.hiring;
-/*
- * author: Gashugi Aderline
- * desc: This is a model for a  job post.
- *
- */
+
+import java.util.Date;
+
 public class JobPosting {
+    private Integer id;
+    private Integer jobId;
+    private Integer userId;
     private String jobTitle;
     private String jobDescription;
     private String jobRequirements;
     private String location;
-    private String startDate;
+    private Date startDate;
     private String duration;
-    private int salary;
-    public JobPosting(){}
 
-    public JobPosting(String jobTitle, String jobDescription, String jobRequirements, String location, String startDate, String duration, int salary){
-        this.jobTitle = jobTitle;
-        this.jobDescription = jobDescription;
-        this.jobRequirements = jobRequirements;
-        this.location = location;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.salary = salary;
+    public Integer getId() {
+        return id;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Integer jobId) {
+        this.jobId = jobId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public String getJobTitle() {
         return jobTitle;
     }
@@ -55,11 +69,11 @@ public class JobPosting {
         this.location = location;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
@@ -71,17 +85,33 @@ public class JobPosting {
         this.duration = duration;
     }
 
-    public int getSalary() {
+    public Long getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Long salary) {
         this.salary = salary;
     }
 
+    private Long salary;
+
+    public JobPosting(Integer id,Integer jobId, Integer userId, String jobTitle, String jobDescription, String jobRequirements, String location, Date startDate, String duration, Long salary) {
+        this.id = id;
+        this.jobId = jobId;
+        this.userId = userId;
+        this.jobTitle = jobTitle;
+        this.jobDescription = jobDescription;
+        this.jobRequirements = jobRequirements;
+        this.location = location;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.salary = salary;
+    }
     @Override
     public String toString() {
         return "JobPosting{" +
+                "jobId=" + jobId +
+                "userId=" + userId +
                 ", jobTitle=" + jobTitle +
                 ", jobDescription='" + jobDescription + '\'' +
                 ", jobRequirements=" + jobRequirements +
