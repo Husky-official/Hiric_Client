@@ -1,8 +1,8 @@
-
 package views;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.util.Scanner;
@@ -11,7 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
 import models.User;
-
+/**
+ * @author: Shumbusho David
+ * @description : The entry point for login user
+ */
 public class UserView {
     public void mainMethod() throws Exception {
     }

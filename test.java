@@ -119,7 +119,7 @@ public class JobPosting {
                 "jobId=" + jobId +
                 "userId=" + userId +
                 ", jobTitle=" + jobTitle +
-                ", jobDesc='" + jobDesc + '\'' +
+                ", jobDescription='" + jobDesc + '\'' +
                 ", jobRequirements=" + jobRequirements +
                 ", location=" + location +
                 ", startDate=" + startDate +
