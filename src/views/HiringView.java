@@ -21,7 +21,7 @@ public class HiringView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> JobPostingView.mainMethod();
-            case 2 -> ShortListingView.mainMethod();
+            case 3 -> ShortListingView.mainMethod();
         }
     }
 

@@ -9,7 +9,7 @@ public class ShortListingView {
         try{
             System.out.println("SELECT THE JOB POST YOU WANT TO SHOT LIST FOR");
             ArrayList<JobPosting> jobPostings = new ArrayList<JobPosting>();
-            jobPostings = JobPostingView.getJobPosts();
+            JobPostingView.getJobPosts();
         }catch (Exception e) {
             e.printStackTrace();
         }
