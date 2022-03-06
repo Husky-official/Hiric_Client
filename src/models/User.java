@@ -1,8 +1,8 @@
 package models;
 
 /**
- * @author : DABAGIRE Valens
- * @description : User model
+ * @author : Shumbusho David
+ * @description : User model for login
  */
 
 import java.io.Serializable;

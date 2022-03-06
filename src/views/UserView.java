@@ -1,11 +1,7 @@
-/**
- * @author:
- **/
-
 package views;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import static utils.MessagePrinter.printConsoleMessage;
 
@@ -15,7 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
 import models.User;
-
+/**
+ * @author: Shumbusho David
+ * @description : The entry point for login user
+ */
 public class UserView {
     public void mainMethod() throws Exception {
     }
@@ -23,12 +22,11 @@ public class UserView {
     public void loginUser() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");
-        ;
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your email");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGIN");;
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your email");
         String email = scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your password");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your password");
         String password = scanner.nextLine();
         User user = new User();
         user.setEmail(email);
@@ -53,12 +51,10 @@ public class UserView {
         String message = jsonResponse.get("message").asText();
         String actionDone = jsonResponse.get("actionToDo").asText();
 
-        printConsoleMessage(MessageTypes.NORMAL, false, "========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false, "STATUS ||         MESSAGE        ||             ACTION DON              ");
-        printConsoleMessage(MessageTypes.NORMAL, false, "========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false, status + "    ||" + message + "   ||" + actionDone);
-        printConsoleMessage(MessageTypes.NORMAL, false, "========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-
 }
-
