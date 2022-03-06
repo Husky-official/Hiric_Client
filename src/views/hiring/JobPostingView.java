@@ -9,6 +9,7 @@ import models.hiring.Job;
 import models.hiring.JobPosting;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.sql.Time;
 import java.sql.Date;
@@ -34,7 +35,7 @@ public class JobPostingView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> createJobPost();
-            case 2 -> viewJobPosts();
+//            case 2 -> viewJobPosts();
             case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
@@ -69,8 +70,8 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-    public static void viewJobPosts() throws Exception {
-
+    public static ArrayList<JobPosting> getJobPosts() throws Exception {
+        return null;
     }
     public static void createJobPost() throws Exception {
 
