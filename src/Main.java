@@ -92,7 +92,11 @@ public class Main {
                     case 1:
                         userView.loginUser();
                     case 3:
-                        userView.passwordReset();
+                        userView.sendEmail();
+                    case 'a':
+                        userView.verifyToken();
+                    case 'b':
+                        userView.setNewPassword();
                     case 4:
                         JobPostingView.createJobPost();
                         break;
