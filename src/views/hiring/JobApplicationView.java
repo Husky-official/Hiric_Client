@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
+import models.hiring.Job;
 import models.hiring.JobApplication;
 import models.hiring.JobPosting;
 import models.RequestBody;
@@ -65,20 +66,28 @@ public class JobApplicationView {
                        //String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |",
 
 
+        JobApplication jobApp = new JobApplication();
+        jobApp.getId();
+        jobApp.getJobPostId();
+        jobApp.getUserId();
+        jobApp.getJobPostId();
+        jobApp.getReferenceName();
+        jobApp.getReferencePhone();
+        jobApp.getCertificate();
+        jobApp.getResume();
+
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/viewApplications");
         requestBody.setAction("viewApplications");
-
+        requestBody.setObject(jobApp);
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
-
-        //System.out.println("Response : " +response);
-
+        System.out.println("Response from server: " + response);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
-
+        System.out.println("Json response" + jsonResponse);
         int status = jsonResponse.get("status").asInt();
         String message = jsonResponse.get("message").asText();
         String actionDone = jsonResponse.get("actionToDo").asText();
@@ -110,7 +119,6 @@ public class JobApplicationView {
         int locId=Integer.parseInt(locid);
         printConsoleMessage(MessageTypes.NORMAL, false,"Payment method: ");
         String paymentMethod=scanner.nextLine();
-
         printConsoleMessage(MessageTypes.ACTION, false,"\n\t\tENTER DETAILS OF REFERENCES\n");
         printConsoleMessage(MessageTypes.NORMAL, false,"Full names: ");
         String refNames=scanner.nextLine();
