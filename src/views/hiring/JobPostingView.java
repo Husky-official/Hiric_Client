@@ -72,7 +72,7 @@ public class JobPostingView {
     }
     public static ArrayList<JobPosting> getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/get_jobs?userId="+1);
+        requestBody.setUrl("/get_job_posts?userId="+1);
         requestBody.setAction("get jobs");
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
