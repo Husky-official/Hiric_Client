@@ -2,7 +2,7 @@ package models;
 
 /**
  * @author : Shumbusho David
- * @description : User model for login
+ * @description : User model for login and logout
  */
 
 import java.io.Serializable;
