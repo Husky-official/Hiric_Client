@@ -39,7 +39,7 @@ public class JobPostingView {
         }
     }
 
-    public static void getJobs() throws Exception {
+    public static void viewJobs() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOBS AVAILABLE");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         Job job = new Job();
@@ -54,19 +54,13 @@ public class JobPostingView {
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
-        System.out.println("Response from server: " + response);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
-        System.out.println("Json response" + jsonResponse);
-        int status = jsonResponse.get("status").asInt();
-        String message = jsonResponse.get("message").asText();
-        String actionDone = jsonResponse.get("actionToDo").asText();
-
-        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
-        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        Job[] jobs = objectMapper.treeToValue(jsonNode, Job[].class);
+        for(int i = 0; i<jobs.length; i++) {
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
+        }
     }
     public static JobPosting[] getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -101,40 +95,56 @@ public class JobPostingView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tCREATE A JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job id");
-        Integer jobId = scanner.nextInt();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Title");
-        String jobTitle = scanner.nextLine();
+        viewJobs();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
+        String id = scanner.nextLine();
+        Integer jobId = Integer.parseInt(id);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Description");
         String jobDesc = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Requirements");
         String jobRequirements = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job location");
-        String location = scanner.nextLine();
+        String loc = scanner.nextLine();
+        Integer location = Integer.parseInt(loc);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date");
         String date = scanner.nextLine();
         Date startDate = Date.valueOf(date);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
+        String stime = scanner.nextLine();
+        Time startTime = Time.valueOf(stime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
         String time = scanner.nextLine();
-        Time duration = Time.valueOf(time);
+        Integer duration = Integer.parseInt(time);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
-        Integer salary = scanner.nextInt();
+        String sal = scanner.nextLine();
+        Integer salary = Integer.parseInt(sal);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tAre you going to pay per hour 1 || 0");
+        String hourly = scanner.nextLine();
+        String salaryType;
+        if(hourly == "1") {
+            salaryType = "dynamic";
+        }else {
+            salaryType = "static";
+        }
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tHow many workers do you need?");
+        String num = scanner.nextLine();
+        Integer workers = Integer.parseInt(num);
         JobPosting jobPosting = new JobPosting();
         jobPosting.setJobId(jobId);
-        jobPosting.setJobTitle(jobTitle);
         jobPosting.setJobDesc(jobDesc);
         jobPosting.setJobRequirements(jobRequirements);
-        jobPosting.setStartDate(startDate);
-        jobPosting.setDuration(duration);
         jobPosting.setLocation(location);
+        jobPosting.setStartDate(startDate);
+        jobPosting.setStartTime(startTime);
+        jobPosting.setDuration(duration);
         jobPosting.setSalary(salary);
+        jobPosting.setSalaryType(salaryType);
+        jobPosting.setWorkers(workers);
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/jobPost");
         requestBody.setAction("createJobPost");
         requestBody.setObject(jobPosting);
-
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
-
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
 
