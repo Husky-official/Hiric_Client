@@ -1,5 +1,6 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.InvoiceView;
 import views.HiringView;
 import views.MessageView;
 import views.RegisterView;
@@ -65,6 +66,8 @@ public class Main {
 
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
+            MessageView messageView = new MessageView();
+            InvoiceView invoiceView = new InvoiceView();
             String toContinue;
 
             do {
