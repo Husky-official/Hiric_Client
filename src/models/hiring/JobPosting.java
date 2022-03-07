@@ -6,30 +6,39 @@ public class JobPosting {
     public Integer id;
     public Integer jobId;
     public Integer userId;
-    public String jobTitle;
     public String jobDesc;
     public String jobRequirements;
-    public String location;
+    public Integer location;
     public Date startDate;
-    public Time duration;
+    public Time startTime;
+    public Integer duration;
     public Integer salary;
+    public String salaryType;
+    public Integer workers;
+    public Integer paymentStatus;
+    public String status;
 
-    public JobPosting(Integer id,Integer jobId, Integer userId, String jobTitle, String jobDesc, String jobRequirements, String location, Date startDate, Time duration, Integer salary) {
+    public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startime, Integer duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
         this.id = id;
         this.jobId = jobId;
         this.userId = userId;
-        this.jobTitle = jobTitle;
         this.jobDesc = jobDesc;
         this.jobRequirements = jobRequirements;
         this.location = location;
         this.startDate = startDate;
+        this.startTime = startime;
         this.duration = duration;
         this.salary = salary;
+        this.salaryType = salaryType;
+        this.workers = workers;
+        this.paymentStatus = paymentStatus;
+        this.status = status;
     }
 
     public JobPosting() {
 
     }
+
     public Integer getId() {
         return id;
     }
@@ -54,14 +63,6 @@ public class JobPosting {
         this.userId = userId;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
     public String getJobDesc() {
         return jobDesc;
     }
@@ -78,11 +79,11 @@ public class JobPosting {
         this.jobRequirements = jobRequirements;
     }
 
-    public String getLocation() {
+    public Integer getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Integer location) {
         this.location = location;
     }
 
@@ -94,11 +95,19 @@ public class JobPosting {
         this.startDate = startDate;
     }
 
-    public Time getDuration() {
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -110,21 +119,50 @@ public class JobPosting {
         this.salary = salary;
     }
 
-
-
-
-    @Override
-    public String toString() {
-        return "JobPosting{" +
-                "jobId=" + jobId +
-                "userId=" + userId +
-                ", jobTitle=" + jobTitle +
-                ", jobDesc='" + jobDesc + '\'' +
-                ", jobRequirements=" + jobRequirements +
-                ", location=" + location +
-                ", startDate=" + startDate +
-                ", duration=" + duration +
-                ", salary=" + salary +
-                '}';
+    public String getSalaryType() {
+        return salaryType;
     }
+
+    public void setSalaryType(String salaryType) {
+        this.salaryType = salaryType;
+    }
+
+    public Integer getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Integer workers) {
+        this.workers = workers;
+    }
+
+    public Integer getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(Integer paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "JobPosting{" +
+//                "jobId=" + jobId +
+//                "userId=" + userId +
+//                ", jobDesc='" + jobDesc + '\'' +
+//                ", jobDesc='" + jobDesc + '\'' +
+//                ", jobRequirements=" + jobRequirements +
+//                ", location=" + location +
+//                ", startDate=" + startDate +
+//                ", duration=" + duration +
+//                ", salary=" + salary +
+//                '}';
+//    }
 }

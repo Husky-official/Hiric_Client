@@ -1,5 +1,6 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.InvoiceView;
 import views.HiringView;
 import views.MessageView;
 import views.RegisterView;
@@ -65,6 +66,8 @@ public class Main {
 
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
+            MessageView messageView = new MessageView();
+            InvoiceView invoiceView = new InvoiceView();
             String toContinue;
 
             do {
@@ -89,9 +92,7 @@ public class Main {
 
                 switch (choice) {
                     case 1 -> userView.loginUser();
-
                     case 2-> RegisterView.registerUser();
-
                     case 6 -> billingView.makePayment();
                     case 7 -> HiringView.mainMethod();
                     case 9 -> MessageView.mainMethod();
