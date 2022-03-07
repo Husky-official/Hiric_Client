@@ -39,7 +39,7 @@ public class JobPostingView {
         }
     }
 
-    public static void getJobs() throws Exception {
+    public static void viewJobs() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOBS AVAILABLE");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         Job job = new Job();
@@ -58,7 +58,6 @@ public class JobPostingView {
         JsonNode jsonResponse = objectMapper.readTree(response);
         JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
         Job[] jobs = objectMapper.treeToValue(jsonNode, Job[].class);
-
         for(int i = 0; i<jobs.length; i++) {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
@@ -71,7 +70,7 @@ public class JobPostingView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tCREATE A JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        getJobs();
+        viewJobs();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
         String id = scanner.nextLine();
         Integer jobId = Integer.parseInt(id);
