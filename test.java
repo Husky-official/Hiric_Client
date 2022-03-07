@@ -1,35 +1,34 @@
+/*
+* @Author: MPANO Christian
+* */
 package models.hiring;
 
-import java.sql.*;
+public class JobApplication {
 
-public class JobPosting {
-    public Integer id;
-    public Integer jobId;
-    public Integer userId;
-    public String jobTitle;
-    public String jobDesc;
-    public String jobRequirements;
-    public String location;
-    public Date startDate;
-    public Time duration;
-    public Integer salary;
+    public  Integer id;
+    public  Integer userId;
+    public  Integer jobPostId;
+    public  String paymentMethod;
+    public  Integer locationId;
+    public String referenceName;
+    public  String referencePhone;
+    public  String resume;
+    public  String certificate;
 
-    public JobPosting(Integer id,Integer jobId, Integer userId, String jobTitle, String jobDesc, String jobRequirements, String location, Date startDate, Time duration, Integer salary) {
-        this.id = id;
-        this.jobId = jobId;
-        this.userId = userId;
-        this.jobTitle = jobTitle;
-        this.jobDesc = jobDesc;
-        this.jobRequirements = jobRequirements;
-        this.location = location;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.salary = salary;
+
+    public void JobApplication(){};
+    public JobApplication(int id,int jobId,int userId, String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
+        this.userId=userId;
+        this.id=id;
+        this.jobPostId =jobId;
+        this.paymentMethod=paymentMethod;
+        this.referencePhone=referencePhone;
+        this.referenceName=referenceName;
+        this.locationId =locationId;
+        this.resume=resume;
+        this.certificate=certificate;
     }
 
-    public JobPosting() {
-
-    }
     public Integer getId() {
         return id;
     }
@@ -38,15 +37,7 @@ public class JobPosting {
         this.id = id;
     }
 
-    public Integer getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
-    }
-
-    public Integer getUserId() {
+    public  Integer getUserId() {
         return userId;
     }
 
@@ -54,77 +45,74 @@ public class JobPosting {
         this.userId = userId;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public Integer getJobPostId() {
+        return jobPostId;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJobPostId(Integer jobPostId) {
+        this.jobPostId = jobPostId;
     }
 
-    public String getJobDesc() {
-        return jobDesc;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setJobDesc(String jobDesc) {
-        this.jobDesc = jobDesc;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public String getJobRequirements() {
-        return jobRequirements;
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setJobRequirements(String jobRequirements) {
-        this.jobRequirements = jobRequirements;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
-    public String getLocation() {
-        return location;
+    public  String getReferenceName() {
+        return referenceName;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setReferenceName(String referenceName) {
+        this.referenceName = referenceName;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public  String getReferencePhone() {
+        return referencePhone;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setReferencePhone(String referencePhone) {
+        this.referencePhone = referencePhone;
     }
 
-    public Time getDuration() {
-        return duration;
+    public  String getResume() {
+        return resume;
     }
 
-    public void setDuration(Time duration) {
-        this.duration = duration;
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
-    public Integer getSalary() {
-        return salary;
+    public  String getCertificate() {
+        return certificate;
     }
 
-    public void setSalary(Integer salary) {
-        this.salary = salary;
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
     }
-
-
-
-
     @Override
-    public String toString() {
-        return "JobPosting{" +
-                "jobId=" + jobId +
-                "userId=" + userId +
-                ", jobTitle=" + jobTitle +
-                ", jobDescription='" + jobDesc + '\'' +
-                ", jobRequirements=" + jobRequirements +
-                ", location=" + location +
-                ", startDate=" + startDate +
-                ", duration=" + duration +
-                ", salary=" + salary +
-                '}';
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("-----------JOB APPLICATION INFORMATION");
+        sb.append("ID: "+getId());
+        sb.append("Job post id "+getJobPostId());
+        sb.append("user id" +getUserId());
+        sb.append("locationId "+getLocationId());
+        sb.append("payment method "+getPaymentMethod());
+        sb.append("referenceName "+getReferenceName());
+        sb.append("reference phone "+getReferencePhone());
+        sb.append("resume "+getResume());
+        sb.append("certificate "+getCertificate());
+        return  sb.toString();
     }
 }

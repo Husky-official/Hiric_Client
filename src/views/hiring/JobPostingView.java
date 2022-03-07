@@ -85,10 +85,8 @@ public class JobPostingView {
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println(jsonNode);
         JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
-        for(int i = 0; i < jobPostings.length; i++) {
-            System.out.println(jobPostings[i].jobId);
-        }
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
