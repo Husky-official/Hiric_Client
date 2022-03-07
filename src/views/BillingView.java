@@ -10,9 +10,7 @@ import models.RequestBody;
 import models.User;
 import models.hiring.JobPosting;
 
-import java.io.DataInput;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
