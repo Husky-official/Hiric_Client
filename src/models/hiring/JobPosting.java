@@ -14,52 +14,9 @@ public class JobPosting {
     public Integer duration;
     public Integer salary;
     public String salaryType;
-
-    public String getSalaryType() {
-        return salaryType;
-    }
-
-    public void setSalaryType(String salaryType) {
-        this.salaryType = salaryType;
-    }
-
-    public Integer getWorkers() {
-        return workers;
-    }
-
-    public void setWorkers(Integer workers) {
-        this.workers = workers;
-    }
-
-    public Integer getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(Integer paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Integer workers;
     public Integer paymentStatus;
     public String status;
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-
 
     public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startime, Integer duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
         this.id = id;
@@ -81,6 +38,7 @@ public class JobPosting {
     public JobPosting() {
 
     }
+
     public Integer getId() {
         return id;
     }
@@ -137,6 +95,14 @@ public class JobPosting {
         this.startDate = startDate;
     }
 
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
     public Integer getDuration() {
         return duration;
     }
@@ -153,20 +119,50 @@ public class JobPosting {
         this.salary = salary;
     }
 
-
-
-
-    @Override
-    public String toString() {
-        return "JobPosting{" +
-                "jobId=" + jobId +
-                "userId=" + userId +
-                ", jobDescription='" + jobDesc + '\'' +
-                ", jobRequirements=" + jobRequirements +
-                ", location=" + location +
-                ", startDate=" + startDate +
-                ", duration=" + duration +
-                ", salary=" + salary +
-                '}';
+    public String getSalaryType() {
+        return salaryType;
     }
+
+    public void setSalaryType(String salaryType) {
+        this.salaryType = salaryType;
+    }
+
+    public Integer getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Integer workers) {
+        this.workers = workers;
+    }
+
+    public Integer getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(Integer paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "JobPosting{" +
+//                "jobId=" + jobId +
+//                "userId=" + userId +
+//                ", jobDesc='" + jobDesc + '\'' +
+//                ", jobDesc='" + jobDesc + '\'' +
+//                ", jobRequirements=" + jobRequirements +
+//                ", location=" + location +
+//                ", startDate=" + startDate +
+//                ", duration=" + duration +
+//                ", salary=" + salary +
+//                '}';
+//    }
 }
