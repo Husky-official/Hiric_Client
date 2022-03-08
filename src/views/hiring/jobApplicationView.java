@@ -1,4 +1,7 @@
 /*
+* @Author: ITETERO Ariane, MPANO Christian
+* */
+/*
 * @author: ITETERO Ariane,MPANO Christian*/
 package views.hiring;
 
@@ -7,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
+import models.hiring.JobApplication;
 import models.hiring.JobPosting;
 
 import java.io.IOException;
@@ -56,7 +60,7 @@ public class jobApplicationView {
     private static void viewApplications() {
     }
 
-    public static JobPosting[] getApplicationsForJob(int jobId) throws Exception {
+    public static JobApplication[] getApplicationsForJob(int jobId) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/get_job_applications?postId="+1);
         requestBody.setAction("get job applications");
@@ -73,13 +77,14 @@ public class jobApplicationView {
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
-        JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
+        System.out.println(jsonNode);
+        JobApplication[] jobApplications = objectMapper1.treeToValue(jsonNode, JobApplication[].class);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-        return jobPostings;
+        return jobApplications;
     }
     private static void viewPosts() {
     }

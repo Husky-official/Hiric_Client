@@ -62,6 +62,9 @@ public class JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
+    /*
+    * @Author: MPANO Christian
+    * */
     public static JobPosting[] getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/get_job_posts?userId="+1);
@@ -111,8 +114,7 @@ public class JobPostingView {
         String stime = scanner.nextLine();
         Time startTime = Time.valueOf(stime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
-        String time = scanner.nextLine();
-        Integer duration = Integer.parseInt(time);
+        String duration = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
