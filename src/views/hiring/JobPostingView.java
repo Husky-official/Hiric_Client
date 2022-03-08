@@ -62,6 +62,9 @@ public class JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
+    /*
+    * @Author: MPANO Christian
+    * */
     public static JobPosting[] getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/get_job_posts?userId="+1);
@@ -79,10 +82,8 @@ public class JobPostingView {
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println(jsonNode);
         JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
-        for(int i = 0; i < jobPostings.length; i++) {
-            System.out.println(jobPostings[i].jobId);
-        }
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
@@ -113,8 +114,7 @@ public class JobPostingView {
         String stime = scanner.nextLine();
         Time startTime = Time.valueOf(stime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
-        String time = scanner.nextLine();
-        Integer duration = Integer.parseInt(time);
+        String duration = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
