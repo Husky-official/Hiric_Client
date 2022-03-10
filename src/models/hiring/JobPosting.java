@@ -11,14 +11,14 @@ public class JobPosting {
     public Integer location;
     public Date startDate;
     public Time startTime;
-    public Integer duration;
+    public String duration;
     public Integer salary;
     public String salaryType;
     public Integer workers;
     public Integer paymentStatus;
     public String status;
 
-    public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startime, Integer duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
+    public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startTime, String duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
         this.id = id;
         this.jobId = jobId;
         this.userId = userId;
@@ -26,7 +26,7 @@ public class JobPosting {
         this.jobRequirements = jobRequirements;
         this.location = location;
         this.startDate = startDate;
-        this.startTime = startime;
+        this.startTime = startTime;
         this.duration = duration;
         this.salary = salary;
         this.salaryType = salaryType;
@@ -103,11 +103,11 @@ public class JobPosting {
         this.startTime = startTime;
     }
 
-    public Integer getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

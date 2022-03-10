@@ -8,6 +8,12 @@ import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobPosting;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 import java.sql.Time;
 import java.sql.Date;
@@ -16,9 +22,10 @@ import static utils.MessagePrinter.printConsoleMessage;
 /*
  * author: Gashugi Aderline, MPANO Christian
  * desc: This is a controller that handles requests regarding creating, reading, updating and deleting a job post.
+ *+
  *
  */
-public class JobPostingView {
+public class  JobPostingView {
     public static void mainMethod() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTING");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
@@ -40,8 +47,7 @@ public class JobPostingView {
     }
 
     public static void viewJobs() throws Exception {
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOBS AVAILABLE");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOBS AVAILABLE: ");
         Job job = new Job();
         job.getJobTitle();
         job.getId();
@@ -96,6 +102,7 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tCREATE A JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         viewJobs();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
         String id = scanner.nextLine();
         Integer jobId = Integer.parseInt(id);
@@ -108,13 +115,20 @@ public class JobPostingView {
         Integer location = Integer.parseInt(loc);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date");
         String date = scanner.nextLine();
-        Date startDate = Date.valueOf(date);
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
-        String stime = scanner.nextLine();
-        Time startTime = Time.valueOf(stime);
+        System.out.println(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+        LocalDate starDate = LocalDate.parse(date, formatter);
+        System.out.println(starDate);
+        java.sql.Date startDate = java.sql.Date.valueOf(starDate);
+        System.out.println(startDate);
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
+//        String stime = scanner.nextLine();
+//        DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
+//        LocalTime starTime = LocalTime.parse(stime, formattter);
+//        java.sql.Time startTime = java.sql.Time.valueOf(starTime);
+//        System.out.println(startTime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
-        String time = scanner.nextLine();
-        Integer duration = Integer.parseInt(time);
+        String duration = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
@@ -135,7 +149,7 @@ public class JobPostingView {
         jobPosting.setJobRequirements(jobRequirements);
         jobPosting.setLocation(location);
         jobPosting.setStartDate(startDate);
-        jobPosting.setStartTime(startTime);
+//        jobPosting.setStartTime(startTime);
         jobPosting.setDuration(duration);
         jobPosting.setSalary(salary);
         jobPosting.setSalaryType(salaryType);
@@ -145,6 +159,7 @@ public class JobPostingView {
         requestBody.setAction("createJobPost");
         requestBody.setObject(jobPosting);
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        System.out.println(requestString);
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
 
