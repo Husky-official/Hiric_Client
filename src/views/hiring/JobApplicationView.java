@@ -38,7 +38,7 @@ public class JobApplicationView {
             case 2:
                 applyForJob();
             case 3:
-                viewApplications();
+                getApplicationsForJob(int jobId);
             case 4:
                 updateApplication();
             case 5:
@@ -54,50 +54,45 @@ public class JobApplicationView {
     private static void deleteApplication() {
     }
 
-    private static void updateApplication() {
+    private static void updateApplication() throws IOException {
+        printConsoleMessage(MessageTypes.ACTION,false,"UPDATE THE APPLICATION\n\n\n");
+        printConsoleMessage(MessageTypes.ACTION,false,"Enter the id of the application to be updated");
+        Scanner scan=new Scanner(System.in);
+        String id=scan.nextLine();
+        int appId=Integer.parseInt(id);
+        RequestBody requestBody=new RequestBody();
+        requestBody.setUrl("/updateApplication");
+        requestBody.setAction("updateApplication");
+        String requestString=new ObjectMapper().writeValueAsString(requestBody);
+        ClientServerConnector server=new ClientServerConnector();
+        String response=server.connectToServer(requestString);
     }
 
-    private static void viewApplications() throws IOException {
-        printConsoleMessage(MessageTypes.ACTION,false,"\t\t\t\t LIST OF JOB POSTS\t");
-//           System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
-//           printConsoleMessage(MessageTypes.ACTION,false,String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |","#Id ","User id", "Job post id","location Id","","Gender","User category","Birth date","User Location"));
-//           System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------+-----------------+---------------------------+-----------------+%n");
-//
-                       //String.format("| %5s | %-15s | %-15s | %-25s | %-25s | %-12s | %-15s | %-25s | %-15s |",
-
-
-        JobApplication jobApp = new JobApplication();
-        jobApp.getId();
-        jobApp.getJobPostId();
-        jobApp.getUserId();
-        jobApp.getJobPostId();
-        jobApp.getReferenceName();
-        jobApp.getReferencePhone();
-        jobApp.getCertificate();
-        jobApp.getResume();
-
+    public static JobApplication[] getApplicationsForJob(int jobId) throws Exception {
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/viewApplications");
-        requestBody.setAction("viewApplications");
-        requestBody.setObject(jobApp);
+        requestBody.setUrl("/get_job_applications?postId="+1);
+        requestBody.setAction("get job applications");
+
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
-        System.out.println("Response from server: " + response);
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonResponse = objectMapper.readTree(response);
-        System.out.println("Json response" + jsonResponse);
-        int status = jsonResponse.get("status").asInt();
-        String message = jsonResponse.get("message").asText();
-        String actionDone = jsonResponse.get("actionToDo").asText();
-
+        JsonNode res = objectMapper.readTree(response);
+        int status = res.get("status").asInt();
+        String message = res.get("message").asText();
+        String actionDone = res.get("actionToDo").asText();
+        ObjectMapper objectMapper1 = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper1.readTree(response);
+        JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println(jsonNode);
+        JobApplication[] jobApplications = objectMapper1.treeToValue(jsonNode, JobApplication[].class);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-
+        return jobApplications;
     }
     private static void viewPosts() {
     }
