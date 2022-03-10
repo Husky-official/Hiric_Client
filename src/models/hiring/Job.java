@@ -1,17 +1,18 @@
 package models.hiring;
 
 public class Job {
-    private Integer id;
-    private String jobTitle;
+    public Integer id;
+    public String jobTitle;
+
+    public Job() {
+
+    }
 
     public Job(Integer id, String jobTitle) {
         this.id = id;
         this.jobTitle = jobTitle;
     }
 
-    public Job() {
-
-    }
     public Integer getId() {
         return id;
     }
