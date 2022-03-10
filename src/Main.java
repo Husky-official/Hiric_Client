@@ -1,9 +1,16 @@
 import interfaces.MessageTypes;
+import views.BillingView;
+import views.InvoiceView;
+import views.HiringView;
+import views.MessageView;
+import views.RegisterView;
 import views.UserView;
-import static utils.MessagePrinter.printConsoleMessage;
+import views.hiring.JobPostingView;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import static utils.MessagePrinter.printConsoleMessage;
 
 /**
  * @author: DABAGIRE Valens
@@ -58,6 +65,9 @@ public class Main {
         try {
 
             UserView userView = new UserView();
+            BillingView billingView = new BillingView();
+            MessageView messageView = new MessageView();
+            InvoiceView invoiceView = new InvoiceView();
             String toContinue;
 
             do {
@@ -68,6 +78,10 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
+
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -77,11 +91,14 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
-                    case 1:
-                        userView.loginUser();
-                        break;
-                    default:
-                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
+                    case 1 -> userView.loginUser();
+
+                    case 2-> RegisterView.registerUser();
+
+                    case 6 -> billingView.makePayment();
+                    case 7 -> HiringView.mainMethod();
+                    case 9 -> MessageView.mainMethod();
+                    default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
                 }
 
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");

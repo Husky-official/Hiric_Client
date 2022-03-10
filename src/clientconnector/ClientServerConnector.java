@@ -1,4 +1,4 @@
-package clientmain.clientconnector;
+package clientconnector;
 
 /**
  * @author: DABAGIRE Valens
@@ -12,9 +12,7 @@ import utils.MessagePrinter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
-import java.util.List;
 
 public class ClientServerConnector {
 
