@@ -1,9 +1,12 @@
 package views;
 
 /**
- * @author : Abijuru Seth
+ * @author : Abijuru Seth,
+ * @author : DABAGIRE Valens
  * @description : Main entrance to the messaging & chat module;
  * - get all main options to the group chat or direct messaging
+ * - group chatting(
+ * *allow user to create
  */
 
 import interfaces.MessageTypes;
@@ -14,6 +17,8 @@ import utils.MessagePrinter;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import static views.GroupMessagingView.*;
 
 public class MessageView {
 
@@ -34,26 +39,21 @@ public class MessageView {
 
         try {
             switch (mainChoice) {
-                case 1:
-                    DirectMessageView();
-                    break;
-                case 2:
-                    GroupMessageView();
-                    break;
-                case 3:
+                case 1 -> DirectMessageView();
+                case 2 -> GroupMessageView();
+                case 3 -> {
                     new Loader(15, "Going back ");
                     MessagePrinter.skipLines(1);
-                    //function to retrieve the stack previous page
-                    break;
-                case 0:
-                    new ExitApplication();
-                    break;
-                default:
+                }
+                //function to retrieve the stack previous page
+                case 0 -> new ExitApplication();
+                default -> {
                     MessagePrinter.skipLines(1);
                     MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice! Try again . . .");
                     new Loader(20, "Retrying ");
                     MessagePrinter.skipLines(2);
                     mainMethod();
+                }
             }
         } catch (Exception error) {
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
@@ -80,35 +80,29 @@ public class MessageView {
 
         try {
             switch (directMessageChoice) {
-                case 1:
-                    GetAllUsers();
-                    break;
-                case 2:
-                    GetAllActiveUsers();
-                    break;
-                case 3:
+                case 1 -> GetAllUsers();
+                case 2 -> GetAllActiveUsers();
+                case 3 -> {
                     new Loader(15, "Searching ");
                     MessagePrinter.skipLines(1);
-                    //search user by username
-                    break;
-                case 4:
-                    new Loader(15, "Searching ");
-                    //search user by userid
-                    break;
-                case 5:
+                }
+                //search user by username
+                case 4 -> new Loader(15, "Searching ");
+
+                //search user by userid
+                case 5 -> {
                     new Loader(15, "Going back ");
                     MessagePrinter.skipLines(1);
-                    //function to retrieve the stack previous page
-                    break;
-                case 0:
-                    new ExitApplication();
-                    break;
-                default:
+                }
+                //function to retrieve the stack previous page
+                case 0 -> new ExitApplication();
+                default -> {
                     MessagePrinter.skipLines(1);
                     MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice! Try again . . .");
                     new Loader(20, "Retrying ");
                     MessagePrinter.skipLines(2);
                     DirectMessageView();
+                }
             }
         } catch (Exception error) {
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
@@ -117,8 +111,27 @@ public class MessageView {
         }
     }
 
-    public static void GroupMessageView() {
+    public static void GroupMessageView() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
 
+        do {
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "What You Want To do");
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\t 1. Create Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Join Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 3. Delete Group");
+
+            System.out.println("\t\t 1. Create new group ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> createGroup();
+                case 2 -> joiningGroupRequest();
+                case 3 -> deleteGroup();
+                default -> MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t Invalid Input");
+            }
+
+        } while (choice != 0);
     }
 
     public static UserLists GetAllUsers() {

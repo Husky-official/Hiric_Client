@@ -1,6 +1,9 @@
 import interfaces.MessageTypes;
 import views.BillingView;
+import views.InvoiceView;
+import views.HiringView;
 import views.MessageView;
+import views.RegisterView;
 import views.UserView;
 import views.hiring.JobPostingView;
 
@@ -64,6 +67,7 @@ public class Main {
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
             MessageView messageView = new MessageView();
+            InvoiceView invoiceView = new InvoiceView();
             String toContinue;
 
             do {
@@ -74,11 +78,15 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.FORGOT PASSWORD                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
+
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
 
 
                 Scanner scanner = new Scanner(System.in);
@@ -89,6 +97,7 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
+
                     case 1:
                         userView.loginUser();
                     case 3:
@@ -108,6 +117,14 @@ public class Main {
                         break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
+
+
+                    case 2: RegisterView.registerUser();
+
+                    case 7: HiringView.mainMethod();
+
+//                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+
                 }
 
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");
