@@ -4,68 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c71fa23-4f6a-4086-968a-17ebd7d5fa49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_11_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-annotations-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-core-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-annotations-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-core-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-databind-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/jackson-annotations-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/jackson-core-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/jackson-databind-2.11.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Group.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/GroupMember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Invoice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/PayObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/RegisterUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/UserLists.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/UserUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/hiring/Job.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/hiring/JobPosting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/ExitApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/Loader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/BillingView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/GroupMessagingView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/HiringView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/InvoiceView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/MessageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/RegisterView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_11_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_44.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hiric_Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hiric_Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientmain/clientconnector/ClientServerConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientconnector/ClientServerConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/UserRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/MessagePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/MessagePrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/jobPostingView.java" beforeDir="false" />
-    </list>
+    <list default="true" id="0c71fa23-4f6a-4086-968a-17ebd7d5fa49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
