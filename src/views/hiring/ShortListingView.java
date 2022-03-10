@@ -6,6 +6,10 @@
 * */
 package views.hiring;
 
+import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobApplication;
 import models.hiring.JobPosting;
@@ -61,9 +65,24 @@ public class ShortListingView {
             for(int i = 0; i < shortListedNumbers.size(); i++){
                 shortList.add(jobApplications[shortListedNumbers.get(i)-1]);
             }
-
+            addToShortList(shortList);
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void addToShortList(ArrayList<JobApplication> shortList) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/shortList");
+        requestBody.setAction("add to shortlist");
+        requestBody.setObject(shortList);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println(jsonNode);
     }
 }
