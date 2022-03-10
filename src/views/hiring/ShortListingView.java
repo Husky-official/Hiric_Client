@@ -1,6 +1,9 @@
 /*
 * @Author: MPANO Christian
 * */
+/*
+* @Author: MPANO Christian
+* */
 package views.hiring;
 
 import models.hiring.JobApplication;
