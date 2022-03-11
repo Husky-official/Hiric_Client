@@ -74,11 +74,14 @@ public class JobPostingView {
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode res = objectMapper.readTree(response);
+
         int status = res.get("status").asInt();
         String message = res.get("message").asText();
         String actionDone = res.get("actionToDo").asText();
+
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
