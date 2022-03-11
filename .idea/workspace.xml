@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c71fa23-4f6a-4086-968a-17ebd7d5fa49" name="Changes" comment="">
+    <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/hiring/JobApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/hiring/JobApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/hiring/JobPosting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/hiring/JobPosting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/jobApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/jobApplicationView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +35,6 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="app.teamhub.trackedBranches" value="-8e7t58/main,-8e7t58/Shumbusho_David" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Hiric_Server" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -63,7 +57,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0c71fa23-4f6a-4086-968a-17ebd7d5fa49" name="Changes" comment="" />
+      <changelist id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="" />
       <created>1646573801938</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -81,7 +75,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Hiric_Client$Main.ic" NAME="Main Coverage Results" MODIFIED="1646027093157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
