@@ -1,22 +1,56 @@
-
+/*
+ * @Author: MPANO Christian
+ * */
 package models.hiring;
 
 public class JobApplication {
 
-    private  Integer id;
-    private  Integer userId;
-    private  Integer jobPostId;
-    private  String paymentMethod;
-    private  Integer locationId;
-    private String referenceName;
-    private  String referencePhone;
-    private  String resume;
-    private  String certificate;
+    public  Integer id;
+    public  Integer userId;
+    public  Integer jobPostId;
+    public  String paymentMethod;
+    public  Integer locationId;
+    public String referenceName;
+    public  String referencePhone;
+    public  String resume;
+    public  String certificate;
+    public String firstName;
+    public String lastName;
+    public String email;
 
-    public JobApplication(int id,int jobId,int userId, String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate, String firstName, String lastName, String email){
+
+    public JobApplication(int id, int userId, int jobPostId,  String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
         this.userId=userId;
         this.id=id;
-        this.jobPostId =jobId;
+        this.jobPostId =jobPostId;
+        this.paymentMethod=paymentMethod;
+        this.referencePhone=referencePhone;
+        this.referenceName=referenceName;
+        this.locationId =locationId;
+        this.resume=resume;
+        this.certificate=certificate;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public JobApplication(int id, int userId, int jobPostId, String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate, String firstName, String lastName, String email){
+        this.userId=userId;
+        this.id=id;
+        this.jobPostId =jobPostId;
         this.paymentMethod=paymentMethod;
         this.referencePhone=referencePhone;
         this.referenceName=referenceName;
@@ -31,21 +65,6 @@ public class JobApplication {
     public JobApplication() {
 
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    private String firstName;
-    private String lastName;
-    private String email;
-
-    public void JobApplication(){};
-
 
     public Integer getId() {
         return id;
@@ -113,22 +132,6 @@ public class JobApplication {
 
     public  String getCertificate() {
         return certificate;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public void setCertificate(String certificate) {

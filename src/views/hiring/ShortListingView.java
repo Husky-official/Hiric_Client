@@ -31,8 +31,7 @@ public class ShortListingView {
                 System.out.println("invalid job selected");
                 return;
             }
-            JobApplicationView jobApplicationView;
-            JobApplication[] jobApplications = jobApplicationView.getApplicationsForJob(jobPostId);
+            JobApplication[] jobApplications = JobApplicationView.getApplicationsForJob(jobPostId);
             System.out.println("first name lastName email payment method resume referenceName certificate");
             for(int i = 0; i < jobApplications.length; i++) {
 
