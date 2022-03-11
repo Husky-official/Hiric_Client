@@ -9,6 +9,7 @@ package views.hiring;
 import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import interfaces.MessageTypes;
 import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobApplication;
@@ -58,19 +59,29 @@ public class ShortListingView {
             ArrayList<Integer> shortListedNumbers = new ArrayList<Integer>();
             ArrayList<Integer> shortListedApplications = new ArrayList<Integer>();
             for(int i = 0; i < shortLists; i++) {
-                System.out.print(i+1 + "th: ");
+                if(i+1 == 1) {
+                    System.out.print(i+1 + "st: ");
+                }else if(i + 1 == 2) {
+                    System.out.print(i+1 + "nd: ");
+                }else if(i + 1 == 3) {
+                    System.out.print(i+1 + "rd: ");
+                }else{
+                    System.out.print(i+1 + "th: ");
+                }
                 shortListedNumbers.add(scanner.nextInt());
             }
             ArrayList<JobApplication> shortList = new ArrayList<JobApplication>();
+            ArrayList<Integer> shortListUserIds = new ArrayList<Integer>();
             for(int i = 0; i < shortListedNumbers.size(); i++){
                 shortList.add(jobApplications[shortListedNumbers.get(i)-1]);
+                shortListUserIds.add(jobApplications[shortListedNumbers.get(i)-1].userId);
             }
-            addToShortList(shortList);
+            addToShortList(shortListUserIds);
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void addToShortList(ArrayList<JobApplication> shortList) throws Exception {
+    public static void addToShortList(ArrayList<Integer> shortList) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/shortList");
         requestBody.setAction("add to shortlist");
@@ -82,7 +93,9 @@ public class ShortListingView {
         String response = clientServerConnector.connectToServer(requestString);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
-        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
-        System.out.println(jsonNode);
+        int updated = jsonResponse.get("actionToDo").asInt();
+        if(updated>=0) {
+            printConsoleMessage(MessageTypes.SUCCESS,false,"Shortlisting went successful!");
+        }
     }
 }
