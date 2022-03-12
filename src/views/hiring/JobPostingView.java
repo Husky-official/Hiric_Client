@@ -8,15 +8,11 @@ import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobPosting;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.sql.Time;
-import java.sql.Date;
 
 import static utils.MessagePrinter.printConsoleMessage;
 /*
@@ -35,8 +31,8 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false, "\t2.DELETE JOB POST");
         Scanner scanner = new Scanner(System.in);
         int choice;
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t\t  Enter your choice");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your choice");
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> createJobPost();
@@ -119,20 +115,18 @@ public class  JobPostingView {
         Integer location = Integer.parseInt(loc);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date");
         String date = scanner.nextLine();
-        System.out.println(date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
         LocalDate starDate = LocalDate.parse(date, formatter);
-        System.out.println(starDate);
         java.sql.Date startDate = java.sql.Date.valueOf(starDate);
-        System.out.println(startDate);
-//        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
-//        String stime = scanner.nextLine();
-//        DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
-//        LocalTime starTime = LocalTime.parse(stime, formattter);
-//        java.sql.Time startTime = java.sql.Time.valueOf(starTime);
-//        System.out.println(startTime);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
+        String stime = scanner.nextLine();
+        DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
+        LocalTime starTime = LocalTime.parse(stime, formattter);
+        java.sql.Time startTime = java.sql.Time.valueOf(starTime);
+        System.out.println(startTime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
         String duration = scanner.nextLine();
+        System.out.println(duration);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
@@ -153,7 +147,7 @@ public class  JobPostingView {
         jobPosting.setJobRequirements(jobRequirements);
         jobPosting.setLocation(location);
         jobPosting.setStartDate(startDate);
-//        jobPosting.setStartTime(startTime);
+        jobPosting.setStartTime(startTime);
         jobPosting.setDuration(duration);
         jobPosting.setSalary(salary);
         jobPosting.setSalaryType(salaryType);
@@ -184,12 +178,65 @@ public class  JobPostingView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
-        String jobId = scanner.nextLine();
-        int id = Integer.parseInt(jobId);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter JobPost Id");
+        String id = scanner.nextLine();
+        Integer jobPostId = Integer.parseInt(id);
+        getJobPostById(jobPostId);
     }
+    public static JobPosting[] getJobPostById(Integer jobPostId) throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tDETAILS: ");
+        JobPosting jobPosting = new JobPosting();
+        jobPosting.setJobId(jobPostId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/jobPost");
+        requestBody.setAction("getJobPostById");
+        requestBody.setObject(jobPosting);
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
 
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println("jsonNode: " + jsonNode);
+        JobPosting[] jobPosts = objectMapper.treeToValue(jsonNode, JobPosting[].class);
+        for(int i = 0; i<jobPosts.length; i++) {
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + i + "." + jobPosts[i].jobDesc);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "jobRequirements: " + jobPosts[i].jobDesc);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "location: " + jobPosts[i].location);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "startDate: " + jobPosts[i].startDate);
+        }
+        return jobPosts;
+    }
     public static void deleteJobPost() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tDELETE JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Id");
+        String id = scanner.nextLine();
+        Integer jobId = Integer.parseInt(id);
+        JobPosting jobPosting = new JobPosting();
+        jobPosting.setJobId(jobId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/jobPost");
+        requestBody.setAction("deleteJobPost");
+        requestBody.setObject(jobPosting);
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        System.out.println(requestString);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
 }
