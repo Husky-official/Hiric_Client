@@ -1,5 +1,5 @@
 /*
- * @Author: MPANO Christian
+ * @Author: MPANO Christian, Itetero Ariane
  * */
 package models.hiring;
 
@@ -57,6 +57,7 @@ public class JobApplication {
         this.locationId =locationId;
         this.resume=resume;
         this.certificate=certificate;
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

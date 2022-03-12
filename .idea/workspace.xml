@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c71fa23-4f6a-4086-968a-17ebd7d5fa49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/models/UserLogout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/hiring/JobApply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/hiring/JobApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/hiring/JobApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/hiring/JobApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobApplicationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="app.teamhub.trackedBranches" value="-8e7t58/main,-8e7t58/Shumbusho_David" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Hiric_Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />

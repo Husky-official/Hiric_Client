@@ -7,6 +7,7 @@ import interfaces.MessageTypes;
 import models.ResponseBody;
 import models.hiring.JobApplication;
 import models.RequestBody;
+import models.hiring.JobApply;
 import models.hiring.JobPosting;
 
 import java.io.IOException;
@@ -114,14 +115,14 @@ public class JobApplicationView {
 
         System.out.println(jsonNode);
 
-        System.out.println("\t\t\t\t LIST OF JOBS POSTS\t");
-        System.out.format("+-------+-----------------+-----------------+---------------------------+---------------------------+--------------++%n");
-       String leftAlignFormat = "| %-9s | %-10s | %-13s | %-23s | %18s | %17s |%n";
-        System.out.format(" | Job Id    |  jobRequirements      | location       | start date     | Duration           | Salary |%n");
+        printConsoleMessage(MessageTypes.ACTION,false,"\n\t\t\t LIST OF JOBS POSTS\n");
+        System.out.format("+-----------------+-----------------+---------------------------+---------------------------+--------------++%n");
+       String leftAlignFormat = "| %-9s | %-13s | %-13s | %-23s | %18s | %17s |%n";
+        System.out.format(" | Job Id    |  jobRequirements      | location       | start date     | Duration    | Salary |%n");
         System.out.println("+---------------------------------------------------------------------------------------------------------+");
         for (int i = 0; i < jobPostings.length; i++) {
             System.out.format(leftAlignFormat,jobPostings[i].getJobId(),
-                    jobPostings[i].getJobRequirements(), jobPostings[i].getLocation(),jobPostings[i].getStartDate(),
+                    jobPostings[i].getJobRequirements(),jobPostings[i].getLocation(),jobPostings[i].getStartDate(),
                     jobPostings[i].getDuration(),jobPostings[i].getSalary());
         }
 
@@ -138,12 +139,12 @@ public class JobApplicationView {
     public static void applyForJob() throws IOException{
         Scanner scanner=new Scanner(System.in);
         printConsoleMessage(MessageTypes.ACTION, false,"\t\tENTER DETAILS OF EMPLOYMENT DESIRED\n");
-        printConsoleMessage(MessageTypes.NORMAL, false,"Job Application Id: ");
-        String jobAppId=scanner.nextLine();
-        int appId=Integer.parseInt(jobAppId);
         printConsoleMessage(MessageTypes.NORMAL, false,"Job Post Id: ");
         String jobIdd=scanner.nextLine();
         int jobId=Integer.parseInt(jobIdd);
+//        RequestBody requestBody = new RequestBody();
+//        requestBody.setUrl("/searchId");
+//        requestBody.setAction("searchId");
         printConsoleMessage(MessageTypes.NORMAL, false,"User Id: ");
         String userId=scanner.nextLine();
         int userrId=Integer.parseInt(userId);
@@ -161,8 +162,8 @@ public class JobApplicationView {
         String certificate=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the resume ");
         String resume=scanner.nextLine();
-        JobApplication apply = new JobApplication();
-        apply.setId(appId);
+
+         JobApply apply = new JobApply();
          apply.setJobPostId(jobId);
          apply.setUserId(userrId);
          apply.setLocationId(locId);
@@ -172,12 +173,12 @@ public class JobApplicationView {
          apply.setCertificate(certificate);
          apply.setResume(resume);
 
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/createApplication");
-        requestBody.setAction("createApplication");
-        requestBody.setObject(apply);
+        RequestBody requestBody2= new RequestBody();
+        requestBody2.setUrl("/createApplication");
+        requestBody2.setAction("createApplication");
+        requestBody2.setObject(apply);
 
-        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        String requestString = new ObjectMapper().writeValueAsString(requestBody2);
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
