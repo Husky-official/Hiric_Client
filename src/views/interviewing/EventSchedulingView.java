@@ -89,7 +89,6 @@ public class EventSchedulingView {
             String endTime = scanner.nextLine();
 //            Time endTime = Time.valueOf(time2);
 
-            System.out.println(eventDate);
             EventScheduling eventScheduling = new EventScheduling();
             eventScheduling.setEventName(eventName);
             eventScheduling.setEventType(eventType);
@@ -126,7 +125,7 @@ public class EventSchedulingView {
         }
     }
     //get all scheduled events
-    public static void getAllScheduledEvents() throws IOException, InterruptedException{
+    public static EventScheduling[] getAllScheduledEvents() throws IOException, InterruptedException{
         MessagePrinter.skipLines(1);
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t ALL SCHEDULED EVENTS");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t ---------------------");
@@ -137,9 +136,9 @@ public class EventSchedulingView {
         eventScheduling.getEventDate();
 
         RequestBody requestBody = new RequestBody();
+
         requestBody.setUrl("/eventScheduling");
         requestBody.setAction("getAllScheduledEvents");
-        requestBody.setObject(eventScheduling);
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
 
@@ -147,12 +146,27 @@ public class EventSchedulingView {
         String response = clientServerConnector.connectToServer(requestString);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
-        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
 
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionToDo = jsonResponse.get("actionToDo").asText();
+
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+//        System.out.println(jsonNode);
         EventScheduling[] eventSchedules = objectMapper.treeToValue(jsonNode, EventScheduling[].class);
 
         for (int i = 0; i < eventSchedules.length; i ++){
-            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t"+eventSchedules[i].getEventName()+"\t\t" +eventSchedules[i].getEventType()+ "\t\t"+eventSchedules[i].getEventDate());
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t"+eventSchedules[i].getId()+"\t\t"+eventSchedules[i].getEventName());
+            System.out.println();
         }
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionToDo);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        return eventSchedules;
+
+
     }
 }

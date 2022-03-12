@@ -8,7 +8,7 @@ import java.util.Date;
  * @description event scheduling model to retrieve and add data into the eventSchedule tables
  */
 public class EventScheduling {
-//    private int id;
+    private int id;
     private String eventName;
     private String eventType;
 //    private java.util.Date eventDate;
@@ -28,6 +28,14 @@ public class EventScheduling {
         this.eventDate = eventDate;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEventName() {
