@@ -68,6 +68,9 @@ public class  JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
+    /*
+    * @Author: MPANO Christian
+    * */
     public static JobPosting[] getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/get_job_posts?userId="+1);
@@ -77,18 +80,19 @@ public class  JobPostingView {
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode res = objectMapper.readTree(response);
+
         int status = res.get("status").asInt();
         String message = res.get("message").asText();
         String actionDone = res.get("actionToDo").asText();
+
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        System.out.println(jsonNode);
         JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
-        for(int i = 0; i < jobPostings.length; i++) {
-            System.out.println(jobPostings[i].jobId);
-        }
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");

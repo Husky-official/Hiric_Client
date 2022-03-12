@@ -1,6 +1,6 @@
 /*
-* @Author: MPANO Christian
-* */
+ * @Author: MPANO Christian
+ * */
 package models.hiring;
 
 public class JobApplication {
@@ -14,19 +14,56 @@ public class JobApplication {
     public  String referencePhone;
     public  String resume;
     public  String certificate;
+    public String firstName;
+    public String lastName;
+    public String email;
 
 
-    public void JobApplication(){};
-    public JobApplication(int id,int jobId,int userId, String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
+    public JobApplication(int id, int userId, int jobPostId,  String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
         this.userId=userId;
         this.id=id;
-        this.jobPostId =jobId;
+        this.jobPostId =jobPostId;
         this.paymentMethod=paymentMethod;
         this.referencePhone=referencePhone;
         this.referenceName=referenceName;
         this.locationId =locationId;
         this.resume=resume;
         this.certificate=certificate;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public JobApplication(int id, int userId, int jobPostId, String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate, String firstName, String lastName, String email){
+        this.userId=userId;
+        this.id=id;
+        this.jobPostId =jobPostId;
+        this.paymentMethod=paymentMethod;
+        this.referencePhone=referencePhone;
+        this.referenceName=referenceName;
+        this.locationId =locationId;
+        this.resume=resume;
+        this.certificate=certificate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public JobApplication() {
+
     }
 
     public Integer getId() {
