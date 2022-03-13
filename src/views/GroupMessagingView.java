@@ -150,6 +150,7 @@ public class GroupMessagingView {
             switch (choice) {
                 case 1 -> sendMessage();
                 case 2 -> editMessage();
+                case 3 -> allGroupMessages();
                 case 0 -> new ExitApplication();
                 default -> {
                     MessagePrinter.skipLines(1);
@@ -255,6 +256,36 @@ public class GroupMessagingView {
         MessagePrinter.skipLines(2);
 
         MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+    }
+
+    public static void allGroupMessages() throws Exception{
+
+        Scanner scanner = new Scanner(System.in);
+
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO VIEW ALL GROUP MESSAGES");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group ID");
+        int groupID = scanner.nextInt();
+
+        if(isMember(1, groupID)){
+            Group group = new Group();
+            group.setId(groupID);
+
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/group_messaging");
+            requestBody.setAction("allMessages");
+            requestBody.setObject(group);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String requestString = objectMapper.writeValueAsString(requestBody);
+            String response = new ClientServerConnector().connectToServer(requestString);
+
+            new Loader(15, "wait ");
+            MessagePrinter.skipLines(2);
+
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+        }else{
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "You are not allowed to view messages from private groups.");
+        }
     }
 
 }
