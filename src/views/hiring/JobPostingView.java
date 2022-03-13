@@ -7,11 +7,12 @@ import interfaces.MessageTypes;
 import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobPosting;
+import models.hiring.Location;
+import models.hiring.LocationLevel;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static utils.MessagePrinter.printConsoleMessage;
@@ -64,6 +65,7 @@ public class  JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
+
     /*
     * @Author: MPANO Christian
     * */
@@ -96,6 +98,52 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         return jobPostings;
     }
+    public static void viewProvinces() throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tPROVINCES: ");
+        Location location = new Location();
+        location.getId();
+        location.getLocation();
+        location.getUpperLocation();
+        location.getLevelId();
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/jobPost");
+        requestBody.setAction("getProvinces");
+        requestBody.setObject(location);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        Location[] locations = objectMapper.treeToValue(jsonNode, Location[].class);
+        for(int i = 0; i<locations.length; i++) {
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + locations[i].id + "." + locations[i].location);
+        }
+    }
+    public static void viewDistricts(Integer provinceId) throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tDISTRICTS: ");
+
+        Location location = new Location();
+        location.setUpperLocation(provinceId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/jobPost");
+        requestBody.setAction("getDistricts");
+        requestBody.setObject(location);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        Location[] locations = objectMapper.treeToValue(jsonNode, Location[].class);
+        for(int i = 0; i<locations.length; i++) {
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + locations[i].id + "." + locations[i].location);
+        }
+    }
     public static void createJobPost() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
@@ -110,15 +158,21 @@ public class  JobPostingView {
         String jobDesc = scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job Requirements");
         String jobRequirements = scanner.nextLine();
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Job location");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tRESIDENCE");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewProvinces();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Province ID");
+        String provId = scanner.nextLine();
+        Integer provinceId = Integer.parseInt(provId);
+        viewDistricts(provinceId);
         String loc = scanner.nextLine();
         Integer location = Integer.parseInt(loc);
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date (Eg: 12 03 2022)");
         String date = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
         LocalDate starDate = LocalDate.parse(date, formatter);
         java.sql.Date startDate = java.sql.Date.valueOf(starDate);
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting time (Eg: 12 55 33)");
         String stime = scanner.nextLine();
         DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
         LocalTime starTime = LocalTime.parse(stime, formattter);
@@ -130,7 +184,7 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tAre you going to pay per hour 1 || 0");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tAre you going to pay per hour (1 || 0)");
         String hourly = scanner.nextLine();
         String salaryType;
         if(hourly == "1") {
@@ -181,9 +235,11 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter JobPost Id");
         String id = scanner.nextLine();
         Integer jobPostId = Integer.parseInt(id);
-        getJobPostById(jobPostId);
+        viewJobPostById(jobPostId);
+
     }
-    public static JobPosting[] getJobPostById(Integer jobPostId) throws Exception {
+    public static void viewJobPostById(Integer jobPostId) throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false, "\tDETAILS: ");
         JobPosting jobPosting = new JobPosting();
         jobPosting.setJobId(jobPostId);
@@ -198,15 +254,19 @@ public class  JobPostingView {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
         JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
-        System.out.println("jsonNode: " + jsonNode);
         JobPosting[] jobPosts = objectMapper.treeToValue(jsonNode, JobPosting[].class);
         for(int i = 0; i<jobPosts.length; i++) {
-            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + i + "." + jobPosts[i].jobDesc);
-            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "jobRequirements: " + jobPosts[i].jobDesc);
-            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "location: " + jobPosts[i].location);
-            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t" + "startDate: " + jobPosts[i].startDate);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "jobDescription: " + jobPosts[i].jobDesc);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "jobRequirements: " + jobPosts[i].jobRequirements);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "location: " + jobPosts[i].location);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "startDate: " + jobPosts[i].startDate);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "startTime: " + jobPosts[i].startTime);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Duration: " + jobPosts[i].duration);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Salary: " + jobPosts[i].salary);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "SalaryType: " + jobPosts[i].salaryType);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Workers: " + jobPosts[i].workers);
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         }
-        return jobPosts;
     }
     public static void deleteJobPost() throws Exception {
         Scanner scanner = new Scanner(System.in);
