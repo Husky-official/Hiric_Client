@@ -32,8 +32,9 @@ public class Dashboard {
 
     public static void adminDashboard(Boolean isAdmin) throws IOException {
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/dashboard");
+        requestBody.setUrl("/adminDashboard");
         requestBody.setAction("adminDashboard");
+
 
         ObjectMapper objectMapper = new ObjectMapper();
         String requestString = objectMapper.writeValueAsString(requestBody);
