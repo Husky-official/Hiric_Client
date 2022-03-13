@@ -135,6 +135,7 @@ public class GroupMessagingView {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
+        do {
             MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\tWhat You Want To do?");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t=====================");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Send Message");
@@ -146,7 +147,7 @@ public class GroupMessagingView {
 
             choice = scanner.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1 -> sendMessage();
                 case 0 -> new ExitApplication();
                 default -> {
@@ -157,6 +158,7 @@ public class GroupMessagingView {
                     groupChatting();
                 }
             }
+        }while (choice !=0);
     }
 
     public static boolean isMember(int id, int groupId) throws Exception{
@@ -194,7 +196,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Message Type");
         String messageType = scanner.next();
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Content");
-        String content = scanner.nextLine();
+        String content = scanner.next();
 
         if(isMember(1, groupID)){
             Message message = new Message();
