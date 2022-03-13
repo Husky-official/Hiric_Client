@@ -1,11 +1,18 @@
 package views;
 
+/**
+ * @author : DABAGIRE Valens
+ * @description : this module helps people to create, join, leave, delete
+ * and send message with in a group
+ */
+
 import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.Group;
 import models.GroupMember;
 import models.RequestBody;
+import utils.ExitApplication;
 import utils.Loader;
 import utils.MessagePrinter;
 
@@ -96,4 +103,62 @@ public class GroupMessagingView {
 
         MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
     }
+
+    public static void leaveGroup() throws Exception{
+
+        Scanner scanner = new Scanner(System.in);
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO LEAVE GROUP");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group Id");
+        int groupId = scanner.nextInt();
+        int userId = 3;
+
+        GroupMember groupMember = new GroupMember(userId, groupId);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/group_messaging");
+        requestBody.setAction("leaveGroup");
+        requestBody.setObject(groupMember);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestString = objectMapper.writeValueAsString(requestBody);
+        String response = new ClientServerConnector().connectToServer(requestString);
+
+        new Loader(15, "wait ");
+        MessagePrinter.skipLines(2);
+
+        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+    }
+
+    public static void groupChatting() throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\tWhat You Want To do?");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t=====================");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Send Message");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Edit Message");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 3. List Group Messages");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 4. Delete Message");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t --------------------");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 0. Exit");
+
+            choice = scanner.nextInt();
+
+            switch (choice){
+                case 1 -> sendMessage();
+                case 0 -> new ExitApplication();
+                default -> {
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice! Try again . . .");
+                    new Loader(20, "Retrying ");
+                    MessagePrinter.skipLines(2);
+                    groupChatting();
+                }
+            }
+    }
+
+    public static void sendMessage() throws Exception{
+
+    }
+
 }

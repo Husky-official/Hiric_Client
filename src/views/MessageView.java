@@ -123,21 +123,32 @@ public class MessageView {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
-        do {
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "What You Want To do");
-            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\t 1. Create Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\tWhat You Want To do?");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t=====================");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Create Group");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Join Group");
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 3. Delete Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 3. Messaging");
+            MessagePrinter.printConsoleMessage(MessageTypes.WARNING, false, "\t\t 4. Leave Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 5. Delete Group");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t --------------------");
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 0. Exit");
             choice = scanner.nextInt();
 
             switch (choice) {
                 case 1 -> createGroup();
                 case 2 -> joiningGroupRequest();
-                case 3 -> deleteGroup();
-                default -> MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t Invalid Input");
+                case 3 -> groupChatting();
+                case 4 -> leaveGroup();
+                case 5 -> deleteGroup();
+                case 0 -> new ExitApplication();
+                default -> {
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice! Try again . . .");
+                    new Loader(20, "Retrying ");
+                    MessagePrinter.skipLines(2);
+                    GroupMessageView();
+                }
             }
-
-        } while (choice != 0);
     } 
 
     public static void GetAllUsers() throws IOException, InterruptedException {
