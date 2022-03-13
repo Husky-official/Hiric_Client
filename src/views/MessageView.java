@@ -128,8 +128,6 @@ public class MessageView {
             MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\t 1. Create Group");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Join Group");
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 3. Delete Group");
-
-            System.out.println("\t\t 1. Create new group ");
             choice = scanner.nextInt();
 
             switch (choice) {
@@ -140,7 +138,7 @@ public class MessageView {
             }
 
         } while (choice != 0);
-    }
+    } 
 
     public static void GetAllUsers() throws IOException, InterruptedException {
         try {
