@@ -106,7 +106,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
     }
 
-    public static void leaveGroup() throws Exception{
+    public static void leaveGroup() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO LEAVE GROUP");
@@ -131,7 +131,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
     }
 
-    public static void groupChatting() throws Exception{
+    public static void groupChatting() throws Exception {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -149,6 +149,7 @@ public class GroupMessagingView {
 
             switch (choice) {
                 case 1 -> sendMessage();
+                case 2 -> editMessage();
                 case 0 -> new ExitApplication();
                 default -> {
                     MessagePrinter.skipLines(1);
@@ -158,10 +159,10 @@ public class GroupMessagingView {
                     groupChatting();
                 }
             }
-        }while (choice !=0);
+        } while (choice != 0);
     }
 
-    public static boolean isMember(int id, int groupId) throws Exception{
+    public static boolean isMember(int id, int groupId) throws Exception {
 
         boolean isAMember;
         GroupMember member = new GroupMember();
@@ -184,10 +185,10 @@ public class GroupMessagingView {
 
         isAMember = status == 200;
 
-        return  isAMember;
+        return isAMember;
     }
 
-    public static void sendMessage() throws Exception{
+    public static void sendMessage() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO CREATE NEW GROUP");
@@ -198,7 +199,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Content");
         String content = scanner.next();
 
-        if(isMember(1, groupID)){
+        if (isMember(1, groupID)) {
             Message message = new Message();
             message.setMessageType(messageType);
             message.setReceiver(groupID);
@@ -221,12 +222,39 @@ public class GroupMessagingView {
             MessagePrinter.skipLines(2);
 
             MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
-        } else{
+        } else {
             new Loader(15, "wait ");
             MessagePrinter.skipLines(2);
 
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "You can not send message in this group bcz you are not its member.");
         }
+    }
+
+    public static void editMessage() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO EDIT GROUP MESSAGE");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Message ID");
+        int messageID = scanner.nextInt();
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Content");
+        String content = scanner.next();
+
+        Message message = new Message();
+        message.setMessageId(messageID);
+        message.setMessageContent(content);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/group_messaging");
+        requestBody.setAction("editMessage");
+        requestBody.setObject(message);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestString = objectMapper.writeValueAsString(requestBody);
+        String response = new ClientServerConnector().connectToServer(requestString);
+
+        new Loader(15, "wait ");
+        MessagePrinter.skipLines(2);
+
+        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
     }
 
 }
