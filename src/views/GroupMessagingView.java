@@ -7,10 +7,12 @@ package views;
  */
 
 import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.Group;
 import models.GroupMember;
+import models.Message;
 import models.RequestBody;
 import utils.ExitApplication;
 import utils.Loader;
@@ -157,8 +159,72 @@ public class GroupMessagingView {
             }
     }
 
+    public static boolean isMember(int id, int groupId) throws Exception{
+
+        boolean isAMember;
+        GroupMember member = new GroupMember();
+        member.setMember_id(id);
+        member.setGroup_id(groupId);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/group_messaging");
+        requestBody.setAction("checkMemberShip");
+        requestBody.setObject(member);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestString = objectMapper.writeValueAsString(requestBody);
+        String response = new ClientServerConnector().connectToServer(requestString);
+
+        ObjectMapper res = new ObjectMapper();
+        JsonNode jsonNode = res.readTree(response);
+
+        int status = Integer.parseInt(jsonNode.get("status").asText());
+
+        isAMember = status == 200;
+
+        return  isAMember;
+    }
+
     public static void sendMessage() throws Exception{
 
+        Scanner scanner = new Scanner(System.in);
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO CREATE NEW GROUP");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group ID");
+        int groupID = scanner.nextInt();
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Message Type");
+        String messageType = scanner.next();
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Content");
+        String content = scanner.nextLine();
+
+        if(isMember(1, groupID)){
+            Message message = new Message();
+            message.setMessageType(messageType);
+            message.setReceiver(groupID);
+            message.setSender(1);
+            message.setMessageContent(content);
+            message.setOriginalMessage(1);
+            message.setSentAt("2022/03/13 19:12:24");
+
+
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/group_messaging");
+            requestBody.setAction("sendMessage");
+            requestBody.setObject(message);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String requestString = objectMapper.writeValueAsString(requestBody);
+            String response = new ClientServerConnector().connectToServer(requestString);
+
+            new Loader(15, "wait ");
+            MessagePrinter.skipLines(2);
+
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+        } else{
+            new Loader(15, "wait ");
+            MessagePrinter.skipLines(2);
+
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "You can not send message in this group bcz you are not its member.");
+        }
     }
 
 }
