@@ -123,6 +123,7 @@ public class MessageView {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
+        do {
             MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\tWhat You Want To do?");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t=====================");
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Create Group");
@@ -149,6 +150,7 @@ public class MessageView {
                     GroupMessageView();
                 }
             }
+        }while (choice !=0);
     } 
 
     public static void GetAllUsers() throws IOException, InterruptedException {
