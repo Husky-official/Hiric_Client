@@ -1,8 +1,17 @@
 /*
 * @Author: MPANO Christian
 * */
+/*
+* @Author: MPANO Christian
+* */
 package views.hiring;
 
+import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import interfaces.MessageTypes;
+import models.RequestBody;
+import models.hiring.Job;
 import models.hiring.JobApplication;
 import models.hiring.JobPosting;
 
@@ -32,10 +41,7 @@ public class ShortListingView {
                 return;
             }
             JobApplication[] jobApplications = jobApplicationView.getApplicationsForJob(jobPostId);
-            System.out.println("first name lastName email payment method resume referenceName certificate");
-            for(int i = 0; i < jobApplications.length; i++) {
 
-            }
             String leftAlignFormat = "| %-4d | %-13s | %-13s | %-23s | %18s | %17s |%n";
             System.out.format(" Number| FirstName     | LastName      | Email                   | Payment method     | referenceName     |%n");
             System.out.println("+---------------------------------------------------------------------------------------------------------+");
@@ -45,9 +51,51 @@ public class ShortListingView {
             System.out.format("+-----------------+-------------+%n");
             System.out.println("How many job applications do you want to shortlist?");
             int shortLists = scanner.nextInt();
-
+            if(shortLists > jobApplications.length) {
+                System.out.println("choosing more applications to shortlist than the applications you have");
+                return;
+            }
+            System.out.println("Please enter numbers of people you want to shortlist");
+            ArrayList<Integer> shortListedNumbers = new ArrayList<Integer>();
+            ArrayList<Integer> shortListedApplications = new ArrayList<Integer>();
+            for(int i = 0; i < shortLists; i++) {
+                if(i+1 == 1) {
+                    System.out.print(i+1 + "st: ");
+                }else if(i + 1 == 2) {
+                    System.out.print(i+1 + "nd: ");
+                }else if(i + 1 == 3) {
+                    System.out.print(i+1 + "rd: ");
+                }else{
+                    System.out.print(i+1 + "th: ");
+                }
+                shortListedNumbers.add(scanner.nextInt());
+            }
+            ArrayList<JobApplication> shortList = new ArrayList<JobApplication>();
+            ArrayList<Integer> shortListUserIds = new ArrayList<Integer>();
+            for(int i = 0; i < shortListedNumbers.size(); i++){
+                shortList.add(jobApplications[shortListedNumbers.get(i)-1]);
+                shortListUserIds.add(jobApplications[shortListedNumbers.get(i)-1].userId);
+            }
+            addToShortList(shortListUserIds);
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static void addToShortList(ArrayList<Integer> shortList) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/shortList");
+        requestBody.setAction("add to shortlist");
+        requestBody.setObject(shortList);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        int updated = jsonResponse.get("actionToDo").asInt();
+        if(updated>=0) {
+            printConsoleMessage(MessageTypes.SUCCESS,false,"Shortlisting went successful!");
         }
     }
 }

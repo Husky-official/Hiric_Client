@@ -6,6 +6,7 @@ import views.MessageView;
 import views.RegisterView;
 import views.UserView;
 import views.hiring.JobPostingView;
+import views.interviewing.EventSchedulingView;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -63,7 +64,7 @@ public class Main {
 
     public static void WelcomeToHiric() throws IOException {
         try {
-
+            EventSchedulingView eventSchedulingView = new EventSchedulingView();
             UserView userView = new UserView();
             BillingView billingView = new BillingView();
             MessageView messageView = new MessageView();
@@ -79,6 +80,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
 
+
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.FORGOT PASSWORD                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
@@ -89,6 +91,15 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
 
 
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST          ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS            ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST          ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                   ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    9.MESSAGING                ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    10.Interviewing            ------------------||");
+
+
                 Scanner scanner = new Scanner(System.in);
                 int choice;
 
@@ -97,6 +108,7 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
+
 
                     case 1:
                         userView.loginUser();
@@ -124,6 +136,10 @@ public class Main {
                     case 7: HiringView.mainMethod();
 
 //                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+
+
+                    case 10: eventSchedulingView.mainMethod();
+
 
                 }
 
