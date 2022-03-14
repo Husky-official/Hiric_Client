@@ -26,8 +26,8 @@ public class  JobPostingView {
     public static void mainMethod() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTING");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t1.CREATE JOB POST");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.VIEW JOB POST");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t1.VIEW JOB POSTS");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.CREATE JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t2.UPDATE JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t2.DELETE JOB POST");
         Scanner scanner = new Scanner(System.in);
@@ -36,9 +36,9 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your choice");
         choice = scanner.nextInt();
         switch (choice) {
-            case 1 -> createJobPost();
-            case 2 -> viewJobPosts();
-            case 3 -> updateJobPost();
+            case 1 -> viewJobPosts();
+            case 2 -> createJobPost();
+//            case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
     }
@@ -65,28 +65,24 @@ public class  JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
-//    public static void viewJobPosts() throws Exception {
-//        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTS: ");
-//        JobPosting jobPosts = new Job();
-//        job.getJobTitle();
-//        job.getId();
-//        RequestBody requestBody = new RequestBody();
-//        requestBody.setUrl("/jobPost");
-//        requestBody.setAction("getJobs");
-//        requestBody.setObject(job);
-//
-//        String requestString = new ObjectMapper().writeValueAsString(requestBody);
-//
-//        ClientServerConnector clientServerConnector = new ClientServerConnector();
-//        String response = clientServerConnector.connectToServer(requestString);
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonResponse = objectMapper.readTree(response);
-//        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
-//        Job[] jobs = objectMapper.treeToValue(jsonNode, Job[].class);
-//        for(int i = 0; i<jobs.length; i++) {
-//            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
-//        }
-//    }
+    public static void viewJobPosts() throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTS: ");
+        JobPosting[] jobPosts = getJobPosts();
+        for(int i = 0; i<jobPosts.length; i++) {
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + (i + 1 + "."));
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "jobDescription: " + jobPosts[i].jobDesc);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "jobRequirements: " + jobPosts[i].jobRequirements);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "location: " + jobPosts[i].location);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "startDate: " + jobPosts[i].startDate);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "startTime: " + jobPosts[i].startTime);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Duration: " + jobPosts[i].duration);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Salary: " + jobPosts[i].salary);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "SalaryType: " + jobPosts[i].salaryType);
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + "Workers: " + jobPosts[i].workers);
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        }
+    }
     /*
     * @Author: MPANO Christian
     * */
@@ -270,16 +266,38 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-    public static void updateJobPost() throws  Exception {
-        Scanner scanner = new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter JobPost Id");
-        String id = scanner.nextLine();
-        Integer jobPostId = Integer.parseInt(id);
-        viewJobPostById(jobPostId);
-
-    }
+//    public static void updateJobPost() throws  Exception {
+//        Scanner scanner = new Scanner(System.in);
+//        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter JobPost Id");
+//        String id = scanner.nextLine();
+//        Integer jobPostId = Integer.parseInt(id);
+//        viewJobPostById(jobPostId);
+//        printConsoleMessage(MessageTypes.NORMAL, false,"\t Which field do you want to update?");
+//        String field = scanner.nextLine();
+//        RequestBody requestBody = new RequestBody();
+//        requestBody.setUrl("/jobPost");
+//        requestBody.setAction("createJobPost");
+//        requestBody.setObject(jobPosting);
+//        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+//        System.out.println(requestString);
+//        ClientServerConnector clientServerConnector = new ClientServerConnector();
+//        String response = clientServerConnector.connectToServer(requestString);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonResponse = objectMapper.readTree(response);
+//
+//        int status = jsonResponse.get("status").asInt();
+//        String message = jsonResponse.get("message").asText();
+//        String actionDone = jsonResponse.get("actionToDo").asText();
+//
+//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+//        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+//    }
     public static void viewJobPostById(Integer jobPostId) throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false, "\tDETAILS: ");

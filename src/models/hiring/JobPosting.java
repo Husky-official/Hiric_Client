@@ -88,6 +88,9 @@ public class JobPosting {
     public Date getStartDate() {
         return startDate;
     }
+    public String getSalaryType() {
+        return salaryType;
+    }
     public void setSalaryType(String salaryType) {
         this.salaryType = salaryType;
     }
