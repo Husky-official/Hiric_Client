@@ -37,7 +37,7 @@ public class  JobPostingView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> createJobPost();
-//            case 2 -> viewJobPosts();
+            case 2 -> viewJobPosts();
             case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
@@ -65,7 +65,28 @@ public class  JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
         }
     }
-
+//    public static void viewJobPosts() throws Exception {
+//        printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTS: ");
+//        JobPosting jobPosts = new Job();
+//        job.getJobTitle();
+//        job.getId();
+//        RequestBody requestBody = new RequestBody();
+//        requestBody.setUrl("/jobPost");
+//        requestBody.setAction("getJobs");
+//        requestBody.setObject(job);
+//
+//        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+//
+//        ClientServerConnector clientServerConnector = new ClientServerConnector();
+//        String response = clientServerConnector.connectToServer(requestString);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonResponse = objectMapper.readTree(response);
+//        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+//        Job[] jobs = objectMapper.treeToValue(jsonNode, Job[].class);
+//        for(int i = 0; i<jobs.length; i++) {
+//            printConsoleMessage(MessageTypes.NORMAL, false, "\t" + jobs[i].id + "." + jobs[i].jobTitle);
+//        }
+//    }
     /*
     * @Author: MPANO Christian
     * */
@@ -122,14 +143,15 @@ public class  JobPostingView {
             printConsoleMessage(MessageTypes.NORMAL, false, "\t" + locations[i].id + "." + locations[i].location);
         }
     }
-    public static void viewDistricts(Integer provinceId) throws Exception {
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tDISTRICTS: ");
+
+    public static void viewNextLocation(Integer nextLocation, String title) throws Exception {
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t" + title);
 
         Location location = new Location();
-        location.setUpperLocation(provinceId);
+        location.setUpperLocation(nextLocation);
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/jobPost");
-        requestBody.setAction("getDistricts");
+        requestBody.setAction("getNextLocation");
         requestBody.setObject(location);
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
@@ -161,10 +183,32 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tRESIDENCE");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         viewProvinces();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Province ID");
         String provId = scanner.nextLine();
         Integer provinceId = Integer.parseInt(provId);
-        viewDistricts(provinceId);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewNextLocation(provinceId, "DISTRICTS:");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter District ID");
+        String distrId = scanner.nextLine();
+        Integer districtId = Integer.parseInt(distrId);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewNextLocation(districtId, "SECTORS");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Sector ID");
+        String sectId = scanner.nextLine();
+        Integer sectorId = Integer.parseInt(sectId);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewNextLocation(sectorId, "CELLS");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Cell ID");
+        String celId = scanner.nextLine();
+        Integer cellId = Integer.parseInt(celId);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewNextLocation(cellId, "VILLAGES:");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter Village ID");
         String loc = scanner.nextLine();
         Integer location = Integer.parseInt(loc);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the starting date (Eg: 12 03 2022)");
@@ -177,10 +221,8 @@ public class  JobPostingView {
         DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
         LocalTime starTime = LocalTime.parse(stime, formattter);
         java.sql.Time startTime = java.sql.Time.valueOf(starTime);
-        System.out.println(startTime);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the number of working hours");
         String duration = scanner.nextLine();
-        System.out.println(duration);
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the salary");
         String sal = scanner.nextLine();
         Integer salary = Integer.parseInt(sal);
