@@ -1,16 +1,14 @@
 package models;
 
-import interfaces.MessageTypes;
-import views.BillingView;
-import views.UserView;
-import static utils.MessagePrinter.printConsoleMessage;
-
-import java.io.IOException;
-import java.util.Scanner;
+import java.util.Date;
 
 public class EmployeeDashboard {
+    private Date dateToday;
+    private int messages;
+    private int notifications;
     private String employeeName;
     private String employeeEmail;
+    private String employeePost;
     private int jobsDone;
     private String scheduledInterviews;
     private String jobStatus;
@@ -19,8 +17,30 @@ public class EmployeeDashboard {
     private String comments;
     private int amount;
     private String paymentMethod;
-    private String messages;
-    private String notifications;
+
+    public Date getDateToday() {
+        return dateToday;
+    }
+
+    public void setDateToday(Date dateToday) {
+        this.dateToday = dateToday;
+    }
+
+    public int getMessages() {
+        return messages;
+    }
+
+    public void setMessages(int messages) {
+        this.messages = messages;
+    }
+
+    public int getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(int notifications) {
+        this.notifications = notifications;
+    }
 
     public String getEmployeeName() {
         return employeeName;
@@ -38,20 +58,12 @@ public class EmployeeDashboard {
         this.employeeEmail = employeeEmail;
     }
 
-    public String getMessages() {
-        return messages;
+    public String getEmployeePost() {
+        return employeePost;
     }
 
-    public void setMessages(String messages) {
-        this.messages = messages;
-    }
-
-    public String getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(String notifications) {
-        this.notifications = notifications;
+    public void setEmployeePost(String employeePost) {
+        this.employeePost = employeePost;
     }
 
     public int getJobsDone() {
@@ -78,6 +90,14 @@ public class EmployeeDashboard {
         this.jobStatus = jobStatus;
     }
 
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
     public String getRating() {
         return rating;
     }
@@ -102,14 +122,6 @@ public class EmployeeDashboard {
         this.amount = amount;
     }
 
-    public String getExperience() {
-        return experience;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
     public String getPaymentMethod() {
         return paymentMethod;
     }
@@ -118,9 +130,40 @@ public class EmployeeDashboard {
         this.paymentMethod = paymentMethod;
     }
 
-    public static void main(String[] args) throws IOException {
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------      EMPLOYEE DASHBOARD      -------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-------------------------------------------------------------------||");
+    public EmployeeDashboard(Date dateToday, int messages, int notifications, String employeeName, String employeeEmail, String employeePost, int jobsDone, String scheduledInterviews, String jobStatus, String experience, String rating, String comments, int amount, String paymentMethod) {
+        this.dateToday = dateToday;
+        this.messages = messages;
+        this.notifications = notifications;
+        this.employeeName = employeeName;
+        this.employeeEmail = employeeEmail;
+        this.employeePost = employeePost;
+        this.jobsDone = jobsDone;
+        this.scheduledInterviews = scheduledInterviews;
+        this.jobStatus = jobStatus;
+        this.experience = experience;
+        this.rating = rating;
+        this.comments = comments;
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
+    }
 
+    @Override
+    public String toString() {
+        return "EmployeeDashboard{" +
+                "dateToday=" + dateToday +
+                ", messages=" + messages +
+                ", notifications=" + notifications +
+                ", employeeName='" + employeeName + '\'' +
+                ", employeeEmail='" + employeeEmail + '\'' +
+                ", employeePost='" + employeePost + '\'' +
+                ", jobsDone=" + jobsDone +
+                ", scheduledInterviews='" + scheduledInterviews + '\'' +
+                ", jobStatus='" + jobStatus + '\'' +
+                ", experience='" + experience + '\'' +
+                ", rating='" + rating + '\'' +
+                ", comments='" + comments + '\'' +
+                ", amount=" + amount +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                '}';
     }
 }
