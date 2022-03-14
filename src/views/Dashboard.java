@@ -35,6 +35,13 @@ public class Dashboard {
         requestBody.setUrl("/adminDashboard");
         requestBody.setAction("adminDashboard");
 
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      ADMIN DASHBOARD         -------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.GET ALL USERS                  ------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.EMPLOYER                 ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.EMPLOYEE                 ------------------||");
+
 
         ObjectMapper objectMapper = new ObjectMapper();
         String requestString = objectMapper.writeValueAsString(requestBody);
