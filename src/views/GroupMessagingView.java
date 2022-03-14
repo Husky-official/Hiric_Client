@@ -18,6 +18,9 @@ import utils.ExitApplication;
 import utils.Loader;
 import utils.MessagePrinter;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -65,7 +68,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO JOIN GROUP");
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group Id");
         int groupId = scanner.nextInt();
-        int userId = 3;
+        int userId = 51;
 
         GroupMember groupMember = new GroupMember(userId, groupId);
 
@@ -114,7 +117,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO LEAVE GROUP");
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group Id");
         int groupId = scanner.nextInt();
-        int userId = 3;
+        int userId = 51;
 
         GroupMember groupMember = new GroupMember(userId, groupId);
 
@@ -195,7 +198,7 @@ public class GroupMessagingView {
     public static void sendMessage() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO CREATE NEW GROUP");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t PROVIDE THE FOLLOWING INFORMATION TO SEND MESSAGE");
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group ID");
         int groupID = scanner.nextInt();
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Message Type");
@@ -203,7 +206,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Content");
         String content = scanner.next();
 
-        if (isMember(1, groupID)) {
+        if (isMember(51, groupID)) {
             Message message = new Message();
             message.setMessageType(messageType);
             message.setReceiver(groupID);
@@ -269,7 +272,7 @@ public class GroupMessagingView {
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Group ID");
         int groupID = scanner.nextInt();
 
-        if(isMember(1, groupID)){
+        if(isMember(51, groupID)){
             Group group = new Group();
             group.setId(groupID);
 
@@ -286,9 +289,45 @@ public class GroupMessagingView {
             MessagePrinter.skipLines(2);
 
             MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, response);
+
+
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "");
+            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "DO YOU WANT TO CHAT?");
+
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Yes ");
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. No ");
+
+            int choice = scanner.nextInt();
+
+            if(choice == 1){
+
+                chat(groupID);
+            }
+
         }else{
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "You are not allowed to view messages from private groups.");
         }
+    }
+
+    public static void chat(int groupId) throws Exception{
+
+        Socket socket = new Socket("localhost", 8888);
+
+        DataOutputStream requestOut = new DataOutputStream(socket.getOutputStream());
+        DataInputStream responseIn = new DataInputStream(socket.getInputStream());
+        Scanner scanner = new Scanner(System.in);
+
+        String message = scanner.next();
+
+        requestOut.flush();
+        requestOut.writeUTF(message);
+
+        System.out.println(responseIn.readUTF());
+
     }
 
 }
