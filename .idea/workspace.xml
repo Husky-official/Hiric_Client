@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="Updated Dashboard in Views">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Dashboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,6 +81,14 @@
       <updated>1646573801938</updated>
       <workItem from="1647230733775" duration="3240000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated Dashboard in Views">
+      <created>1647238044640</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647238044640</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,7 +107,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="send group message" />
-    <option name="LAST_COMMIT_MESSAGE" value="send group message" />
+    <MESSAGE value="Updated Dashboard in Views" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Dashboard in Views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
