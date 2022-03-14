@@ -18,6 +18,7 @@ public class Dashboard {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.ADMIN                    ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.EMPLOYER                 ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.EMPLOYEE                 ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
 
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -54,13 +55,19 @@ public class Dashboard {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      EMPLOYEE DASHBOARD      -------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Name: Igor Rwagapfizi      ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Name: John Doe             ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Gender: Male               ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    DOB: 13/Nov/2001           ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Tel: 0788000000            ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Email: johndoe@gmail.com   ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Jobs done: 5               ------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Preferable Amount: 5000   -------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Ratings: 4.5 stars         ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Date joined: 25/Mar/2014   ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Job post: Making websites  ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Jobs done: 19              ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Preferable Amount: 5000    ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Preferred payment method: MTN Momo    -------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
 
         ObjectMapper objectMapper = new ObjectMapper();
         String requestString = objectMapper.writeValueAsString(requestBody);

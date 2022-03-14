@@ -7,6 +7,7 @@ public class EmployeeDashboard {
     private int messages;
     private int notifications;
     private String employeeName;
+    private Date employeeDOB;
     private String employeeEmail;
     private String employeePost;
     private int jobsDone;
@@ -65,6 +66,10 @@ public class EmployeeDashboard {
     public void setEmployeePost(String employeePost) {
         this.employeePost = employeePost;
     }
+
+    public Date getEmployeeDOB() { return employeeDOB; }
+
+    public void setEmployeeDOB(Date employeeDOB) { this.employeeDOB = employeeDOB; }
 
     public int getJobsDone() {
         return jobsDone;
@@ -130,11 +135,12 @@ public class EmployeeDashboard {
         this.paymentMethod = paymentMethod;
     }
 
-    public EmployeeDashboard(Date dateToday, int messages, int notifications, String employeeName, String employeeEmail, String employeePost, int jobsDone, String scheduledInterviews, String jobStatus, String experience, String rating, String comments, int amount, String paymentMethod) {
+    public EmployeeDashboard(Date dateToday, int messages, int notifications, String employeeName, Date employeeDOB, String employeeEmail, String employeePost, int jobsDone, String scheduledInterviews, String jobStatus, String experience, String rating, String comments, int amount, String paymentMethod) {
         this.dateToday = dateToday;
         this.messages = messages;
         this.notifications = notifications;
         this.employeeName = employeeName;
+        this.employeeDOB = employeeDOB;
         this.employeeEmail = employeeEmail;
         this.employeePost = employeePost;
         this.jobsDone = jobsDone;
@@ -154,6 +160,7 @@ public class EmployeeDashboard {
                 ", messages=" + messages +
                 ", notifications=" + notifications +
                 ", employeeName='" + employeeName + '\'' +
+                ", employeeDOB=" + employeeDOB +
                 ", employeeEmail='" + employeeEmail + '\'' +
                 ", employeePost='" + employeePost + '\'' +
                 ", jobsDone=" + jobsDone +
