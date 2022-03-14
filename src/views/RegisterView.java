@@ -6,20 +6,18 @@
 
 package views;
 
-import clientconnector.ClientServerConnector;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RegisterUser;
 import models.RequestBody;
 import models.UserUtils.UserGender;
 import models.UserUtils.UserRoles;
+import utils.Handlers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import static utils.MessagePrinter.ResponsePrinter;
 import static utils.MessagePrinter.printConsoleMessage;
 
 /**
@@ -57,7 +55,8 @@ public class RegisterView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your Date of Birth[ex:01/12/1990]");
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
         printConsoleMessage(MessageTypes.NORMAL, false,"\tChoose account type[1:employer,2:employee]");
-        if (scanner.nextInt() == 2){
+        int accountType = scanner.nextInt();
+        if (accountType == 2){
             userRole = UserRoles.EMPLOYEE;
         }
         RegisterUser user = new RegisterUser(1,firstName,lastName,email,password,userGender,userRole, dateOfBirth);
@@ -68,16 +67,7 @@ public class RegisterView {
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
         System.out.println(requestString);
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        String response = clientServerConnector.connectToServer(requestString);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonResponse = objectMapper.readTree(response);
-
-        int status = jsonResponse.get("status").asInt();
-        String message = jsonResponse.get("message").asText();
-        String actionDone = jsonResponse.get("actionToDo").asText();
-        ResponsePrinter(status,message,actionDone);
+        Handlers.RequestHandler(requestString);
     }
 
 }

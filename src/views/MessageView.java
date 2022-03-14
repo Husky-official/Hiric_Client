@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static utils.MessagePrinter.printConsoleMessage;
 import static views.GroupMessagingView.*;
 
 public class MessageView {
@@ -34,13 +35,15 @@ public class MessageView {
         int mainChoice;
         Scanner scanner = new Scanner(System.in);
 
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "MESSAGING AND CHAT");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "------------------");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "Send Message:");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t1. Direct Message");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t2. Group Message");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t3. Go Back");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t0. Exit");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.SUCCESS, false,"\t\t\t||---------------     HIRIC MESSAGING AND CHATTING   ----------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1. DIRECT MESSAGE          ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2. GROUP MESSAGING         ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3. GO BACK                 ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    0. EXIT                    ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+
         MessagePrinter.skipLines(1);
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Enter choice: ");
         mainChoice = scanner.nextInt();
@@ -124,23 +127,35 @@ public class MessageView {
         int choice;
 
         do {
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "What You Want To do");
-            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\t 1. Create Group");
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Join Group");
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 3. Delete Group");
-
-            System.out.println("\t\t 1. Create new group ");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+            printConsoleMessage(MessageTypes.SUCCESS, false,"\t\t\t||-----------------     GROUP MESSAGING            ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1. CREATE GROUP            ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2. JOIN GROUP              ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3. MESSAGING               ------------------||");
+            printConsoleMessage(MessageTypes.WARNING, false,"\t\t\t||------------------    4. LEAVE GROUP             ------------------||");
+            printConsoleMessage(MessageTypes.ERROR, false,"\t\t\t||------------------    5. DELETE GROUP            ------------------||");
+            printConsoleMessage(MessageTypes.ERROR, false,"\t\t\t||------------------    0. EXIT                    ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
             choice = scanner.nextInt();
 
             switch (choice) {
                 case 1 -> createGroup();
                 case 2 -> joiningGroupRequest();
-                case 3 -> deleteGroup();
-                default -> MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t Invalid Input");
+                case 3 -> groupChatting();
+                case 4 -> leaveGroup();
+                case 5 -> deleteGroup();
+                case 0 -> new ExitApplication();
+                default -> {
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice! Try again . . .");
+                    new Loader(20, "Retrying ");
+                    MessagePrinter.skipLines(2);
+                    GroupMessageView();
+                }
             }
-
-        } while (choice != 0);
-    }
+        }while (choice !=0);
+    } 
 
     public static void GetAllUsers() throws IOException, InterruptedException {
         try {
