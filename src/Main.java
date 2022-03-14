@@ -1,4 +1,9 @@
+import clientconnector.ClientServerConnector;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
+import models.RequestBody;
+import models.User;
 import views.BillingView;
 import views.InvoiceView;
 import views.HiringView;
@@ -9,6 +14,7 @@ import views.hiring.JobPostingView;
 import views.interviewing.EventSchedulingView;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static utils.MessagePrinter.printConsoleMessage;
@@ -20,34 +26,57 @@ import static utils.MessagePrinter.printConsoleMessage;
  */
 
 public class Main {
-
-    public void hiricWelcomePage() throws IOException {
+    String messageText="file exist?";
+    public void hiricWelcomePage() throws IOException, InterruptedException {
+        Main myObj = new Main();
+//        //testing
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("token");
+        requestBody.setObject(myObj.messageText);
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        //sending object to server
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+//        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+        System.out.println(message);
+        if (Objects.equals(message, "Token exists")) {
+            UserView user = new UserView();
+            user.userLoggedIn();
+        }
+        else{
+//        //testing
         try {
-            printConsoleMessage(MessageTypes.NORMAL, false,"\n\n\n                                                                                   ");
-            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t\t                                                                                 ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t  __           __                                                                ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |         |  |                                                               ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |         |  |                                                               ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |         |  |                                                               ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |         |  |                                                               ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |          __                                                                ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |  __________                                                                ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  / /          |      __         _______            __           _____         ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t | / /           |     |  |      /   ____  \\         |  |       /   ___  \\     ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |/ /________    |     |  |     |  /      \\__\\       |  |      |  /     \\__\\ ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t  __         |   |     |  |     |  |                 |  |      |  |              ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |      __      ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |   \\___/   /    ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t |  |        |   |     |  |     |  |                 |  |       \\         /     ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t  --          ---       --       --                   --           -----         ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t                                                                                 ");
-            printConsoleMessage(MessageTypes.ACTION, false,"\t\t\t\t ==========================================================================      ");
+            printConsoleMessage(MessageTypes.NORMAL, false, "\n\n\n                                                                                   ");
+            printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t\t                                                                                 ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t  __           __                                                                ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |         |  |                                                               ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |          __                                                                ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |  __________                                                                ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  / /          |      __         _______            __           _____         ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t | / /           |     |  |      /   ____  \\         |  |       /   ___  \\     ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |/ /________    |     |  |     |  /      \\__\\       |  |      |  /     \\__\\ ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t  __         |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |              ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |  |      __      ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |      |   \\___/   /    ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t |  |        |   |     |  |     |  |                 |  |       \\         /     ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t  --          ---       --       --                   --           -----         ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t                                                                                 ");
+            printConsoleMessage(MessageTypes.ACTION, false, "\t\t\t\t ==========================================================================      ");
         } catch (IOException error) {
             printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
         }
+    }
     }
 
     public void loadingPageWrapper() throws InterruptedException, IOException {

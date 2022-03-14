@@ -2,7 +2,9 @@ package views;
 
 import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
-
+import utils.ExitApplication;
+import utils.Loader;
+import utils.MessagePrinter;
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.io.IOException;
@@ -25,11 +27,14 @@ public class UserView {
 
     int choice;
 
-    public void userLoggedIn() throws IOException {
+    public void userLoggedIn() throws IOException, InterruptedException {
+        new Loader(15, "Loading.............");
+        MessagePrinter.skipLines(1);
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    Logged in successfully       ------------------||");
         System.out.println("\n");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    1.Logout                    ------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    2.TESTING                ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    2.Go back               ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    0.Exit           ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t\t  Enter your choice");
         Scanner Scanner = new Scanner(System.in);
         choice = Scanner.nextInt();
@@ -37,11 +42,18 @@ public class UserView {
             case 1:
                 logoutUser();
                 break;
+            case 2:
+                    new Loader(15, "Going back ");
+                    MessagePrinter.skipLines(1);
+                    break;
+            case 0 :
+                new ExitApplication();
+                break;
             default:
                 printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
         }
     }
-        public void logoutUser () throws IOException {
+        public void logoutUser () throws IOException, InterruptedException {
             Scanner scanner = new Scanner(System.in);
             printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGOUT");
             ;
@@ -65,13 +77,24 @@ public class UserView {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonResponse = objectMapper.readTree(response);
             int status = jsonResponse.get("status").asInt();
+            System.out.println(status);
             String message = jsonResponse.get("message").asText();
             String actionDone = jsonResponse.get("actionToDo").asText();
+            new Loader(15, "Leaving.............");
+            MessagePrinter.skipLines(1);
+            if(Objects.equals(status, 500) || Objects.equals(status,404) || Objects.equals(status,400)){
+                printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
+                printConsoleMessage(MessageTypes.ERROR, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+                printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
+                printConsoleMessage(MessageTypes.ERROR, false,status+"    ||" + message +"   ||" + actionDone);
+                printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
+                return;
+            }
             printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
-        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         }
     public void loginUser() throws Exception {
 
@@ -109,6 +132,8 @@ public class UserView {
         userLoggedIn();
         return;
         }
+        new Loader(15, "Loading.............");
+        MessagePrinter.skipLines(1);
         if(Objects.equals(status, 500) || Objects.equals(status,404) || Objects.equals(status,400)){
             printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
             printConsoleMessage(MessageTypes.ERROR, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
