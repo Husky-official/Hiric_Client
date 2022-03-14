@@ -13,9 +13,9 @@ public class Payment implements Serializable {
     private Long id;
     private Long jobId;
     private Double originalAmount;
-    private String paymentMethod;
+    private Integer paymentMethod;
     private Double reducedAmount;
-    private LocalDate dateOfPayment;
+    private String dateOfPayment;
     private Long employeeId;
     private Long employerId;
 
@@ -45,11 +45,11 @@ public class Payment implements Serializable {
         this.originalAmount = originalAmount;
     }
 
-    public String getPaymentMethod() {
+    public Integer getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -61,11 +61,11 @@ public class Payment implements Serializable {
         this.reducedAmount = reducedAmount;
     }
 
-    public LocalDate getDateOfPayment() {
+    public String getDateOfPayment() {
         return dateOfPayment;
     }
 
-    public void setDateOfPayment(LocalDate dateOfPayment) {
+    public void setDateOfPayment(String dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
     }
 
@@ -85,7 +85,7 @@ public class Payment implements Serializable {
         this.employerId = employerId;
     }
 
-    public Payment(Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
+    public Payment(Long jobId, Double originalAmount, Integer paymentMethod, Double reducedAmount, String dateOfPayment, Long employeeId, Long employerId) {
         this.jobId = jobId;
         this.originalAmount = originalAmount;
         this.paymentMethod = paymentMethod;
@@ -95,7 +95,7 @@ public class Payment implements Serializable {
         this.employerId = employerId;
     }
 
-    public Payment(Long id, Long jobId, Double originalAmount, String paymentMethod, Double reducedAmount, LocalDate dateOfPayment, Long employeeId, Long employerId) {
+    public Payment(Long id, Long jobId, Double originalAmount, Integer paymentMethod, Double reducedAmount, String dateOfPayment, Long employeeId, Long employerId) {
         this.id = id;
         this.jobId = jobId;
         this.originalAmount = originalAmount;
