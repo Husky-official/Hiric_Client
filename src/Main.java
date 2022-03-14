@@ -79,13 +79,21 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.FORGOT PASSWORD                 ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.CREATE JOB POST          ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS            ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST          ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                   ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    9.MESSAGING                ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    10.Interviewing            ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    10.INTERVIEWING            ------------------||");
+
 
                 Scanner scanner = new Scanner(System.in);
                 int choice;
@@ -95,13 +103,39 @@ public class Main {
                 choice = scanner.nextInt();
 
                 switch (choice) {
-                    case 1 -> userView.loginUser();
-                    case 2-> RegisterView.registerUser();
-                    case 6 -> billingView.makePayment();
-                    case 7 -> HiringView.mainMethod();
-                    case 9 -> MessageView.mainMethod();
-                    case 10 -> eventSchedulingView.mainMethod();
-                    default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+
+
+                    case 1:
+                        userView.loginUser();
+                    case 3:
+                        userView.sendEmail();
+                    case 'a':
+                        userView.verifyToken();
+                    case 'b':
+                        userView.setNewPassword();
+                    case 4:
+                        JobPostingView.createJobPost();
+                        break;
+                    case 6:
+                        billingView.makePayment();
+                        break;
+                    case 9:
+                        messageView.mainMethod();
+                        break;
+                    default:
+                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
+
+
+                    case 2: RegisterView.registerUser();
+
+                    case 7: HiringView.mainMethod();
+
+//                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+
+
+                    case 10: eventSchedulingView.mainMethod();
+
+
                 }
 
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");

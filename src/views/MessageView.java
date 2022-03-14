@@ -354,16 +354,193 @@ public class MessageView {
          * */
 
         MessagePrinter.skipLines(1);
-        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "START CHATTING");
-        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "--------------");
+        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "CHATTING WITH "+memberName.toUpperCase());
+        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "-----------------------");
         MessagePrinter.skipLines(1);
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "+ Press 1: Quit chat | Press 2: Get help | Press 3: Exit app +");
         MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
 
+        //fetch the older messages
+        ArrayList olderMessages = getOlderChatMessages(memberName, memberID);
+        if (olderMessages != null) {
+            for (int i = 0; i < olderMessages.size(); i++) {
+                if ((i+1)%2 == 0) {
+                    MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: ");
+                } else {
+                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
+                }
+                MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t"+(i+1)+". "+olderMessages.get(i));
+            }
+        }
+
         Scanner scanner = new Scanner(System.in);
         String message;
-        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: "); //get user name from login
+        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: "); //get username from login
+        message = scanner.nextLine();
+        Boolean continued = false;
+
+        if (Objects.equals(message, "1") || Objects.equals(message, "2") || Objects.equals(message, "3")) {
+
+            MessagePrinter.skipLines(1);
+            Scanner scanner_one = new Scanner(System.in);
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Executing chat options (y/n): ");
+            String choice;
+            choice = scanner_one.nextLine();
+
+            switch (choice) {
+                case "y":
+                    continued = true;
+                    switch (message) {
+                        case "1":
+                            mainMethod();
+                            break;
+                        case "2":
+                            ShowQuickChattingHelp();
+                            break;
+                        case "3":
+                            new ExitApplication();
+                            break;
+                        default:
+                            MessagePrinter.skipLines(1);
+                            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice!");
+                            new Loader(7, "Retrying ");
+                            MessagePrinter.skipLines(2);
+                            DirectMessageView();
+                    }
+                    break;
+                default:
+                    MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "Ok continuing ....");
+            }
+
+        }
+
+        if (!continued) {
+            //create replying func
+
+            Message newMessage = new Message();
+            newMessage.setMessageContent(message);
+            newMessage.setMessageType("reply");
+            newMessage.setOriginalMessage(1); //set original message id
+            newMessage.setSender(1); //get user id from login
+            newMessage.setReceiver(memberID);
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            newMessage.setSentAt(dtf.format(now));
+
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/messages");
+            requestBody.setAction("sendMessage");
+            requestBody.setObject(newMessage);
+            String requestString = new ObjectMapper().writeValueAsString(requestBody);
+            ClientServerConnector clientServerConnector = new ClientServerConnector();
+            String responseString = clientServerConnector.connectToServer(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonResponse = objectMapper.readTree(responseString);
+            int status = jsonResponse.get("status").asInt();
+            JsonNode userData = jsonResponse.get("object");
+            Iterator<Map.Entry<String, JsonNode>> iterator = userData.fields();
+            iterator.next();
+            iterator.next();
+            String messageContent = iterator.next().toString().split("=")[1];
+            iterator.next();
+            String senderID = iterator.next().toString().split("=")[1];
+            String receiverID = iterator.next().toString().split("=")[1];
+
+            if (Integer.parseInt(senderID) == 1) { //get user id from login
+                if (status != 200) {
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Message not sent!");
+                    new Loader(30, "Re-trying ");
+                    MessagePrinter.skipLines(1);
+                    continueChatting(memberName, memberID);
+                }
+            }
+
+            while (Integer.parseInt(senderID) != Integer.parseInt(receiverID)) {
+
+                if (Integer.parseInt(receiverID) == memberID && Integer.parseInt(senderID) != 1) { //1 will be replaced by my id from login
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
+                    MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, messageContent);
+                    MessagePrinter.skipLines(1);
+                    continueChatting(memberName, memberID);
+                }
+
+            }
+
+        } else {
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Continue chatting (y/n): ");
+            String choice_cont;
+            choice_cont = scanner.nextLine();
+            switch (choice_cont) {
+                case "y":
+                    //including the reply func
+                    break;
+                default:
+                    MessagePrinter.skipLines(1);
+                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Unable to initial your chat environment.");
+                    new Loader(30, "Re-trying ");
+                    MessagePrinter.skipLines(1);
+                    DirectMessageView();
+            }
+        }
+    }
+
+    public static void ShowQuickChattingHelp() throws IOException {
+        MessagePrinter.skipLines(1);
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false,"==============================================================");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "+         CHATTING HELP AND COMMANDS ALONG SHORTCUTS         +");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
+        MessagePrinter.printConsoleMessage(MessageTypes.WARNING, false, "\t Tips:");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Immediately after initializing the chatting env start typing you message next to your name");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. When you enter a message that is similar to the chat shortcuts you will choose to continue or not");
+        MessagePrinter.printConsoleMessage(MessageTypes.WARNING, false, "\t Commands and shortcuts:");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Press 1 to Quit chatting with the user");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Press 2 to Get help using the chat");
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 3. Press 3 to Quit the whole application");
+        MessagePrinter.skipLines(1);
+    }
+
+    public static ArrayList getOlderChatMessages(String memberName, Integer memberID) throws IOException {
+        Message message = new Message();
+        message.setSender(1); //set the id to the current logged in user
+        message.setReceiver(memberID); //set the id to the current logged in user
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/messages");
+        requestBody.setAction("getOlderMessages");
+        requestBody.setObject(message);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+
+        String responseString = clientServerConnector.connectToServer(requestString);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(responseString);
+        int status = jsonResponse.get("status").asInt();
+
+        if (status == 200) {
+            String usersString = jsonResponse.get("object").asText();
+            String[] arr = usersString.split(" ");
+
+            ArrayList<String> messages = new ArrayList<>(Arrays.asList(arr));
+
+            return messages;
+        } else {
+            MessagePrinter.skipLines(1);
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Failed to get older messages with "+ memberName);
+            MessagePrinter.skipLines(1);
+        }
+        return null;
+    }
+
+    public static void continueChatting(String memberName, Integer memberID) throws IOException, InterruptedException {
+
+        Scanner scanner = new Scanner(System.in);
+        String message;
+        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: "); //get username from login
         message = scanner.nextLine();
         Boolean continued = false;
 
@@ -472,21 +649,6 @@ public class MessageView {
                     DirectMessageView();
             }
         }
-    }
-
-    public static void ShowQuickChattingHelp() throws IOException {
-        MessagePrinter.skipLines(1);
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false,"==============================================================");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "+         CHATTING HELP AND COMMANDS ALONG SHORTCUTS         +");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
-        MessagePrinter.printConsoleMessage(MessageTypes.WARNING, false, "\t Tips:");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Immediately after initializing the chatting env start typing you message next to your name");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. When you enter a message that is similar to the chat shortcuts you will choose to continue or not");
-        MessagePrinter.printConsoleMessage(MessageTypes.WARNING, false, "\t Commands and shortcuts:");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Press 1 to Quit chatting with the user");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Press 2 to Get help using the chat");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 3. Press 3 to Quit the whole application");
-        MessagePrinter.skipLines(1);
     }
 
 }
