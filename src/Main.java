@@ -1,10 +1,5 @@
 import interfaces.MessageTypes;
-import views.BackUpView;
-import views.BillingView;
-import views.HiringView;
-import views.MessageView;
-import views.RegisterView;
-import views.UserView;
+import views.*;
 import views.hiring.JobPostingView;
 
 import java.io.IOException;
@@ -84,8 +79,9 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-----------------     9.MESSAGING                 -----------------|| ");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    10.BACKUP                 -------------------||");
 
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                 ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                   ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    11.Sign A contract        -------------------||");
 
 
 
@@ -105,6 +101,7 @@ public class Main {
                     case 7 -> HiringView.mainMethod();
                     case 9 -> MessageView.mainMethod();
                     case 10 -> BackUpView.MainMethod();
+                    case 11 -> ContractView.mainMethod();
                     default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
                 }
 

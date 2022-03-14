@@ -4,6 +4,7 @@ package views;
 import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import interfaces.MessageTypes;
 import models.Group;
@@ -26,15 +27,26 @@ import static utils.MessagePrinter.printConsoleMessage;
  * */
 public class BackUpView {
 
-    public static void MainMethod() throws IOException {
+    public void LoadingWrapper () throws InterruptedException, IOException {
+      for(int i =0; i<=20;i++){
+         MessagePrinter.printConsoleMessage(MessageTypes.ACTION, true, ".");
+         Thread.sleep(100);
+        }
+    }
+    public static void MainMethod() throws IOException, InterruptedException {
         String choice;
         Scanner sc = new Scanner(System.in);
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, " Hiric allows you to backup Messages and other important files " +
-                " By typing yes your backup will start right away or n to exit the process");
+
+        //loading wrapper
+        new BackUpView().LoadingWrapper();
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "HIRIC BACKUP PAGE");
+        new BackUpView().LoadingWrapper();
+
+        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL,false,"type y/Y if you want to proceed with the backing up");
 
         try {
             choice = sc.next();
-            if (choice.equals("yes")) {
+            if (choice.equals("y")|| choice.equals("Y")) {
                 System.out.println("yes i reached here");
                 //setting our request parameters using object
                 RequestBody requestBody = new RequestBody();
@@ -60,7 +72,7 @@ public class BackUpView {
                 String message = jsonResponse.get("message").asText();
                 String action = jsonResponse.get("actionToDo").asText();
 
-                if(status == 200) {
+                if(status == 201) {
                     printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
                     printConsoleMessage(MessageTypes.SUCCESS, false, "STATUS ||         MESSAGE        ||             ACTION DON              ");
                     printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
