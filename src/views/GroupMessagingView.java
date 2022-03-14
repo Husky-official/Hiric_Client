@@ -22,6 +22,8 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import static utils.MessagePrinter.printConsoleMessage;
+
 public class GroupMessagingView {
     public static void createGroup() throws Exception {
 
@@ -136,14 +138,15 @@ public class GroupMessagingView {
         int choice;
 
         do {
-            MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, false, "\t\tWhat You Want To do?");
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t=====================");
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 1. Send Message");
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 2. Edit Message");
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t 3. List Group Messages");
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 4. Delete Message");
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t --------------------");
-            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "\t\t 0. Exit");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+            printConsoleMessage(MessageTypes.SUCCESS, false,"\t\t\t||-----------------     GROUP CHATTING             ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1. SEND MESSAGE            ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2. EDIT MESSAGE            ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3. CONTINUE TO A GROUP     ------------------||");
+            printConsoleMessage(MessageTypes.ERROR, false,"\t\t\t||------------------    4. DELETE MESSAGE          ------------------||");
+            printConsoleMessage(MessageTypes.ERROR, false,"\t\t\t||------------------    0. EXIT                    ------------------||");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
 
             choice = scanner.nextInt();
 
