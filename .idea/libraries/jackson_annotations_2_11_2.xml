@@ -5,6 +5,7 @@
       <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.11.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.11.2.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/mysql-connector.jar!/" />
+
     </CLASSES>
     <JAVADOC />
     <SOURCES />
