@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Dashboard {
-    public static void main() throws Exception{
+    public static void main(String[] args) throws Exception{
 
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      HIRIC DASHBOARD         -------------------||");
@@ -25,7 +25,7 @@ public class Dashboard {
 
         switch (choice) {
             case 1 -> adminDashboard(true);
-            case 2 -> employeeDashboard(true);
+            case 3 -> employeeDashboard(true);
         }
     }
 
@@ -49,6 +49,18 @@ public class Dashboard {
         requestBody.setUrl("/employeeDashboard");
         requestBody.setAction("employeeDashboard");
 
+        //Dummy stuffs
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      EMPLOYEE DASHBOARD      -------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Name: Igor Rwagapfizi      ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Gender: Male               ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Tel: 0788000000            ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Email: johndoe@gmail.com   ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Jobs done: 5               ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Preferable Amount: 5000   -------------------||");
 
         ObjectMapper objectMapper = new ObjectMapper();
         String requestString = objectMapper.writeValueAsString(requestBody);
