@@ -13,11 +13,11 @@ public class Dashboard {
     public static void mainMethod() throws Exception{
 
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      HIRIC DASHBOARD        -------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------      HIRIC DASHBOARD         -------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.ADMIN                    ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.EMPLOYER                 ------------------||");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.EMPLOYEE                ------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.EMPLOYEE                 ------------------||");
 
         Scanner scanner = new Scanner(System.in);
         int choice;
