@@ -120,7 +120,7 @@ public class Main {
                         billingView.makePayment();
                         break;
                     case 9:
-                        messageView.mainMethod();
+                        MessageView.mainMethod();
                         break;
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
