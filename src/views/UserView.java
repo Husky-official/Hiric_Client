@@ -12,6 +12,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
 import models.RequestBody;
+import models.ResponseBody;
 import models.User;
 import models.UserLogout;
 
@@ -25,11 +26,12 @@ public class UserView {
 
     int choice;
 
-    public void userLoggedIn() throws IOException {
+    public void userLoggedIn() throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    Logged in successfully       ------------------||");
         System.out.println("\n");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    1.Logout                    ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||------------------    2.TESTING                ------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------     3.DELETE USER            ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t\t  Enter your choice");
         Scanner Scanner = new Scanner(System.in);
         choice = Scanner.nextInt();
@@ -37,6 +39,8 @@ public class UserView {
             case 1:
                 logoutUser();
                 break;
+            case 3:
+                userDelete();
             default:
                 printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
         }
@@ -44,7 +48,6 @@ public class UserView {
         public void logoutUser () throws IOException {
             Scanner scanner = new Scanner(System.in);
             printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER LOGOUT");
-            ;
             printConsoleMessage(MessageTypes.NORMAL, false, "\t-----------------------");
             printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your email");
             String email = scanner.nextLine();
@@ -126,7 +129,7 @@ public class UserView {
     }
     public void sendEmail() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tFORGOT PASSWORD");;
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tFORGOT PASSWORD");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your email");
         String email = scanner.nextLine();
@@ -167,7 +170,7 @@ public class UserView {
     }
     public void verifyToken() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tRESET PASSWORD");;
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tRESET PASSWORD");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the token sent to the provided email");
         String token= scanner.nextLine();
@@ -205,7 +208,7 @@ public class UserView {
     }
     public void setNewPassword() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        printConsoleMessage(MessageTypes.NORMAL, false, "\tSET PASSWORD");;
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tSET PASSWORD");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your new password");
         String password = scanner.nextLine();
@@ -233,6 +236,62 @@ public class UserView {
         printConsoleMessage(MessageTypes.SUCCESS, false,"========================================================================");
         printConsoleMessage(MessageTypes.SUCCESS, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.SUCCESS, false,"========================================================================");
+    }
+
+    public void userDelete() throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tDELETING A USER:");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter the user's email you want to delete:");
+        String email = scanner.nextLine();
+        User userDelete = new User();
+        userDelete.setEmail(email);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("deleteUser");
+        requestBody.setObject(userDelete);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+//        System.out.println("Response : " +response);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DONE              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        if(status==200){
+            printConsoleMessage(MessageTypes.SUCCESS, false,status+"    ||" + message +"   ||" + actionDone);
+            printConsoleMessage(MessageTypes.SUCCESS, false,"========================================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false, "\tDo you want to delete a user yes(1)/ no(2)");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+            printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your choice:");
+            Scanner Scanner = new Scanner(System.in);
+            choice = Scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    userDelete();
+                case 2:
+                    logoutUser ();
+//                    return;
+                default:
+                    printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+            }
+
+        }
+        else{
+            printConsoleMessage(MessageTypes.ERROR, false,status+"    ||" + message +"   ||" + actionDone);
+            printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
+            return;
+        }
     }
 
 }
