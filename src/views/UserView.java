@@ -6,15 +6,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import static utils.MessagePrinter.printConsoleMessage;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
-import models.RequestBody;
-import models.ResponseBody;
-import models.User;
-import models.UserLogout;
+import models.*;
+import models.UserUtils.*;
 
 /**
  * @author: Shumbusho David
@@ -271,7 +271,7 @@ public class UserView {
         if(status==200){
             printConsoleMessage(MessageTypes.SUCCESS, false,status+"    ||" + message +"   ||" + actionDone);
             printConsoleMessage(MessageTypes.SUCCESS, false,"========================================================================");
-            printConsoleMessage(MessageTypes.NORMAL, false, "\tDo you want to delete a user yes(1)/ no(2)");
+            printConsoleMessage(MessageTypes.NORMAL, false, "\tDo you want to delete another user yes(1)/ no(2)");
             printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
             printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your choice:");
             Scanner Scanner = new Scanner(System.in);
@@ -294,4 +294,73 @@ public class UserView {
         }
     }
 
+    public void userUpdateData() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE USER INFORMATION");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t-----------------------------");
+        printConsoleMessage(MessageTypes.NORMAL, false, "Enter the new data:\n");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter the user email that is to be updated:");
+        String email = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your new first name:");
+        String firstName = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your new last name:");
+        String lastName = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your gender choice [1:Male,2:Female]:");
+        UserGender userGender;
+        if (scanner.nextInt() == 1) {
+            userGender = UserGender.MALE;
+        } else {
+            userGender = UserUtils.UserGender.FEMALE;
+        }
+        scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your new email:");
+        String newEmail = scanner.nextLine();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tChoose account type[1:employer,2:employee]:");
+        int accountType = scanner.nextInt();
+        UserRoles userRole;
+        if (accountType == 1){
+            userRole = UserRoles.EMPLOYER;
+        }else{
+            userRole = UserRoles.EMPLOYEE;
+        }
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tEnter your Date of Birth [ex:01/12/1990]");
+        Date DOB = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
+        RegisterUser userToUpdate = new RegisterUser();
+        userToUpdate.setEmail(email);
+        userToUpdate.setFirstName(firstName);
+        userToUpdate.setLastName(lastName);
+        userToUpdate.setGender(userGender);
+        userToUpdate.setEmail(newEmail);
+        userToUpdate.setRole(userRole);
+        userToUpdate.setDob(DOB);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("updateUser");
+        requestBody.setObject(userToUpdate);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DONE              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        if(status==200) {
+            printConsoleMessage(MessageTypes.SUCCESS, false, status + "    ||" + message + "   ||" + actionDone);
+            printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
+        }else{
+            printConsoleMessage(MessageTypes.ERROR, false,status+"    ||" + message +"   ||" + actionDone);
+            printConsoleMessage(MessageTypes.ERROR, false,"========================================================================");
+            return;
+        }
+    }
 }
