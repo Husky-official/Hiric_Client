@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="Updated Dashboard in Views">
-      <change beforePath="$PROJECT_DIR$/src/views/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Dashboard.java" afterDir="false" />
+    <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/GroupMessagingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/GroupMessagingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessageView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,9 +31,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="260wPm0QKGkjPbJASxNldXsZ6Fl" />
   <component name="ProjectLevelVcsManager">
-    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -42,11 +50,12 @@
     <property name="app.teamhub.trackedBranches" value="-8e7t58/main,-8e7t58/Shumbusho_David" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Hiric_Server" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Hiric_Client" />
@@ -54,17 +63,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="views.Dashboard" />
-      <module name="Hiric_Client" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Application.Main" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -74,21 +72,15 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="" />
+      <changelist id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="" />
       <changelist id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="send group message" />
       <created>1646573801938</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646573801938</updated>
-      <workItem from="1647230733775" duration="3240000" />
+      <workItem from="1647230733775" duration="10460000" />
     </task>
-    <task id="LOCAL-00001" summary="Updated Dashboard in Views">
-      <created>1647238044640</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1647238044640</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,11 +96,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="send group message" />
-    <MESSAGE value="Updated Dashboard in Views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Dashboard in Views" />
+    <option name="LAST_COMMIT_MESSAGE" value="send group message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -116,16 +108,11 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/views/MessageView.java</url>
           <line>476</line>
-          <properties class="views.MessageView" method="ShowQuickChattingHelp">
+          <properties class="views.MessageView">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/views/GroupMessagingView.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
