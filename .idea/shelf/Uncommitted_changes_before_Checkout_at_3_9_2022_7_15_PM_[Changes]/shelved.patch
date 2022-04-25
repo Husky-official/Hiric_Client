@@ -1,0 +1,68 @@
+Index: src/models/Message.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models;\r\n\r\nimport java.util.Date;\r\n\r\n/**\r\n * @author : Abijuru Seth\r\n * @description : A model to represents an entity of a message;\r\n */\r\n\r\npublic class Message {\r\n    private Integer messageId;\r\n    private String messageContent;\r\n    private Integer sender;\r\n    private Integer receiver;\r\n    private Date sentAt;\r\n\r\n    public Message() {}\r\n\r\n    public Integer getMessageId() {\r\n        return messageId;\r\n    }\r\n\r\n    public void setMessageId(Integer messageId) {\r\n        this.messageId = messageId;\r\n    }\r\n\r\n    public String getMessageContent() {\r\n        return messageContent;\r\n    }\r\n\r\n    public void setMessageContent(String messageContent) {\r\n        this.messageContent = messageContent;\r\n    }\r\n\r\n    public Integer getSender() {\r\n        return sender;\r\n    }\r\n\r\n    public void setSender(Integer sender) {\r\n        this.sender = sender;\r\n    }\r\n\r\n    public Integer getReceiver() {\r\n        return receiver;\r\n    }\r\n\r\n    public void setReceiver(Integer receiver) {\r\n        this.receiver = receiver;\r\n    }\r\n\r\n    public Date getSentAt() {\r\n        return sentAt;\r\n    }\r\n\r\n    public void setSentAt(Date sentAt) {\r\n        this.sentAt = sentAt;\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/models/Message.java b/src/models/Message.java
+--- a/src/models/Message.java	
++++ b/src/models/Message.java	
+@@ -16,6 +16,9 @@
+ 
+     public Message() {}
+ 
++    public static void skipLines(int i) {
++    }
++
+     public Integer getMessageId() {
+         return messageId;
+     }
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import interfaces.MessageTypes;\r\nimport views.BillingView;\r\nimport views.MessageView;\r\nimport views.UserView;\r\nimport views.hiring.JobPostingView;\r\n\r\nimport java.io.IOException;\r\nimport java.util.Scanner;\r\n\r\nimport static utils.MessagePrinter.printConsoleMessage;\r\n\r\n/**\r\n * @author: DABAGIRE Valens\r\n * @author: ABIJURU Seth\r\n * @description : The entry point for our system\r\n */\r\n\r\npublic class Main {\r\n\r\n    public void hiricWelcomePage() throws IOException {\r\n        try {\r\n            printConsoleMessage(MessageTypes.NORMAL, false,\"\\n\\n\\n                                                                                   \");\r\n            printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t\\t                                                                                 \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t  __           __                                                                \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |         |  |                                                               \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |         |  |                                                               \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |         |  |                                                               \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |         |  |                                                               \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |          __                                                                \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |  __________                                                                \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  / /          |      __         _______            __           _____         \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t | / /           |     |  |      /   ____  \\\\         |  |       /   ___  \\\\     \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |/ /________    |     |  |     |  /      \\\\__\\\\       |  |      |  /     \\\\__\\\\ \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t  __         |   |     |  |     |  |                 |  |      |  |              \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |      |  |              \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |      |  |              \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |      |  |              \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |      |  |      __      \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |      |   \\\\___/   /    \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t |  |        |   |     |  |     |  |                 |  |       \\\\         /     \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t  --          ---       --       --                   --           -----         \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t                                                                                 \");\r\n            printConsoleMessage(MessageTypes.ACTION, false,\"\\t\\t\\t\\t ==========================================================================      \");\r\n        } catch (IOException error) {\r\n            printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());\r\n        }\r\n    }\r\n\r\n    public void loadingPageWrapper() throws InterruptedException, IOException {\r\n        printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t\\t__________________________________________________________________________\");\r\n        printConsoleMessage(MessageTypes.ACTION, true,\"\\t\\t\\t\\t\\t\\tHiric \\t\");\r\n        for (int i = 0; i < 20; i++) {\r\n            printConsoleMessage(MessageTypes.NORMAL,true, \".\");\r\n            Thread.sleep(100);\r\n        }\r\n        printConsoleMessage(MessageTypes.NORMAL, false,\"\\n\");\r\n        printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t\\t__________________________________________________________________________\\n\\n\");\r\n        printConsoleMessage(MessageTypes.NORMAL, false,\"\\n\");\r\n    }\r\n\r\n    public static void WelcomeToHiric() throws IOException {\r\n        try {\r\n\r\n            UserView userView = new UserView();\r\n            BillingView billingView = new BillingView();\r\n            String toContinue;\r\n\r\n            do {\r\n                new Main().hiricWelcomePage();\r\n                new Main().loadingPageWrapper();\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||-------------------------------------------------------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------      WELCOME TO HIRIC        -------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||-------------------------------------------------------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    1.LOGIN                    ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    2.REGISTER                 ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    4.CREATE JOB POST                 ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    4.GET JOB POSTS                 ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    5.UPDATE JOB POST                 ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false, \"\\t\\t\\t||-----------------    9.MESSAGING                        -----------------|| \");\r\n\r\n\r\n                Scanner scanner = new Scanner(System.in);\r\n                int choice;\r\n\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t||-------------------------------------------------------------------||\");\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\t\\t\\t  Enter your choice\");\r\n                choice = scanner.nextInt();\r\n\r\n                switch (choice) {\r\n                    case 1 -> userView.loginUser();\r\n                    case 4 -> JobPostingView.createJobPost();\r\n                    case 6 -> billingView.makePayment();\r\n                    case 9 -> MessageView.mainMethod();\r\n                    default -> printConsoleMessage(MessageTypes.ERROR, false, \"Invalid input\");\r\n                }\r\n\r\n                printConsoleMessage(MessageTypes.NORMAL, false,\"\\t\\tDo you want to continue searching? (y/n): \");\r\n                toContinue = scanner.next();\r\n            } while (toContinue.equalsIgnoreCase(\"y\") || toContinue.equalsIgnoreCase(\"yes\"));\r\n        } catch (Exception error) {\r\n            printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());\r\n        }\r\n    }\r\n\r\n    public static void main(String [] args) throws IOException {\r\n        WelcomeToHiric();\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -3,6 +3,7 @@
+ import views.MessageView;
+ import views.UserView;
+ import views.hiring.JobPostingView;
++import views.interviewing.EventSchedulingView;
+ 
+ import java.io.IOException;
+ import java.util.Scanner;
+@@ -63,6 +64,7 @@
+ 
+             UserView userView = new UserView();
+             BillingView billingView = new BillingView();
++            EventSchedulingView eventSchedulingView = new EventSchedulingView();
+             String toContinue;
+ 
+             do {
+@@ -73,11 +75,12 @@
+                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
+                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
+                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
+-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
+-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
+-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
+-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
+-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
++                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST          ------------------||");
++                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS            ------------------||");
++                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST          ------------------||");
++                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
++                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                 -----------------||");
++                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    10. Event Scheduling        -----------------||");
+ 
+ 
+                 Scanner scanner = new Scanner(System.in);
+@@ -92,6 +95,7 @@
+                     case 4 -> JobPostingView.createJobPost();
+                     case 6 -> billingView.makePayment();
+                     case 9 -> MessageView.mainMethod();
++                    case 10 -> eventSchedulingView.mainMethod();
+                     default -> printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
+                 }
+ 

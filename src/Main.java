@@ -79,14 +79,8 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    1.LOGIN                    ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    2.REGISTER                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.FORGOT PASSWORD                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.CREATE JOB POST          ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                 ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                        -----------------|| ");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    3.FORGOT PASSWORD          ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.CREATE JOB POST          ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    4.GET JOB POSTS            ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    5.UPDATE JOB POST          ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
@@ -107,6 +101,8 @@ public class Main {
 
                     case 1:
                         userView.loginUser();
+                    case 2:
+                        RegisterView.registerUser();
                     case 3:
                         userView.sendEmail();
                     case 'a':
@@ -119,27 +115,16 @@ public class Main {
                     case 6:
                         billingView.makePayment();
                         break;
+                    case 7:
+                        HiringView.mainMethod();
                     case 9:
                         messageView.mainMethod();
                         break;
-
-                    case 2: RegisterView.registerUser();
-
-                    break;
-
-                    case 7: HiringView.mainMethod();
-
-                    break;
-//                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
-
-
                     case 10: eventSchedulingView.mainMethod();
 
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
-
                 }
-
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");
                 toContinue = scanner.next();
             } while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
