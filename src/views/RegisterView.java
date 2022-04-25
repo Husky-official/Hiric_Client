@@ -40,20 +40,19 @@ public class RegisterView {
         UserGender userGender = UserGender.MALE;
         printConsoleMessage(MessageTypes.NORMAL, false, "\tUSER REGISTER");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
-        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your first name[ex:UWENAYO ALain Pacifique]");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your first name[ex: John Doe]");
         firstName = scanner.nextLine();
         while(!Validations.isNameValid(firstName).equals("OK")){
             printConsoleMessage(MessageTypes.ERROR, false, Validations.isNameValid(firstName));
             System.out.println(firstName);
         }
-        int genderChoice = scanner.nextInt();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your gender[1:Male,2:Female]");
-        while(Validations.inRange(genderChoice,1,2).equals("OK")){
+        int genderChoice = scanner.nextInt();
+        while(!Validations.inRange(genderChoice,1,2).equals("OK")){
             printConsoleMessage(MessageTypes.ERROR,false,Validations.inRange(genderChoice,1,2));
             genderChoice = scanner.nextInt();
         }
         if(genderChoice == 2) userGender = UserGender.FEMALE;
-        // solving the know bug for using nextInt()
         scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter your email[ex:example@domain.com]");
         String email = scanner.nextLine();
@@ -73,22 +72,24 @@ public class RegisterView {
             printConsoleMessage(MessageTypes.ERROR, false, Validations.isDateValid(inputDOB));
             inputDOB = scanner.nextLine();
         }
-        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(inputDOB);
         while(!Validations.isDateOfBirthValid(dateOfBirth).equals("OK")){
             printConsoleMessage(MessageTypes.ERROR, false, Validations.isDateOfBirthValid(dateOfBirth));
             dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
         }
         printConsoleMessage(MessageTypes.NORMAL, false,"\tChoose account type[1:employer,2:employee]");
         int accountType = scanner.nextInt();
-        while(Validations.inRange(accountType,1,2).equals("OK")){
+        while(!Validations.inRange(accountType,1,2).equals("OK")){
             printConsoleMessage(MessageTypes.ERROR,false,Validations.inRange(accountType,1,2));
             accountType = scanner.nextInt();
         }
         if (accountType == 2){
             userRole = UserRoles.EMPLOYEE;
         }
-        if(firstName.contains(" ")) lastName = firstName.substring(firstName.indexOf(" ")+1);
-        firstName = firstName.substring(0,firstName.indexOf(" "));
+        if(firstName.contains(" ")){
+            lastName = firstName.substring(firstName.indexOf(" ")+1);
+            firstName = firstName.substring(0,firstName.indexOf(" "));
+        }
         RegisterUser user = new RegisterUser(1,firstName,lastName,email,password,userGender,userRole, dateOfBirth);
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");

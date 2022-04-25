@@ -4,7 +4,6 @@
  */
 package utils.registration;
 
-import java.io.NotActiveException;
 import java.util.Date;
 
 /** The type Validations. */
@@ -18,7 +17,7 @@ public class Validations {
    * @return the string
    */
   public static String inRange(int number, int min, int max) {
-        if(number > min && number < max) return number + " must be in range [" + min + "," + max + "]";
+        if(number < min || number > max) return "Number is not in range[" + min + "," + max + "]";
         return "OK";
     }
   /**
@@ -38,7 +37,7 @@ public class Validations {
    * @return the string
    */
   public static String isPasswordValid(String password) {
-        if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) return "Password is not valid, must contain at least one number, one uppercase letter, one lowercase letter, one special character and at least 8 characters";
+      if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) return "Password is not valid, must be at least 8 characters long, contain at least one upper case letter, one lower case letter, one number and one special character";
         return "OK";
     }
 
