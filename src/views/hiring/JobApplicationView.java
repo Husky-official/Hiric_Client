@@ -136,9 +136,10 @@ public class JobApplicationView {
         return jobPostings;
     }
 
-    public static void applyForJob() throws IOException{
+    public static void applyForJob() throws Exception {
         Scanner scanner=new Scanner(System.in);
         printConsoleMessage(MessageTypes.ACTION, false,"\t\tENTER DETAILS OF EMPLOYMENT DESIRED\n");
+       // getJobPosts();
         printConsoleMessage(MessageTypes.NORMAL, false,"Job Post Id: ");
         String jobIdd=scanner.nextLine();
         int jobId=Integer.parseInt(jobIdd);
