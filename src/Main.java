@@ -123,7 +123,7 @@ public class Main {
                     case 10: eventSchedulingView.mainMethod();
 
                     default:
-                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
+//                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
                 }
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");
                 toContinue = scanner.next();

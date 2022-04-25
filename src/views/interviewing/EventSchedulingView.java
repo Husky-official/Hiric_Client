@@ -84,7 +84,7 @@ public class EventSchedulingView {
         return jobPostings;
     }
 
-    // choose from existing Jobposts and schedule an event
+    // choose from existing JobPosts and schedule an event
     public static void ScheduleEvent() throws IOException, InterruptedException, ParseException {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -168,12 +168,6 @@ public class EventSchedulingView {
             String actionDone = jsonResponse.get("actionToDo").asText();
 
             printConsoleMessage(MessageTypes.SUCCESS,false, message);
-//            printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
-//            printConsoleMessage(MessageTypes.SUCCESS, false, "STATUS ||         MESSAGE        ||             ACTION DONE             ");
-//            printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
-//            printConsoleMessage(MessageTypes.SUCCESS, false, status + "    ||" + message + "   ||" + actionDone);
-//            printConsoleMessage(MessageTypes.SUCCESS, false, "========================================================================");
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -200,27 +194,17 @@ public class EventSchedulingView {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
 
-        int status = jsonResponse.get("status").asInt();
-        String message = jsonResponse.get("message").asText();
-        String actionToDo = jsonResponse.get("actionToDo").asText();
-
         JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
         EventScheduling[] eventSchedules = objectMapper.treeToValue(jsonNode, EventScheduling[].class);
 
         MessagePrinter.skipLines(1);
-        printConsoleMessage(MessageTypes.SUCCESS, false, "=================================================");
-        printConsoleMessage(MessageTypes.SUCCESS, false, "EVENT ID  || EVENT NAME ");
-        printConsoleMessage(MessageTypes.SUCCESS, false, "=================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false, "=============================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false, "  EVENT ID ||     EVENT NAME     ");
+        printConsoleMessage(MessageTypes.NORMAL, false, "=============================================================");
         for (int i = 0; i < eventSchedules.length; i ++){
-            printConsoleMessage(MessageTypes.SUCCESS, false, "  "+eventSchedules[i].getId()+"       || "+eventSchedules[i].getEventName());
-            printConsoleMessage(MessageTypes.SUCCESS, false, "=================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false, "     "+eventSchedules[i].getId()+"     ||     "+eventSchedules[i].getEventName());
+            printConsoleMessage(MessageTypes.NORMAL, false, "==========================================================");
         }
-//
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-//        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionToDo);
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         return eventSchedules;
     }
     public static ShortlistedEmployees[] getShortlistedEmployees(int eventId) throws IOException {
@@ -283,5 +267,8 @@ public class EventSchedulingView {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonResponse = objectMapper.readTree(response);
+
+        String message = jsonResponse.get("message").asText();
+        printConsoleMessage(MessageTypes.SUCCESS, false, message);
     }
 }
