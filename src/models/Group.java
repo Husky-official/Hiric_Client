@@ -20,6 +20,10 @@ public class Group {
 
     public Group(){};
 
+    public Group(int id){
+        this.id = id;
+    };
+
     public Group(String groupName, int groupCreatorID, Date createdAt, Date updatedAt){
         this.groupName = groupName;
         this.groupCreatorID = groupCreatorID;

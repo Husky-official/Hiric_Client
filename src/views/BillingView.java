@@ -61,6 +61,43 @@ public class BillingView {
         return returnString;
     }
 
+    public String getListOfJobs() throws IOException {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/payment?userId="+1);
+        requestBody.setAction("listJobs");
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        if (message.equals("NOT FOUND ERROR")) {
+            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+            printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+            return "";
+        }
+
+        JobPosting[] jobPostings = objectMapper.treeToValue(jsonNode, JobPosting[].class);
+
+        for(int i = 0; i < jobPostings.length; i++) {
+            empId = Long.valueOf(jobPostings[i].userId);
+            jobSalary = Double.valueOf(jobPostings[i].salary);
+            System.out.println(i + 1 + " : " + jobPostings[i].jobDesc + "\t" + jobPostings[i].salary);
+        }
+        return jobPostings.toString();
+    }
+
     public void makePayment() throws Exception {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tPAY FOR THE JOB YOU'VE GIVEN");
@@ -112,57 +149,6 @@ public class BillingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
 
-    }
-
-    public String getListOfJobs() throws IOException {
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/payment");
-        requestBody.setAction("listJobs");
-        User user = new User();
-        user.setEmail("abiheloaf@gmail.com");
-        user.setPassword("pass123");
-        requestBody.setObject(user);
-
-        String requestString = new ObjectMapper().writeValueAsString(requestBody);
-
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        String response = clientServerConnector.connectToServer(requestString);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonResponse = objectMapper.readTree(response);
-
-        String jobPostingList = String.valueOf(jsonResponse.get("object"));
-        int status = jsonResponse.get("status").asInt();
-        String message = jsonResponse.get("message").asText();
-        String actionDone = jsonResponse.get("actionToDo").asText();
-
-        if (message.equals("NOT FOUND ERROR")) {
-            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-            printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-            printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
-            printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-            return "";
-        }
-
-        String[] strRes = jobPostingList.split("JobPosting");
-        List<JobPosting> jobPostings = new ArrayList<JobPosting>();
-        for (int i = 1; i<strRes.length; i++) {
-//            jobPostings.add();
-            String jobPostStr = strRes[i].split("}")[0] + "}";
-            String[] fields = jobPostStr.split(", ");
-            String jobId = fields[0].split("=")[1];
-            String employerId = fields[1].split("=")[1];
-            empId = Long.valueOf(employerId);
-            String jobDescBefore = fields[3].split("=")[1].substring(1);
-            String jobDesc = jobDescBefore.substring(0, jobDescBefore.length() -1);
-            String salary = fields[8].split("=")[1].replace("}", "");
-            jobSalary = Double.valueOf(salary);
-
-            System.out.println("\t" + jobId + ". \t" + jobDesc + "\t" + salary);
-        }
-
-        return Arrays.toString(jobPostingList.split("JobPosting"));
     }
 
 }

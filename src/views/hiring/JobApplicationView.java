@@ -1,14 +1,14 @@
 package views.hiring;
 
 import clientconnector.ClientServerConnector;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import interfaces.MessageTypes;
-import models.hiring.Job;
+import models.ResponseBody;
 import models.hiring.JobApplication;
-import models.hiring.JobPosting;
 import models.RequestBody;
+import models.hiring.JobApply;
+import models.hiring.JobPosting;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ This is job application view
 @author Ariane Itetero
  */
 public class JobApplicationView {
-    public static void main() throws IOException {
+    public static void main() throws Exception {
         printConsoleMessage(MessageTypes.ACTION, false,"====================================");
         printConsoleMessage(MessageTypes.ACTION, false,"\t\t\tJOB APPLICATION MENU         \n");
         printConsoleMessage(MessageTypes.ACTION, false,"------------------------------------");
@@ -34,11 +34,11 @@ public class JobApplicationView {
         Integer choice=input.nextInt();
         switch(choice){
             case 1:
-                viewPosts();
+                getJobPosts();
             case 2:
                 applyForJob();
-            case 3:
-                getApplicationsForJob(int jobId);
+//            case 3:
+//                getApplicationsForJob(jobPostId);
             case 4:
                 updateApplication();
             case 5:
@@ -68,7 +68,7 @@ public class JobApplicationView {
         String response=server.connectToServer(requestString);
     }
 
-    public static JobApplication[] getApplicationsForJob(int jobId) throws Exception {
+    public static JobApplication[] getApplicationsForJob(int jobPostId) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/get_job_applications?postId="+1);
         requestBody.setAction("get job applications");
@@ -94,22 +94,58 @@ public class JobApplicationView {
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         return jobApplications;
     }
-    private static void viewPosts() {
+    public static JobPosting[] getJobPosts() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/get_job_posts?userId="+1);
+        requestBody.setAction("get jobs");
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode res = objectMapper.readTree(response);
+        int status = res.get("status").asInt();
+        String message = res.get("message").asText();
+        String actionDone = res.get("actionToDo").asText();
+        ObjectMapper objectMapper1 = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper1.readTree(response);
+        JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
+        JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
+
+        System.out.println(jsonNode);
+
+        printConsoleMessage(MessageTypes.ACTION,false,"\n\t\t\t LIST OF JOBS POSTS\n");
+        System.out.format("+-----------------+-----------------+---------------------------+---------------------------+--------------++%n");
+        String leftAlignFormat = "| %-9s | %-13s | %-13s | %-23s | %18s | %17s |%n";
+        System.out.format(" | Job Id    |  jobRequirements      | location       | start date     | Duration    | Salary |%n");
+        System.out.println("+---------------------------------------------------------------------------------------------------------+");
+        for (int i = 0; i < jobPostings.length; i++) {
+            System.out.format(leftAlignFormat,jobPostings[i].getJobId(),
+                    jobPostings[i].getJobRequirements(),jobPostings[i].getLocation(),jobPostings[i].getStartDate(),
+                    jobPostings[i].getDuration(),jobPostings[i].getSalary());
+        }
+
+        ResponseBody responseBody;
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        return jobPostings;
     }
 
     public static void applyForJob() throws IOException{
         Scanner scanner=new Scanner(System.in);
         printConsoleMessage(MessageTypes.ACTION, false,"\t\tENTER DETAILS OF EMPLOYMENT DESIRED\n");
-        printConsoleMessage(MessageTypes.NORMAL, false,"Job Application Id: ");
-        String jobAppId=scanner.nextLine();
-        int appId=Integer.parseInt(jobAppId);
         printConsoleMessage(MessageTypes.NORMAL, false,"Job Post Id: ");
         String jobIdd=scanner.nextLine();
         int jobId=Integer.parseInt(jobIdd);
         printConsoleMessage(MessageTypes.NORMAL, false,"User Id: ");
         String userId=scanner.nextLine();
         int userrId=Integer.parseInt(userId);
-        printConsoleMessage(MessageTypes.NORMAL, false,"Location name: ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"Location id: ");
         String locid=scanner.nextLine();
         int locId=Integer.parseInt(locid);
         printConsoleMessage(MessageTypes.NORMAL, false,"Payment method: ");
@@ -123,23 +159,23 @@ public class JobApplicationView {
         String certificate=scanner.nextLine();
         printConsoleMessage(MessageTypes.NORMAL, false,"\n\n Attach the resume ");
         String resume=scanner.nextLine();
-        JobApplication apply = new JobApplication();
-        apply.setId(appId);
-         apply.setJobPostId(jobId);
-         apply.setUserId(userrId);
-         apply.setLocationId(locId);
-         apply.setPaymentMethod(paymentMethod);
-         apply.setReferenceName(refNames);
-         apply.setReferencePhone(contact);
-         apply.setCertificate(certificate);
-         apply.setResume(resume);
 
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/createApplication");
-        requestBody.setAction("createApplication");
-        requestBody.setObject(apply);
+        JobApply apply = new JobApply();
+        apply.setJobPostId(jobId);
+        apply.setUserId(userrId);
+        apply.setLocationId(locId);
+        apply.setPaymentMethod(paymentMethod);
+        apply.setReferenceName(refNames);
+        apply.setReferencePhone(contact);
+        apply.setCertificate(certificate);
+        apply.setResume(resume);
 
-        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        RequestBody requestBody2= new RequestBody();
+        requestBody2.setUrl("/createApplication");
+        requestBody2.setAction("createApplication");
+        requestBody2.setObject(apply);
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody2);
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         String response = clientServerConnector.connectToServer(requestString);
