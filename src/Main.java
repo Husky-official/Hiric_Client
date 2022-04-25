@@ -86,7 +86,7 @@ public class Main {
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    6.PAY YOUR EMPLOYEE        ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    7.HIRING                   ------------------||");
                 printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    9.MESSAGING                ------------------||");
-                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    10.Interviewing            ------------------||");
+                printConsoleMessage(MessageTypes.NORMAL, false, "\t\t\t||-----------------    10.INTERVIEWING            ------------------||");
 
 
                 Scanner scanner = new Scanner(System.in);
