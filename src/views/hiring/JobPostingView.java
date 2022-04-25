@@ -85,7 +85,7 @@ public class JobPostingView {
         ObjectMapper objectMapper1 = new ObjectMapper();
         JsonNode jsonResponse = objectMapper1.readTree(response);
         JsonNode jsonNode = objectMapper1.readTree(String.valueOf(jsonResponse.get("object")));
-        System.out.println(jsonNode);
+//        System.out.println(jsonNode);
         JobPosting[] jobPostings = objectMapper1.treeToValue(jsonNode, JobPosting[].class);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
@@ -124,7 +124,7 @@ public class JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\tAre you going to pay per hour 1 || 0");
         String hourly = scanner.nextLine();
         String salaryType;
-        if(hourly == "1") {
+        if(hourly == "1"){
             salaryType = "dynamic";
         }else {
             salaryType = "static";

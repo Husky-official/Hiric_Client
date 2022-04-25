@@ -8,13 +8,12 @@ package models.interviewing;
 public class EventParticipation {
     private int participationId;
     private int scheduleId;
-    private int jobApplicationId;
     private int participantId;
     private String participationStatus;
 
     public EventParticipation(){}
 
-    public EventParticipation(int participationId, int scheduleId, int participantId, String participationStatus){
+    public EventParticipation( int scheduleId, int participantId, String participationStatus){
         this.participationId = participationId;
         this.scheduleId = scheduleId;
         this.participantId = participantId;
@@ -35,14 +34,6 @@ public class EventParticipation {
 
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
-    }
-
-    public int getJobApplicationId() {
-        return jobApplicationId;
-    }
-
-    public void setJobApplicationId(int jobApplicationId) {
-        this.jobApplicationId = jobApplicationId;
     }
 
     public int getParticipantId() {
