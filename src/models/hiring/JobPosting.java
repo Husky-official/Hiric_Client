@@ -16,6 +16,7 @@ public class JobPosting {
     public Integer workers;
     public Integer paymentStatus;
     public String status;
+
     public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startTime, String duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
         this.id = id;
         this.jobId = jobId;
@@ -36,7 +37,6 @@ public class JobPosting {
     public JobPosting() {
 
     }
-
     public Integer getId() {
         return id;
     }
