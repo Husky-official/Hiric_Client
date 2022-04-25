@@ -118,19 +118,21 @@ public class Main {
                     case 9:
                         messageView.mainMethod();
                         break;
-                    default:
-                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
-
 
                     case 2: RegisterView.registerUser();
 
+                    break;
+
                     case 7: HiringView.mainMethod();
 
+                    break;
 //                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
 
 
                     case 10: eventSchedulingView.mainMethod();
 
+                    default:
+                        printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
 
                 }
 
