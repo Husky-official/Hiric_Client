@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessageView.java" afterDir="false" />
-    <list default="true" id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="send group message">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/GroupMessagingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/GroupMessagingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessageView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +108,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/views/MessageView.java</url>
           <line>476</line>
-          <properties class="views.MessageView" method="ShowQuickChattingHelp">
+          <properties class="views.MessageView">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
