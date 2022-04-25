@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70c26c75-7ce3-44b8-ad64-af2d594e9321" name="Changes" comment="the view of backing up  messages">
-      <change afterPath="$PROJECT_DIR$/src/models/CheckUserExistence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/ClientChat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/EventParticipation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Invoice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/UserLogout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/hiring/JobApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/interviewing/EventScheduling.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/InvoiceView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/interviewing/EventSchedulingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_11_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_11_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hiric_Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hiric_Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-annotations-2.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-core-2.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hiric_Client/lib/jackson-databind-2.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/RegisterUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RegisterUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/hiring/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/hiring/Job.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/hiring/JobPosting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/hiring/JobPosting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/BillingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/BillingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/GroupMessagingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/GroupMessagingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/RegisterView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/ShortListingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hiring/jobApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/jobApplicationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test.java" afterDir="false" />
-    </list>
+    <list default="true" id="70c26c75-7ce3-44b8-ad64-af2d594e9321" name="Changes" comment="the view of backing up  messages" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +32,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="260wPm0QKGkjPbJASxNldXsZ6Fl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -115,5 +83,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Hiric_Client$Main.ic" NAME="Main Coverage Results" MODIFIED="1646027093157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
