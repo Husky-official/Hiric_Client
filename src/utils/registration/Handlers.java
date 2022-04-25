@@ -2,7 +2,7 @@
  * @author UWENAYO ALain Pacifique
  * @description a class that contains all the handlers
  */
-package utils;
+package utils.registration;
 
 import clientconnector.ClientServerConnector;
 import com.fasterxml.jackson.databind.JsonNode;
