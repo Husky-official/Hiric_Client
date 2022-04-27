@@ -17,7 +17,7 @@ public class JobPosting {
     public Integer paymentStatus;
     public String status;
 
-    public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startime, String duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
+    public JobPosting(Integer id,Integer jobId, Integer userId, String jobDesc, String jobRequirements, Integer location, Date startDate, Time startTime, String duration, Integer salary, String salaryType, Integer workers, Integer paymentStatus, String status) {
         this.id = id;
         this.jobId = jobId;
         this.userId = userId;
@@ -25,7 +25,7 @@ public class JobPosting {
         this.jobRequirements = jobRequirements;
         this.location = location;
         this.startDate = startDate;
-        this.startTime = startime;
+        this.startTime = startTime;
         this.duration = duration;
         this.salary = salary;
         this.salaryType = salaryType;
@@ -37,7 +37,6 @@ public class JobPosting {
     public JobPosting() {
 
     }
-
     public Integer getId() {
         return id;
     }
@@ -89,11 +88,9 @@ public class JobPosting {
     public Date getStartDate() {
         return startDate;
     }
-
     public String getSalaryType() {
         return salaryType;
     }
-
     public void setSalaryType(String salaryType) {
         this.salaryType = salaryType;
     }
