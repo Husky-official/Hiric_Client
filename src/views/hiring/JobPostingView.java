@@ -41,7 +41,7 @@ public class  JobPostingView {
         switch (choice) {
             case 1 -> viewJobPosts();
             case 2 -> createJobPost();
-//            case 3 -> updateJobPost();
+            case 3 -> updateJobPost();
             case 4 -> deleteJobPost();
         }
     }
@@ -325,140 +325,140 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
-//    public static void updateJobPost() throws  Exception {
-//        Scanner scanner = new Scanner(System.in);
-//        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
-//        viewJobPosts();
-//        printConsoleMessage(MessageTypes.NORMAL, false,"\tWhich jobPost do you want to update?(ID)");
-//        String id = scanner.nextLine();
-//        Integer jobPostId = Integer.parseInt(id);
-//        printConsoleMessage(MessageTypes.NORMAL, false,"\t Which field do you want to update?");
-//
-//        printConsoleMessage(MessageTypes.NORMAL, true, "1.JOB TYPE");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t2.JOB DESCRIPTION");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t3.JOB REQUIREMENTS");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t4.LOCATION");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t5.START DATE");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t6.START TIME");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t7.DURATION");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t8.SALARY");
-//        printConsoleMessage(MessageTypes.NORMAL, true, "\t9.SALARY TYPE");
-//        printConsoleMessage(MessageTypes.NORMAL, false, "\t10.NUMBER OF WORKERS");
-//
-//
-//        String input = scanner.nextLine();
-//        Integer choice = Integer.parseInt(input);
-//
-//
-//        String jobDesc, jobRequirements, duration, salaryType;
-//        Integer jobId, salary, workers;
-//        Date startDate;
-//        Time startTime;
-//        JobPosting jobPost = new JobPosting();
-//        switch (choice) {
-//            case 1 -> {
-//                viewJobs();
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job type to be?");
-//                String jobIdd = scanner.nextLine();
-//                jobId = Integer.parseInt(jobIdd);
-//                jobPost.setJobId(jobId);
-//            }
-//            case 2 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job description to be?");
-//                jobDesc = scanner.nextLine();
-//                jobPost.setJobDesc(jobDesc);
-//            }
-//            case 3 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job requirements to be?");
-//                jobRequirements = scanner.nextLine();
-//                jobPost.setJobRequirements(jobRequirements);
-//            }
-//            case 4 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job location to be?");
-//                viewProvinces();
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t Province:");
-//                String prov = scanner.nextLine();
-//                Integer province = Integer.parseInt(prov);
-//                viewNextLocation(province, "PROVINCES");
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t District:");
-//                String distr = scanner.nextLine();
-//                Integer district = Integer.parseInt(distr);
-//                viewNextLocation(district, "SECTORS");
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t Sector:");
-//                String sect = scanner.nextLine();
-//                Integer sector = Integer.parseInt(sect);
-//                viewNextLocation(sector, "CELLS");
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t Cell:");
-//                String cel = scanner.nextLine();
-//                Integer cell = Integer.parseInt(cel);
-//                viewNextLocation(cell, "VILLAGES");
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t Village:");
-//                String vill = scanner.nextLine();
-//                Integer village = Integer.parseInt(vill);
-//                jobPost.setLocation(village);
-//            }
-//            case 5 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the start date to be?");
-//                String date = scanner.nextLine();
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
-//                LocalDate starDate = LocalDate.parse(date, formatter);
-//                startDate = java.sql.Date.valueOf(starDate);
-//                jobPost.setStartDate(startDate);
-//            }
-//            case 6 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job start time to be?");
-//                String stime = scanner.nextLine();
-//                DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
-//                LocalTime starTime = LocalTime.parse(stime, formattter);
-//                startTime = java.sql.Time.valueOf(starTime);
-//                jobPost.setStartTime(startTime);
-//            }
-//            case 7 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the duration to be?");
-//                duration = scanner.nextLine();
-//                jobPost.setDuration(duration);
-//            }
-//            case 8 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the salary to be?");
-//                String sal = scanner.nextLine();
-//                salary = Integer.parseInt(sal);
-//                jobPost.setSalary(salary);
-//            }
-//            case 9 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the salary type to be?(STATIC || DYNAMIC)");
-//                salaryType = scanner.nextLine();
-//                jobPost.setSalaryType(salaryType);
-//            }
-//            case 10 -> {
-//                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the number of workers to be?");
-//                String work = scanner.nextLine();
-//                workers = Integer.parseInt(work);
-//                jobPost.setWorkers(workers);
-//            }
-//        }
-//        jobPost.setId(jobPostId);
-//        RequestBody requestBody = new RequestBody();
-//        requestBody.setUrl("/jobPost");
-//        requestBody.setAction("updateJobPost");
-//        requestBody.setObject(jobPost);
-//        String requestString = new ObjectMapper().writeValueAsString(requestBody);
-//        System.out.println(requestString);
-//        ClientServerConnector clientServerConnector = new ClientServerConnector();
-//        String response = clientServerConnector.connectToServer(requestString);
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonResponse = objectMapper.readTree(response);
-//
-//        int status = jsonResponse.get("status").asInt();
-//        String message = jsonResponse.get("message").asText();
-//        String actionDone = jsonResponse.get("actionToDo").asText();
-//
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-//        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
-//        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
-//    }
+    public static void updateJobPost() throws  Exception {
+        Scanner scanner = new Scanner(System.in);
+        printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
+        viewJobPosts();
+        printConsoleMessage(MessageTypes.NORMAL, false,"\tWhich jobPost do you want to update?(ID)");
+        String id = scanner.nextLine();
+        Integer jobPostId = Integer.parseInt(id);
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t Which field do you want to update?");
+
+        printConsoleMessage(MessageTypes.NORMAL, true, "1.JOB TYPE");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t2.JOB DESCRIPTION");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t3.JOB REQUIREMENTS");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t4.LOCATION");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t5.START DATE");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t6.START TIME");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t7.DURATION");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t8.SALARY");
+        printConsoleMessage(MessageTypes.NORMAL, true, "\t9.SALARY TYPE");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t10.NUMBER OF WORKERS");
+
+
+        String input = scanner.nextLine();
+        Integer choice = Integer.parseInt(input);
+
+
+        String jobDesc, jobRequirements, duration, salaryType;
+        Integer jobId, salary, workers;
+        Date startDate;
+        Time startTime;
+        JobPosting jobPost = new JobPosting();
+        switch (choice) {
+            case 1 -> {
+                viewJobs();
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job type to be?");
+                String jobIdd = scanner.nextLine();
+                jobId = Integer.parseInt(jobIdd);
+                jobPost.setJobId(jobId);
+            }
+            case 2 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job description to be?");
+                jobDesc = scanner.nextLine();
+                jobPost.setJobDesc(jobDesc);
+            }
+            case 3 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job requirements to be?");
+                jobRequirements = scanner.nextLine();
+                jobPost.setJobRequirements(jobRequirements);
+            }
+            case 4 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job location to be?");
+                viewProvinces();
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t Province:");
+                String prov = scanner.nextLine();
+                Integer province = Integer.parseInt(prov);
+                viewNextLocation(province, "PROVINCES");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t District:");
+                String distr = scanner.nextLine();
+                Integer district = Integer.parseInt(distr);
+                viewNextLocation(district, "SECTORS");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t Sector:");
+                String sect = scanner.nextLine();
+                Integer sector = Integer.parseInt(sect);
+                viewNextLocation(sector, "CELLS");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t Cell:");
+                String cel = scanner.nextLine();
+                Integer cell = Integer.parseInt(cel);
+                viewNextLocation(cell, "VILLAGES");
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t Village:");
+                String vill = scanner.nextLine();
+                Integer village = Integer.parseInt(vill);
+                jobPost.setLocation(village);
+            }
+            case 5 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the start date to be?");
+                String date = scanner.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+                LocalDate starDate = LocalDate.parse(date, formatter);
+                startDate = java.sql.Date.valueOf(starDate);
+                jobPost.setStartDate(startDate);
+            }
+            case 6 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the job start time to be?");
+                String stime = scanner.nextLine();
+                DateTimeFormatter formattter = DateTimeFormatter.ofPattern("HH mm ss");
+                LocalTime starTime = LocalTime.parse(stime, formattter);
+                startTime = java.sql.Time.valueOf(starTime);
+                jobPost.setStartTime(startTime);
+            }
+            case 7 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the duration to be?");
+                duration = scanner.nextLine();
+                jobPost.setDuration(duration);
+            }
+            case 8 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the salary to be?");
+                String sal = scanner.nextLine();
+                salary = Integer.parseInt(sal);
+                jobPost.setSalary(salary);
+            }
+            case 9 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the salary type to be?(STATIC || DYNAMIC)");
+                salaryType = scanner.nextLine();
+                jobPost.setSalaryType(salaryType);
+            }
+            case 10 -> {
+                printConsoleMessage(MessageTypes.NORMAL, false,"\t What do you want the number of workers to be?");
+                String work = scanner.nextLine();
+                workers = Integer.parseInt(work);
+                jobPost.setWorkers(workers);
+            }
+        }
+        jobPost.setId(jobPostId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/jobPost");
+        requestBody.setAction("updateJobPost");
+        requestBody.setObject(jobPost);
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+        System.out.println(requestString);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+    }
 
     public static void viewJobPostById(Integer jobPostId) throws Exception {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
@@ -495,6 +495,7 @@ public class  JobPostingView {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tDELETE JOB POST");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
+        viewJobPosts();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tEnter jobPost Id");
         String id = scanner.nextLine();
         Integer jobId = Integer.parseInt(id);
