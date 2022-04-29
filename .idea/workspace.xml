@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9183530-8c31-406f-a6c9-36efb3f88183" name="Changes" comment="send group message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/hiring/JobApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobApplicationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
