@@ -2,6 +2,11 @@ package models;
 
 import java.util.Date;
 
+/**
+ * @author: Rwagapfizi Igor
+ * @description : The data to be displayed in Employee Dashboard
+ */
+
 public class EmployeeDashboard {
     private Date dateToday;
     private int messages;
@@ -19,9 +24,7 @@ public class EmployeeDashboard {
     private int amount;
     private String paymentMethod;
 
-    public Date getDateToday() {
-        return dateToday;
-    }
+    public Date getDateToday() { return dateToday; }
 
     public void setDateToday(Date dateToday) {
         this.dateToday = dateToday;

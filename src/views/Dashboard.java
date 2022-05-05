@@ -66,6 +66,9 @@ public class Dashboard {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Date joined: 25/Mar/2018   ------------------||");
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
 
+        printConsoleMessage(MessageTypes.NORMAL, false,"\n\t\t\t||-------------------------------------------------------------------||");
+        printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||------------------    Date joined: 25/Mar/2018   ------------------||");
+
         ObjectMapper objectMapper = new ObjectMapper();
         String requestString = objectMapper.writeValueAsString(requestBody);
 
