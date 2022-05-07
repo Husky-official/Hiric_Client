@@ -132,14 +132,10 @@ public class Main {
                     break;
 //                    default: printConsoleMessage(MessageTypes.ERROR, false, "Invalid input");
 
-
                     case 10: eventSchedulingView.mainMethod();
-
                     default:
                         printConsoleMessage(MessageTypes.ERROR, false,"Invalid input");
-
                 }
-
                 printConsoleMessage(MessageTypes.NORMAL, false,"\t\tDo you want to continue searching? (y/n): ");
                 toContinue = scanner.next();
             } while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
