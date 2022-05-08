@@ -101,12 +101,13 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,"\t-----------------------");
         printConsoleMessage(MessageTypes.NORMAL, false, "\tJOB POSTS: ");
 
+//        new Loader(17, "\tGetting job posts");
+//        MessagePrinter.skipLines(1);
 
         printConsoleMessage(MessageTypes.NORMAL, false, "======================================================================================================================================================================================================================================================");
         printConsoleMessage(MessageTypes.NORMAL, false, "ID ||          JobTitle          ||          JobDescription          ||       JobRequirements       ||       Location            ||       StartDate     ||     StartTime     ||   Duration   ||     Salary     ||     SalaryType     ||   Workers   ||");
         printConsoleMessage(MessageTypes.NORMAL, false, "======================================================================================================================================================================================================================================================");
-        new Loader(17, "\tGetting job posts");
-        MessagePrinter.skipLines(1);
+
         JobPosting[] jobPosts = getJobPosts();
         Job[] jobs = getJobs();
         Location[] locations = getLocations();
