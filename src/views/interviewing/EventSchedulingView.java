@@ -13,9 +13,13 @@ import models.interviewing.EventType;
 import utils.ExitApplication;
 import utils.Loader;
 import utils.MessagePrinter;
+import views.hiring.JobPostingView;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static utils.MessagePrinter.printConsoleMessage;
@@ -65,8 +69,8 @@ public class EventSchedulingView {
 
     public static JobPosting[] getJobPosts() throws Exception {
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/get_job_posts?userId=" + 1);
-        requestBody.setAction("get jobs");
+        requestBody.setUrl("/get_job_posts");
+        requestBody.setAction("getJobs");
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
 
@@ -99,7 +103,7 @@ public class EventSchedulingView {
             MessagePrinter.skipLines(1);
 
             JobPosting[] jobPostings;
-            jobPostings = getJobPosts();
+            jobPostings = JobPostingView.getJobPosts();
             for(int i = 0; i < jobPostings.length; i++) {
                 printConsoleMessage(MessageTypes.NORMAL, false, "\t\t"+jobPostings[i].id + " : " + jobPostings[i].jobDesc);
             }
@@ -129,17 +133,23 @@ public class EventSchedulingView {
                 }
             }
             scanner.nextLine();
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t Enter the event date(dd/MM/yyyy): ");
-            String eventDate = scanner.nextLine();
-//            Date eventDate = new SimpleDateFormat("dd/MM/yyy").parse(myDate);
+            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t Enter the event date(dd.MM.yyyy): ");
+            String date = scanner.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            LocalDate evenDate = LocalDate.parse(date, formatter);
+            java.sql.Date eventDate = java.sql.Date.valueOf(evenDate);
 
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t Enter starting time(\" hh:mm:ss\")");
-            String startTime = scanner.nextLine();
-//            Time startTime = Time.valueOf(time1);
+            String time = scanner.nextLine();
+            DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalTime starTime = LocalTime.parse(time, formatter1);
+            java.sql.Time startTime = java.sql.Time.valueOf(starTime);
 
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t\t Enter ending time(\" hh:mm:ss\"): ");
-            String endTime = scanner.nextLine();
-//            Time endTime = Time.valueOf(time2);
+            String time1 = scanner.nextLine();
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalTime enTime = LocalTime.parse(time1, formatter2);
+            java.sql.Time endTime = java.sql.Time.valueOf(enTime);
 
             EventScheduling eventScheduling = new EventScheduling();
             eventScheduling.setJobPostId(jobPostId);

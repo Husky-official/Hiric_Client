@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="send group message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/interviewing/EventScheduling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/interviewing/EventScheduling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hiring/JobPostingView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/interviewing/EventSchedulingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/interviewing/EventSchedulingView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +57,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="app.teamhub.trackedBranches" value="-8e7t58/main,-8e7t58/Shumbusho_David" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Hiric_Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JDBC Project" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -80,9 +80,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="" />
       <changelist id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="" />
-      <changelist id="fd27ee66-df35-4a7b-b1c2-f03050c08782" name="Changes" comment="send group message" />
       <created>1646573801938</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
