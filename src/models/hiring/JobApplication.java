@@ -17,6 +17,7 @@ public class JobApplication {
     public String firstName;
     public String lastName;
     public String email;
+    public String status;
 
 
     public JobApplication(int id, int userId, int jobPostId,  String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
