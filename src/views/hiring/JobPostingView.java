@@ -15,6 +15,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Scanner;
 import utils.*;
 
@@ -112,15 +113,15 @@ public class  JobPostingView {
         Job[] jobs = getJobs();
         Location[] locations = getLocations();
         String title, location;
-        for(int j = 0; j< jobs.length; j++) {
+        for (Job job : jobs) {
             for (int i = 0; i < jobPosts.length; i++) {
-                for(int k = 0; k<locations.length; k++) {
-                if((jobPosts[i].jobId == jobs[j].id) && (jobPosts[i].location == locations[k].id)) {
-                    title = jobs[j].jobTitle;
-                    location = locations[k].location;
-                    printConsoleMessage(MessageTypes.NORMAL, false, i+1 + "  ||"+ title + "                     ||" + jobPosts[i].jobDesc + "          ||" + jobPosts[i].jobRequirements + "             ||" + location + "                  ||" + jobPosts[i].startDate + "           ||" + jobPosts[i].startTime + "           ||" + jobPosts[i].duration + "           ||" + jobPosts[i].salary + "           ||" + jobPosts[i].salaryType + "            ||" + jobPosts[i].workers + "            ||") ;
-                    printConsoleMessage(MessageTypes.NORMAL, false, "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-                }
+                for (Location value : locations) {
+                    if ((Objects.equals(jobPosts[i].jobId, job.id)) && (Objects.equals(jobPosts[i].location, value.id))) {
+                        title = job.jobTitle;
+                        location = value.location;
+                        printConsoleMessage(MessageTypes.NORMAL, false, i + 1 + "  ||" + title + "                     ||" + jobPosts[i].jobDesc + "          ||" + jobPosts[i].jobRequirements + "             ||" + location + "                  ||" + jobPosts[i].startDate + "           ||" + jobPosts[i].startTime + "           ||" + jobPosts[i].duration + "           ||" + jobPosts[i].salary + "           ||" + jobPosts[i].salaryType + "            ||" + jobPosts[i].workers + "            ||");
+                        printConsoleMessage(MessageTypes.NORMAL, false, "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
                 }
             }
         }
@@ -327,27 +328,23 @@ public class  JobPostingView {
         printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
         printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
     }
+
+
     public static void updateJobPost() throws  Exception {
         Scanner scanner = new Scanner(System.in);
         printConsoleMessage(MessageTypes.NORMAL, false, "\tUPDATE A JOB POST");
+
         viewJobPosts();
         printConsoleMessage(MessageTypes.NORMAL, false,"\tWhich jobPost do you want to update?(ID)");
         String id = scanner.nextLine();
         Integer jobPostId = Integer.parseInt(id);
         printConsoleMessage(MessageTypes.NORMAL, false,"\t Which field do you want to update?");
 
-        printConsoleMessage(MessageTypes.NORMAL, true, "1.JOB TYPE");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t2.JOB DESCRIPTION");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t3.JOB REQUIREMENTS");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t4.LOCATION");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t5.START DATE");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t6.START TIME");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t7.DURATION");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t8.SALARY");
-        printConsoleMessage(MessageTypes.NORMAL, true, "\t9.SALARY TYPE");
-        printConsoleMessage(MessageTypes.NORMAL, false, "\t10.NUMBER OF WORKERS");
-
-
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t1.JOB TYPE\t\t\t\t\t\t6.START TIME");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t2.JOB DESCRIPTION\t\t\t\t7.DURATION");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t3.JOB REQUIREMENTS\t\t\t\t8.SALARY");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t4.LOCATION\t\t\t\t\t\t9.SALARY TYPE");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t5.START DATE\t\t\t\t\t10.NUMBER OF WORKERS");
         String input = scanner.nextLine();
         Integer choice = Integer.parseInt(input);
 
