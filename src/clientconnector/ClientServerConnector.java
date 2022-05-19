@@ -19,7 +19,7 @@ public class ClientServerConnector {
     public String connectToServer(String requestBody) throws IOException {
 
         try{
-            Socket socket = new Socket("localhost", 9000);
+            Socket socket = new Socket("localhost", 9900);
             DataOutputStream requestOut = new DataOutputStream(socket.getOutputStream());
             DataInputStream responseIn = new DataInputStream(socket.getInputStream());
 

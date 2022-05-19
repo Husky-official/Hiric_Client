@@ -11,5 +11,6 @@
     <orderEntry type="library" name="jackson-databind-2.11.2" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
     <orderEntry type="library" name="jbcrypt-0.4" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.11.21" level="project" />
   </component>
 </module>
