@@ -1,8 +1,11 @@
 package views;
 
 import interfaces.MessageTypes;
+import views.hiring.ConfirmationAndCancellingView;
+import views.hiring.JobApplicationView;
 import views.hiring.JobPostingView;
 import views.hiring.ShortListingView;
+//import views.hiring.ShortListingView;
 
 import java.util.Scanner;
 import static utils.MessagePrinter.printConsoleMessage;
@@ -14,6 +17,7 @@ public class HiringView {
         printConsoleMessage(MessageTypes.NORMAL, false, "\t1.JOB POSTING");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t2.JOB APPLICATION");
         printConsoleMessage(MessageTypes.NORMAL, false, "\t3.SHORT LISTING");
+        printConsoleMessage(MessageTypes.NORMAL, false, "\t4.JOB CONFIRMATION AND CANCELLING");
         Scanner scanner = new Scanner(System.in);
         int choice;
         printConsoleMessage(MessageTypes.NORMAL, false,"\t\t\t||-------------------------------------------------------------------||");
@@ -21,7 +25,9 @@ public class HiringView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> JobPostingView.mainMethod();
+            case 2 -> JobApplicationView.main();
             case 3 -> ShortListingView.mainMethod();
+            case 4 -> ConfirmationAndCancellingView.mainMethod();
         }
     }
 

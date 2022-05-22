@@ -7,14 +7,14 @@
     <list default="true" id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="send group message">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Payment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,7 +59,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="app.teamhub.trackedBranches" value="-8e7t58/main,-8e7t58/Shumbusho_David" />
     <property name="extract.method.default.visibility" value="private" />
@@ -68,6 +67,8 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -91,10 +92,12 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="286cd184-f4b3-4700-8ddb-575d90df91d6" name="Changes" comment="" />
       <created>1646573801938</created>
+      <created>1650604960624</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1646573801938</updated>
-      <workItem from="1647230733775" duration="10460000" />
+      <updated>1650604960624</updated>
+      <workItem from="1653157570177" duration="1722000" />
+      <workItem from="1653209713149" duration="2420000" />
     </task>
     <servers />
   </component>
@@ -122,6 +125,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/views/MessageView.java</url>
           <line>390</line>
+          <line>476</line>
           <properties class="views.MessageView">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

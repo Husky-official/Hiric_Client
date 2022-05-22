@@ -1,9 +1,9 @@
 /*
-* @Author: MPANO Christian
-* */
+ * @Author: MPANO Christian
+ * */
 /*
-* @Author: MPANO Christian
-* */
+ * @Author: MPANO Christian
+ * */
 package views.hiring;
 
 import clientconnector.ClientServerConnector;
@@ -14,6 +14,7 @@ import models.RequestBody;
 import models.hiring.Job;
 import models.hiring.JobApplication;
 import models.hiring.JobPosting;
+import models.hiring.ShortListApplication;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,6 +26,10 @@ public class ShortListingView {
             System.out.println("SELECT THE JOB POST YOU WANT TO SHOT LIST FOR");
             JobPosting[] jobPostings;
             jobPostings = JobPostingView.getJobPosts();
+            if(jobPostings == null) {
+                printConsoleMessage(MessageTypes.ERROR, false, "no job posts available");
+                return;
+            }
             for(int i = 0; i < jobPostings.length; i++) {
                 System.out.println(i + 1 + " : " + jobPostings[i].jobDesc);
             }
@@ -37,16 +42,21 @@ public class ShortListingView {
                 }
             }
             if(jobPostId == 0) {
-                System.out.println("invalid job selected");
+                printConsoleMessage(MessageTypes.ERROR, false, "invalid job selected");
                 return;
             }
-            JobApplication[] jobApplications = jobApplicationView.getApplicationsForJob(jobPostId);
+            JobApplication[] jobApplications = JobApplicationView.getApplicationsForJob(jobPostId);
+
+            if(jobApplications == null) {
+                printConsoleMessage(MessageTypes.ERROR, false, "no job applications available yet");
+                return;
+            }
 
             String leftAlignFormat = "| %-4d | %-13s | %-13s | %-23s | %18s | %17s |%n";
             System.out.format(" Number| FirstName     | LastName      | Email                   | Payment method     | referenceName     |%n");
             System.out.println("+---------------------------------------------------------------------------------------------------------+");
             for (int i = 0; i < jobApplications.length; i++) {
-                System.out.format(leftAlignFormat, 1,jobApplications[i].firstName, jobApplications[i].lastName, jobApplications[i].email, jobApplications[i].paymentMethod, jobApplications[i].referenceName);
+                System.out.format(leftAlignFormat, i + 1,jobApplications[i].firstName, jobApplications[i].lastName, jobApplications[i].email, jobApplications[i].paymentMethod, jobApplications[i].referenceName);
             }
             System.out.format("+-----------------+-------------+%n");
             System.out.println("How many job applications do you want to shortlist?");
@@ -97,5 +107,29 @@ public class ShortListingView {
         if(updated>=0) {
             printConsoleMessage(MessageTypes.SUCCESS,false,"Shortlisting went successful!");
         }
+    }
+    public static ShortListApplication[] getShortListForJob(int postId) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/getShortList?postId="+postId);
+        requestBody.setAction("get shortlist");
+
+        String requestString = new ObjectMapper().writeValueAsString(requestBody);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        String response = clientServerConnector.connectToServer(requestString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonResponse = objectMapper.readTree(response);
+        JsonNode jsonNode = objectMapper.readTree(String.valueOf(jsonResponse.get("object")));
+        int status = jsonResponse.get("status").asInt();
+        String message = jsonResponse.get("message").asText();
+        String actionDone = jsonResponse.get("actionToDo").asText();
+        System.out.println(jsonNode);
+        ShortListApplication[] shortList = objectMapper.treeToValue(jsonNode, ShortListApplication[].class);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,"STATUS ||         MESSAGE        ||             ACTION DON              ");
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false,status+"    ||" + message +"   ||" + actionDone);
+        printConsoleMessage(MessageTypes.NORMAL, false,"========================================================================");
+        return shortList;
     }
 }

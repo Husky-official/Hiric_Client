@@ -21,7 +21,9 @@ import utils.MessagePrinter;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.net.Inet4Address;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -155,7 +157,7 @@ public class MessageView {
                 }
             }
         }while (choice !=0);
-    } 
+    }
 
     public static void GetAllUsers() throws IOException, InterruptedException {
         try {
@@ -191,7 +193,9 @@ public class MessageView {
             MessagePrinter.skipLines(1);
 
             for (int i = 0; i < users.size(); i++) {
-                MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t"+(i+1)+". "+users.get(i));
+                String[] userData = users.get(i).split("~");
+                ArrayList<String> user = new ArrayList<>(Arrays.asList(userData));
+                MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t"+(i+1)+". "+user.get(0)+" "+user.get(1));
             }
 
             MessagePrinter.skipLines(1);
@@ -201,10 +205,13 @@ public class MessageView {
             int chatWithChoice;
             chatWithChoice = scanner.nextInt();
             --chatWithChoice;
-            String directMessageTo = users.get(chatWithChoice);
+
+            String[] userToChat = users.get(chatWithChoice).split("~");
+            ArrayList<String> userToChatData = new ArrayList<>(Arrays.asList(userToChat));
+            String directMessageTo = userToChatData.get(0)+" "+userToChatData.get(1)+" ( #_id: "+userToChatData.get(2)+" )";
 
             if (directMessageTo != null) {
-                DirectChatWithMemberView(directMessageTo, chatWithChoice);
+                DirectChatWithMemberView(userToChatData.get(0)+" "+userToChatData.get(1), Integer.parseInt(userToChatData.get(2)));
             } else {
                 MessagePrinter.skipLines(1);
                 MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Unable to find this user! Try checking the ID.");
@@ -236,7 +243,7 @@ public class MessageView {
             }
 
             if (firstTime) {
-                MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "You can now start chating with "+memberName);
+                MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "You can now start chating with "+memberName+" ( #_id: "+memberID+" )");
             }
 
             InitialChattingEnvironment(memberName, memberID);
@@ -354,138 +361,33 @@ public class MessageView {
          * */
 
         MessagePrinter.skipLines(1);
-        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "CHATTING WITH "+memberName.toUpperCase());
-        MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "-----------------------");
+        printConsoleMessage(MessageTypes.ACTION, false, "CHATTING WITH "+memberName.toUpperCase()+" ( #_id: "+memberID+" )");
+        printConsoleMessage(MessageTypes.ACTION, false, "---------------------------------------------");
         MessagePrinter.skipLines(1);
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "+ Press 1: Quit chat | Press 2: Get help | Press 3: Exit app +");
-        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
+        printConsoleMessage(MessageTypes.NORMAL, false, "+ Press 1: Quit chat | Press 2: Get help | Press 3: Exit app +");
+        printConsoleMessage(MessageTypes.NORMAL, false, "==============================================================");
 
         //fetch the older messages
         ArrayList olderMessages = getOlderChatMessages(memberName, memberID);
         if (olderMessages != null) {
             for (int i = 0; i < olderMessages.size(); i++) {
-                if ((i+1)%2 == 0) {
-                    MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: ");
+                String[] messages = olderMessages.get(i).toString().split("~");
+                ArrayList<String> olderMessagesArr = new ArrayList<>(Arrays.asList(messages));
+                if (Integer.parseInt(olderMessagesArr.get(0)) != 1) { //replace by user id from login
+                    printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: ");
+                    printConsoleMessage(MessageTypes.ACTION, false, olderMessagesArr.get(1));
                 } else {
-                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
+                    printConsoleMessage(MessageTypes.WARNING, true, memberName.split(" ")[0]+": ");
+                    printConsoleMessage(MessageTypes.NORMAL, false, olderMessagesArr.get(1));
                 }
-                MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, "\t"+(i+1)+". "+olderMessages.get(i));
             }
         }
 
-        Scanner scanner = new Scanner(System.in);
-        String message;
-        MessagePrinter.printConsoleMessage(MessageTypes.SUCCESS, true, "Seth: "); //get username from login
-        message = scanner.nextLine();
-        Boolean continued = false;
-
-        if (Objects.equals(message, "1") || Objects.equals(message, "2") || Objects.equals(message, "3")) {
-
-            MessagePrinter.skipLines(1);
-            Scanner scanner_one = new Scanner(System.in);
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Executing chat options (y/n): ");
-            String choice;
-            choice = scanner_one.nextLine();
-
-            switch (choice) {
-                case "y":
-                    continued = true;
-                    switch (message) {
-                        case "1":
-                            mainMethod();
-                            break;
-                        case "2":
-                            ShowQuickChattingHelp();
-                            break;
-                        case "3":
-                            new ExitApplication();
-                            break;
-                        default:
-                            MessagePrinter.skipLines(1);
-                            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Incorrect choice!");
-                            new Loader(7, "Retrying ");
-                            MessagePrinter.skipLines(2);
-                            DirectMessageView();
-                    }
-                    break;
-                default:
-                    MessagePrinter.printConsoleMessage(MessageTypes.ACTION, false, "Ok continuing ....");
-            }
-
+        if (!lastTexted()) {
+            continueChatting(memberName, memberID);
         }
 
-        if (!continued) {
-            //create replying func
-
-            Message newMessage = new Message();
-            newMessage.setMessageContent(message);
-            newMessage.setMessageType("reply");
-            newMessage.setOriginalMessage(1); //set original message id
-            newMessage.setSender(1); //get user id from login
-            newMessage.setReceiver(memberID);
-
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            newMessage.setSentAt(dtf.format(now));
-
-            RequestBody requestBody = new RequestBody();
-            requestBody.setUrl("/messages");
-            requestBody.setAction("sendMessage");
-            requestBody.setObject(newMessage);
-            String requestString = new ObjectMapper().writeValueAsString(requestBody);
-            ClientServerConnector clientServerConnector = new ClientServerConnector();
-            String responseString = clientServerConnector.connectToServer(requestString);
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonResponse = objectMapper.readTree(responseString);
-            int status = jsonResponse.get("status").asInt();
-            JsonNode userData = jsonResponse.get("object");
-            Iterator<Map.Entry<String, JsonNode>> iterator = userData.fields();
-            iterator.next();
-            iterator.next();
-            String messageContent = iterator.next().toString().split("=")[1];
-            iterator.next();
-            String senderID = iterator.next().toString().split("=")[1];
-            String receiverID = iterator.next().toString().split("=")[1];
-
-            if (Integer.parseInt(senderID) == 1) { //get user id from login
-                if (status != 200) {
-                    MessagePrinter.skipLines(1);
-                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Message not sent!");
-                    new Loader(30, "Re-trying ");
-                    MessagePrinter.skipLines(1);
-                    continueChatting(memberName, memberID);
-                }
-            }
-
-            while (Integer.parseInt(senderID) != Integer.parseInt(receiverID)) {
-
-                if (Integer.parseInt(receiverID) == memberID && Integer.parseInt(senderID) != 1) { //1 will be replaced by my id from login
-                    MessagePrinter.skipLines(1);
-                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
-                    MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, messageContent);
-                    MessagePrinter.skipLines(1);
-                    continueChatting(memberName, memberID);
-                }
-
-            }
-
-        } else {
-            MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Continue chatting (y/n): ");
-            String choice_cont;
-            choice_cont = scanner.nextLine();
-            switch (choice_cont) {
-                case "y":
-                    //including the reply func
-                    break;
-                default:
-                    MessagePrinter.skipLines(1);
-                    MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Unable to initial your chat environment.");
-                    new Loader(30, "Re-trying ");
-                    MessagePrinter.skipLines(1);
-                    DirectMessageView();
-            }
-        }
     }
 
     public static void ShowQuickChattingHelp() throws IOException {
@@ -509,7 +411,7 @@ public class MessageView {
         message.setReceiver(memberID); //set the id to the current logged in user
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/messages");
-        requestBody.setAction("getOlderMessages");
+        requestBody.setAction("olderMessages");
         requestBody.setObject(message);
 
         String requestString = new ObjectMapper().writeValueAsString(requestBody);
@@ -522,12 +424,14 @@ public class MessageView {
         int status = jsonResponse.get("status").asInt();
 
         if (status == 200) {
-            String usersString = jsonResponse.get("object").asText();
-            String[] arr = usersString.split(" ");
-
+            String olderMessages = jsonResponse.get("object").asText();
+            String[] arr = olderMessages.split("!-%");
             ArrayList<String> messages = new ArrayList<>(Arrays.asList(arr));
-
             return messages;
+        } else if (status == 404) {
+            MessagePrinter.skipLines(1);
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "You have no messages with "+ memberName);
+            MessagePrinter.skipLines(1);
         } else {
             MessagePrinter.skipLines(1);
             MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, "Failed to get older messages with "+ memberName);
@@ -622,16 +526,8 @@ public class MessageView {
                 }
             }
 
-            while (Integer.parseInt(senderID) != Integer.parseInt(receiverID)) {
-
-                if (Integer.parseInt(receiverID) == memberID && Integer.parseInt(senderID) != 1) { //1 will be replaced by my id from login
-                    MessagePrinter.skipLines(1);
-                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
-                    MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, messageContent);
-                    MessagePrinter.skipLines(1);
-                }
-
-            }
+            //create socket and send message
+            createNewMessagingSocket(requestBody, memberName, memberID);
 
         } else {
             MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, true, "Continue chatting (y/n): ");
@@ -639,7 +535,7 @@ public class MessageView {
             choice_cont = scanner.nextLine();
             switch (choice_cont) {
                 case "y":
-                    //including the reply func
+                    continueChatting(memberName, memberID);
                     break;
                 default:
                     MessagePrinter.skipLines(1);
@@ -651,4 +547,110 @@ public class MessageView {
         }
     }
 
+    private static ServerSocket directMessageServerSocket;
+    private static ServerSocket generateDirectMessageSocket() throws IOException {
+        try {
+            Inet4Address myIpAddress = (Inet4Address) Inet4Address.getLocalHost();
+            ClientChat client = new ClientChat();
+            client.setHostname(myIpAddress.toString().split("/")[1]);
+            client.setUserId(1); //get user id when logged in
+            Random random = new Random();
+            int portNumber = random.nextInt(999999);
+            while (portNumber > 65535) {
+                portNumber = random.nextInt(999999);
+            }
+
+            directMessageServerSocket = new ServerSocket(8901);
+
+            return directMessageServerSocket;
+        } catch(Exception error) {
+            MessagePrinter.skipLines(1);
+            MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
+        }
+
+        return null;
+    }
+    private static void createNewMessagingSocket(RequestBody requestBody, String memberName, Integer memberID) throws IOException {
+        //check if no other initialized socket between the users;
+        while (directMessageServerSocket == null) {
+            generateDirectMessageSocket();
+        }
+
+        if (!lastTexted()) {
+            try {
+                Message newMessage = (Message) requestBody.getObject();
+                String messageToSend = newMessage.getMessageContent();
+                String replyFromSomeone = "";
+
+                while (true) {
+                    Socket socket = directMessageServerSocket.accept();
+                    InputStream inFromClient = socket.getInputStream();
+                    DataInputStream request = new DataInputStream(inFromClient);
+                    replyFromSomeone = request.readUTF();
+
+                    OutputStream outToClient = socket.getOutputStream();
+                    DataOutputStream response = new DataOutputStream(outToClient);
+                    response.writeUTF(messageToSend);
+                    response.flush();
+
+                    MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName.split(" ")[0]+": ");
+                    MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, replyFromSomeone);
+
+                    if (replyFromSomeone != "") {
+                        continueChatting(memberName, memberID);
+                    }
+                }
+
+            } catch (Exception error) {
+                MessagePrinter.skipLines(1);
+                MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
+            }
+        } else {
+            try {
+                while (true){
+                    Socket socket = new Socket(getClientIpAddress(), 8901);
+
+                    try {
+                        DataInputStream fromServer = new DataInputStream(socket.getInputStream());
+                        DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
+                        Message newMessage = (Message) requestBody.getObject();
+                        String messageToSend = newMessage.getMessageContent();
+                        String replyFromSomeone = "";
+
+                        //send msg
+                        toServer.writeUTF(messageToSend);
+                        toServer.flush();
+
+                        //read response
+                        replyFromSomeone = fromServer.readUTF();
+                        MessagePrinter.printConsoleMessage(MessageTypes.WARNING, true, memberName+": ");
+                        MessagePrinter.printConsoleMessage(MessageTypes.NORMAL, false, replyFromSomeone);
+
+                        toServer.close();
+
+                        if (replyFromSomeone != "") {
+                            continueChatting(memberName, memberID);
+                        }
+
+                    }catch (Exception error){
+                        MessagePrinter.skipLines(1);
+                        MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
+                    }
+                    socket.close();
+                }
+            } catch (Exception error) {
+                MessagePrinter.skipLines(1);
+                MessagePrinter.printConsoleMessage(MessageTypes.ERROR, false, error.getMessage());
+            }
+        }
+
+    }
+
+    private static boolean lastTexted() {
+        return false;
+    }
+
+    private static String getClientIpAddress() {
+        return "127.0.0.1";
+    }
 }

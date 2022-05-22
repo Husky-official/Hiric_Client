@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jackson-annotations-2.11.2" level="project" />
+<<<<<<< HEAD
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -35,5 +36,10 @@
         <SOURCES />
       </library>
     </orderEntry>
+=======
+    <orderEntry type="library" name="jackson-databind-2.11.2" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
+    <orderEntry type="library" name="jbcrypt-0.4" level="project" />
+>>>>>>> 951d25e6f3a15b5a39f06a76a0aa8605eb51d634
   </component>
 </module>

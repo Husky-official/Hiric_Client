@@ -1,5 +1,5 @@
 /*
- * @Author: MPANO Christian
+ * @Author: MPANO Christian, Itetero Ariane
  * */
 package models.hiring;
 
@@ -17,6 +17,7 @@ public class JobApplication {
     public String firstName;
     public String lastName;
     public String email;
+    public String status;
 
 
     public JobApplication(int id, int userId, int jobPostId,  String paymentMethod, int locationId, String referenceName, String referencePhone, String resume, String certificate){
@@ -57,6 +58,7 @@ public class JobApplication {
         this.locationId =locationId;
         this.resume=resume;
         this.certificate=certificate;
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
