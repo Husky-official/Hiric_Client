@@ -8,7 +8,7 @@ import views.UserView;
 import views.hiring.JobApplicationView;
 
 import static utils.MessagePrinter.printConsoleMessage;
-//import views.hiring.JobPostingView;
+import views.hiring.JobPostingView;
 import views.interviewing.EventSchedulingView;
 
 import java.io.IOException;
@@ -109,9 +109,9 @@ public class Main {
                         userView.verifyToken();
                     case 'b':
                         userView.setNewPassword();
-//                    case 4:
-//                        JobPostingView.createJobPost();
-//                        break;
+                    case 4:
+                        JobPostingView.createJobPost();
+                        break;
                     case 6:
                         billingView.makePayment();
                         break;
