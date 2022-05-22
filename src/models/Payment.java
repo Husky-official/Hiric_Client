@@ -1,7 +1,6 @@
 package models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /**
  *@author : DUSHIME Bill Benon - Billing Model
